@@ -1,14 +1,13 @@
-package sakana;
+package Sakana;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 
 import Fabrica.*;
 import Panel.*;
@@ -17,7 +16,7 @@ import Panel.*;
 @SuppressWarnings("serial")
 public class MenuPrincipal extends JFrame implements WindowListener{
 
-	JPanel panelPrincipal;
+	JSplitPane panelPrincipal;
 	public static JDesktopPane desktopIzquierda, desktopDerecha;
 	public static PanelAjustes panelAjustes;
 	
@@ -46,8 +45,11 @@ public class MenuPrincipal extends JFrame implements WindowListener{
 	}
 	
 	private Component crearPanelPrincipal() {
-		panelPrincipal = new JPanel(new GridLayout(1, 2));
-		
+
+		panelPrincipal = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+		panelPrincipal.setDividerLocation(400);
+		panelPrincipal.setEnabled(false);
+		panelPrincipal.setDividerSize(0);
 		panelPrincipal.add(desktopIzquierda);
 		panelPrincipal.add(desktopDerecha);
 		
