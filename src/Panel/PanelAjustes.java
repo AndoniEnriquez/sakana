@@ -121,12 +121,14 @@ public class PanelAjustes implements ActionListener{
 
 			this.bloquearCandado();
 			bBloqueo.setIcon(new ImageIcon("Iconos/ajustes/lock.png"));
+			bSalir.setEnabled(true);
 			bloqueado = true;
 			
 		}else {
 			
 			this.desbloquearCandado();
 			bBloqueo.setIcon(new ImageIcon("Iconos/ajustes/unlock.png"));
+			bSalir.setEnabled(false);
 			bloqueado = false;
 			
 		}

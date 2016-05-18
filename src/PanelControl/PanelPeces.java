@@ -1,5 +1,6 @@
 package PanelControl;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.GridLayout;
@@ -13,12 +14,15 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import Panel.MiPanel;
+import Panel.PanelAddPez;
 import Panel.PanelExample;
 
 @SuppressWarnings("serial")
-public class PanelPeces extends PanelExample implements ActionListener{
+public class PanelPeces extends PanelExample implements ActionListener, ListSelectionListener{
 
 	static int tamX = 0;
 	static int tamY = 0;
@@ -60,9 +64,10 @@ public class PanelPeces extends PanelExample implements ActionListener{
 	}
 	
 	private Component crearPanelSecundario(){
-		panelSecundario = new JPanel(new GridLayout(3, 1));
+		panelSecundario = new JPanel();
 
-		panelSecundario.add(crearPanelAdd());
+		panelSecundario.setBackground(Color.WHITE);
+		//panelSecundario.add(crearPanelAdd());
 		//panelSecundario.add(crearPanelDelete());
 		//panelSecundario.add(crearPanelEdit());
 		
@@ -71,15 +76,9 @@ public class PanelPeces extends PanelExample implements ActionListener{
 	
 	private Component crearPanelAdd(){
 		
-		JPanel panel = new JPanel();
+		PanelAddPez panelAdd = new PanelAddPez();
 		
-		add = new JButton("ADD");
-		add.setActionCommand("Add");
-		add.addActionListener(this);
-		
-		panel.add(add);
-		
-		return panel;
+		return panelAdd;
 	}
 	
 
@@ -102,6 +101,7 @@ public class PanelPeces extends PanelExample implements ActionListener{
 		
 		list = new JList<Object>();
 		list.setListData(datos);
+		list.addListSelectionListener(this);
 		
 		 for(int i = 0; i < datos.length; i++){
 			 
@@ -129,11 +129,45 @@ public class PanelPeces extends PanelExample implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		
 		switch(e.getActionCommand()){
 		
 			case "Add":
 				
 				break;
+		}
+		
+
+		
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		
+		int index = list.getSelectedIndex();
+		
+		switch (index) {
+		
+		case 0:
+			
+			panelSecundario.removeAll();
+			panelSecundario.add(crearPanelAdd());
+			
+			break;
+
+			
+		default:
+			
+			try{
+				
+				//INDEX DE CADA PEZ
+				
+			}catch(Exception e1){
+				
+				
+			}
+			
+			break;
 		}
 		
 	}
