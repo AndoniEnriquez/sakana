@@ -8,7 +8,16 @@ public class FabricaAcciones {
 	int tamX, tamY;
 	public static PanelListaPecera panelListaPecera;
 	public static PanelControlPecera panelControlPecera;
+	public static PanelAjustes panelAjustes;
 	
+	public static PanelAjustes getPanelAjustes() {
+		return panelAjustes;
+	}
+
+	public static void setPanelAjustes(PanelAjustes panelAjustes) {
+		FabricaAcciones.panelAjustes = panelAjustes;
+	}
+
 	public LoginIzquierda accionamientoLoginIzquierda(){
 		
 		this.tamX = 400;
@@ -43,4 +52,5 @@ public class FabricaAcciones {
 		return panelControlPecera;
 	}
 	
+
 }

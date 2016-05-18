@@ -60,10 +60,11 @@ public class MenuPrincipal extends JFrame implements WindowListener{
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		
-		MenuPrincipal menuPrincipal = new MenuPrincipal();		
-		
+    	MenuPrincipal menuPrincipal = new MenuPrincipal();	
 		
 	}
+	
+	
 
 	@Override
 	public void windowOpened(WindowEvent e) {

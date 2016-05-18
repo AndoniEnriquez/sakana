@@ -18,13 +18,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Fabrica.*;
+import Login.FormLogin;
 import Sakana.MenuPrincipal;
 
 
 public class PanelAjustes implements ActionListener{
 
 	JPanel panel;
-	public JButton bBloqueo;
+	public JButton bBloqueo, bInicio, bSalir;
 	JLabel labelHora;
 	
 	FabricaAcciones fabrica;
@@ -32,11 +33,13 @@ public class PanelAjustes implements ActionListener{
 	Boolean bloqueado = true;
 	
 	
+	@SuppressWarnings("static-access")
 	public JPanel crearPanelAjustes(FabricaAcciones fabrica) {
 
 		panel = new JPanel();
 		
 		this.fabrica = fabrica;
+		fabrica.setPanelAjustes(this);
 		labelHora = new JLabel();
 
 		panel.setBackground(Color.lightGray); 
@@ -50,8 +53,22 @@ public class PanelAjustes implements ActionListener{
 		bBloqueo = new JButton(new ImageIcon("Iconos/ajustes/lock.png"));
 		bBloqueo.setActionCommand("Bloqueo");
 		bBloqueo.addActionListener(this);
+		bBloqueo.setEnabled(false);
 		bBloqueo.add(Box.createRigidArea(new Dimension(35,35)));
 		bBloqueo.setBorder(BorderFactory.createEmptyBorder(10,2,2,2));
+		
+		bInicio = new JButton(new ImageIcon("Iconos/ajustes/login.png"));
+		bInicio.setActionCommand("Inicio");
+		bInicio.addActionListener(this);
+		bInicio.add(Box.createRigidArea(new Dimension(35,35)));
+		bInicio.setBorder(BorderFactory.createEmptyBorder(10,2,2,2));
+		
+		bSalir = new JButton(new ImageIcon("Iconos/ajustes/logout.png"));
+		bSalir.setActionCommand("Salir");
+		bSalir.addActionListener(this);
+		bSalir.setEnabled(false);
+		bSalir.add(Box.createRigidArea(new Dimension(35,35)));
+		bSalir.setBorder(BorderFactory.createEmptyBorder(10,2,2,2));
 		
 		labelHora.setFont(new Font("Arial", Font.BOLD, 15));
 		labelHora.setForeground(Color.WHITE);
@@ -59,6 +76,10 @@ public class PanelAjustes implements ActionListener{
 		panel.add(labelHora);
 		panel.add(Box.createHorizontalGlue());
 		
+		panel.add(bInicio);
+		panel.add(Box.createRigidArea(new Dimension(25,25)));
+		panel.add(bSalir);
+		panel.add(Box.createRigidArea(new Dimension(25,25)));
 		panel.add(bBloqueo);
 		panel.add(Box.createRigidArea(new Dimension(25,25)));
 
@@ -74,6 +95,20 @@ public class PanelAjustes implements ActionListener{
 			case "Bloqueo":
 			
 				this.controlBloqueo();
+		
+				break;
+				
+			case "Inicio":
+				
+				new FormLogin(fabrica);
+		
+				break;
+				
+			case "Salir":
+				
+				bInicio.setEnabled(true);
+				bSalir.setEnabled(false);
+				bBloqueo.setEnabled(false);
 		
 				break;
 				
