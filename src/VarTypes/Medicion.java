@@ -1,4 +1,4 @@
-package sakana;
+package VarTypes;
 
 import java.util.Calendar;
 

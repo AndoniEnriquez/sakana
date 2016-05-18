@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 
 import Fabrica.*;
 import Login.FormLogin;
-import Sakana.MenuPrincipal;
+import sakana.MenuPrincipal;
 
 
 public class PanelAjustes implements ActionListener{
