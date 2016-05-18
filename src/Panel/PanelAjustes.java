@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Fabrica.*;
+import Sakana.MenuPrincipal;
 
 
 public class PanelAjustes implements ActionListener{
@@ -46,7 +47,7 @@ public class PanelAjustes implements ActionListener{
 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
-		bBloqueo = new JButton(new ImageIcon("iconos/ajustes/lock.png"));
+		bBloqueo = new JButton(new ImageIcon("Iconos/ajustes/lock.png"));
 		bBloqueo.setActionCommand("Bloqueo");
 		bBloqueo.addActionListener(this);
 		bBloqueo.add(Box.createRigidArea(new Dimension(35,35)));
@@ -82,19 +83,37 @@ public class PanelAjustes implements ActionListener{
 	public void controlBloqueo(){
 		
 		if(bloqueado == false){
-			
-			System.out.println("BLOQUEADO");
-			bBloqueo.setIcon(new ImageIcon("iconos/ajustes/lock.png"));
+
+			this.bloquearCandado();
+			bBloqueo.setIcon(new ImageIcon("Iconos/ajustes/lock.png"));
 			bloqueado = true;
 			
 		}else {
 			
-			System.out.println("DESBLOQUEADO");
-			bBloqueo.setIcon(new ImageIcon("iconos/ajustes/unlock.png"));
+			this.desbloquearCandado();
+			bBloqueo.setIcon(new ImageIcon("Iconos/ajustes/unlock.png"));
 			bloqueado = false;
 			
 		}
 		
+	}
+	
+	public void bloquearCandado(){
+		
+		MenuPrincipal.desktopIzquierda.removeAll();
+		MenuPrincipal.desktopDerecha.removeAll();
+		
+		MenuPrincipal.desktopIzquierda.add(fabrica.accionamientoLoginIzquierda());
+		MenuPrincipal.desktopDerecha.add(fabrica.accionamientoLoginDerecha());
+	}
+	
+	public void desbloquearCandado(){
+		
+		MenuPrincipal.desktopIzquierda.removeAll();
+		MenuPrincipal.desktopDerecha.removeAll();
+		
+		MenuPrincipal.desktopIzquierda.add(fabrica.accionamientoListaPecera());
+		MenuPrincipal.desktopDerecha.add(fabrica.accionamientoControlPecera());
 	}
 	
 	public class ControlHora  implements Runnable{

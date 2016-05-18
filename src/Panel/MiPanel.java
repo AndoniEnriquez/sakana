@@ -17,7 +17,6 @@ public class MiPanel extends JPanel{
 	}
 	
 	@Override
-	
 	public void paint(Graphics g) {
 
 		if (imagen != null) {
