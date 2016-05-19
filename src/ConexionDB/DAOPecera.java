@@ -21,14 +21,14 @@ public class DAOPecera {
 
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT pecera_id,IP,Capacidad,HoraComida"+
+			strSQL="SELECT IP,Capacidad,NombrePecera"+
 					" FROM PECERA";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				//Calendar cal = Calendar.getInstance();
 				//cal.setTime(result.getDate("horacomida"));
 					
-				pecera = new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("HoraComida"),
+				pecera = new Pecera(result.getString("IP"),result.getString("NombrePecera"),
 						result.getInt("Capacidad"),0,0);
 				lista.add(pecera);
 			}
@@ -50,14 +50,14 @@ public class DAOPecera {
 
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT pecera_id,IP,Capacidad,HoraComida"+
+			strSQL="SELECT IP,Capacidad,NombrePecera, HoraComida"+
 					" FROM PECERA";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				//Calendar cal = Calendar.getInstance();
 				//cal.setTime(result.getDate("horacomida"));
 					
-				pecera=new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("Nombre"),
+				pecera=new Pecera(result.getString("IP"),result.getString("NombrePecera"),
 						result.getInt("Capacidad"));
 				lista.add(pecera);
 			}
@@ -78,7 +78,7 @@ public class DAOPecera {
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT pecera_id, IP, Capacidad, horacomida"+
+			strSQL="SELECT IP, Capacidad, NombrePecera , Horacomida"+
 					" FROM PECERA"+
 					" WHERE pecera_id='"+idPecera+"'";
 			result = stmt.executeQuery(strSQL);
@@ -86,7 +86,7 @@ public class DAOPecera {
 			
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(result.getDate("horacomida"));
-			p=new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("Nombre"),
+			p=new Pecera(result.getString("IP"),result.getString("NombrePecera"),
 					result.getInt("Capacidad"));
 			result.close();
 			return p;
@@ -109,7 +109,7 @@ public class DAOPecera {
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT pecera_id, IP, Capacidad, horacomida"+
+			strSQL="SELECT pecera_id, IP, Capacidad, NombrePecera, HoraComida"+
 					" FROM PECERA"+
 					" WHERE IP='"+IPPecera+"'";
 			result = stmt.executeQuery(strSQL);
@@ -117,7 +117,7 @@ public class DAOPecera {
 			
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(result.getDate("horacomida"));
-			p=new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("Nombre"),
+			p=new Pecera(result.getString("IP"),result.getString("NombrePecera"),
 					result.getInt("Capacidad"));
 			result.close();
 			return p;

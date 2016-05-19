@@ -15,7 +15,6 @@ import javax.swing.event.ListSelectionListener;
 import ConexionDB.DAOPecera;
 import Fabrica.FabricaAcciones;
 import VarTypes.Pecera;
-import sakana.MenuPrincipal;
 
 
 
@@ -91,6 +90,7 @@ public class PanelListaPecera extends PanelExample implements ListSelectionListe
 	}
 
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 

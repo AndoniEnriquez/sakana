@@ -9,7 +9,6 @@ import javax.swing.event.ChangeListener;
 
 import Fabrica.FabricaAcciones;
 import PanelControl.*;
-import VarTypes.Pecera;
 
 @SuppressWarnings("serial")
 public class PanelControlPecera extends PanelExample implements ChangeListener{
@@ -35,6 +34,7 @@ public class PanelControlPecera extends PanelExample implements ChangeListener{
 		this.setContentPane(crearPanelVentana());
 	}
 
+	@SuppressWarnings("static-access")
 	private Container crearPanelVentana() {
 		
 		tab = new JTabbedPane();

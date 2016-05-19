@@ -8,7 +8,6 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -19,11 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import ConexionDB.DAODueno;
-import ConexionDB.DAOPecera;
 import Fabrica.FabricaAcciones;
-import VarTypes.Dueno;
-import VarTypes.Pecera;
 
 @SuppressWarnings("serial")
 public class FormLogin extends JFrame implements ActionListener {
