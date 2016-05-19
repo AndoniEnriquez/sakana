@@ -89,7 +89,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		boolean añadir;
+		boolean anadir;
 		
 		switch (e.getActionCommand()){
 		case "OK" : if (true){
@@ -98,8 +98,8 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 					}else{
 						try{
 						Pecera p = new Pecera(txIP.getText(), txNombrePecera.getText(), Integer.parseInt(txtCapacidad.getText()));
-						añadir = DAOPecera.addPecera(p);
-						if(añadir){
+						anadir = DAOPecera.addPecera(p);
+						if(anadir){
 							
 							JOptionPane.showMessageDialog(this, "Pecera añadida","Accion realizada", JOptionPane.INFORMATION_MESSAGE);
 							this.dispose();
