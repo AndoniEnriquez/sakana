@@ -18,6 +18,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -34,8 +35,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 	final static String  TITULO = "Crear nuevo usuario";
 	JComboBox<String> comboResponsable;
 	JTextField txNombrePecera, txIP, txtCapacidad, txMin;
-	JDateChooser txHora;
-	int i;
+	JFormattedTextField txHora;
 	
 	public DialogoAddPecera (JFrame frame, boolean modo){
 		super ( frame,TITULO,modo );
@@ -78,16 +78,15 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		panel.add(txNombrePecera = crearCampo("Nombre de la Pecera"));
 		panel.add(txIP = crearCampo("Nombre"));
 		panel.add(txtCapacidad = crearCampo("Capacidad"));
-		panel.add(txHora = crearCampoFecha("Hora comida",LocalDateTime.now().toLocalDate()));		
+		panel.add(txHora = crearCampoFecha("Hora comida"));		
 		return panel;
 	}
 	
 	@SuppressWarnings("unused")
-	private JDateChooser crearCampoFecha(String titulo,LocalDate fecha) {
-
-		Date date = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
-		String dateFormat ="HH:mm";
-		JDateChooser campoFecha = new JDateChooser(date,dateFormat);
+	private JFormattedTextField crearCampoFecha(String titulo) {
+	
+		String dateFormat ="00:00";
+		JFormattedTextField campoFecha = new JFormattedTextField(dateFormat);
 		campoFecha.setBorder(BorderFactory.createTitledBorder(
 				BorderFactory.createLineBorder(Color.CYAN),titulo));
 		campoFecha.setFont(new Font("Arial",Font.BOLD|Font.ITALIC,18));
@@ -109,10 +108,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		boolean anadir;
 		
 		switch (e.getActionCommand()){
-		case "OK" : if (true){
-						JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos",
-								"Error datos incompletos", JOptionPane.ERROR_MESSAGE);
-					}else{
+		case "OK" :
 						try{
 						Pecera p = new Pecera(txIP.getText(), txNombrePecera.getText(), Integer.parseInt(txtCapacidad.getText()));
 						anadir = DAOPecera.addPecera(p);
@@ -131,7 +127,9 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
-						}
+
+							JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos",
+									"Error datos incompletos", JOptionPane.ERROR_MESSAGE);
 					}
 					break;
 					
