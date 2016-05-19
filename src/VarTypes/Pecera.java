@@ -1,6 +1,6 @@
 package VarTypes;
 
-import java.util.Calendar;
+import java.sql.Time;
 
 public class Pecera {
 
@@ -8,17 +8,17 @@ public class Pecera {
 	String IP;
 	String nombre;
 	int capacidad;
-	Calendar horacomida;
+	Time horacomida;
 	
 	float PH, Temp;
 	
 	
-	public Pecera(int ID, String IP, String nombre, int capacidad, Calendar horacomida){
+	public Pecera(int ID, String IP, String nombre, int capacidad){
 		this.ID = ID;
 		this.IP = IP;
 		this.nombre = nombre;
 		this.capacidad = capacidad;
-		this.horacomida = horacomida;
+		
 	}
 
 	public Pecera(int ID, String IP, String nombre, int capacidad, float PH, float Temp){
@@ -60,13 +60,13 @@ public class Pecera {
 
 
 
-	public Calendar getHoracomida() {
+	public Time getHoracomida() {
 		return horacomida;
 	}
 
 
 
-	public void setHoracomida(Calendar horacomida) {
+	public void setHoracomida(Time horacomida) {
 		this.horacomida = horacomida;
 	}
 

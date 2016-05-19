@@ -21,13 +21,13 @@ public class DAOMedicion {
 
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT medicion_id, nombre, datatimeMedicion, tipomedicion_id, pecera_id"+
+			strSQL="SELECT medicion_id, valor, datatimeMedicion, tipomedicion_id, pecera_id"+
 					" FROM MEDICION";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(result.getDate("datatimeMedicion"));
-				medicion = new Medicion(result.getInt("medicion_id"),result.getString("nombre"),cal,
+				medicion = new Medicion(result.getInt("medicion_id"),result.getFloat("valor"),cal,
 						result.getInt("tipomedicion_id"),result.getInt("pecera_id"));
 				lista.add(medicion);
 			}
@@ -55,7 +55,7 @@ public class DAOMedicion {
 			
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(result.getDate("datatimeMedicion"));
-			m = new Medicion(result.getInt("medicion_id"),result.getString("nombre"),cal,
+			m = new Medicion(result.getInt("medicion_id"),result.getFloat("valor"),cal,
 					result.getInt("tipomedicion_id"),result.getInt("pecera_id"));
 			result.close();
 			return m;
@@ -85,7 +85,7 @@ public class DAOMedicion {
 			
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(result.getDate("datatimeMedicion"));
-			m = new Medicion(result.getInt("medicion_id"),result.getString("nombre"),cal,
+			m = new Medicion(result.getInt("medicion_id"),result.getFloat("valor"),cal,
 					result.getInt("tipomedicion_id"),result.getInt("pecera_id"));
 			result.close();
 			return m;
@@ -106,12 +106,12 @@ public class DAOMedicion {
 
 		try
 		{
-			if(buscarPorID(m.getID())==null && buscarPorNombre(m.getNombre()) == null)
+			if(buscarPorID(m.getID())==null)
 			{
 
 				stmt=PoolConexiones.getConexion().createStatement();
 				strSQL="INSERT INTO MEDICION "+
-						" VALUES ("+m.getID()+",'"+m.getNombre()+"','"+m.getDatetime().getTime()+"','"+m.getTipoMedicion_id()+"','"+m.getPecera_id()+")";
+						" VALUES ("+m.getID()+",'"+m.getValor()+"','"+m.getDatetime().getTime()+"','"+m.getTipoMedicion_id()+"','"+m.getPecera_id()+")";
 				result = stmt.executeUpdate(strSQL);		      
 				return true;
 			}
@@ -145,7 +145,7 @@ public class DAOMedicion {
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="UPDATE MEDICION "+
-					" SET nombre = '"+m.getNombre()+
+					" SET valor = '"+m.getValor()+
 					"', datetimeMedicion   = '"+m.getDatetime().getTime()+
 					"', tipomedicion_id   = '"+m.getTipoMedicion_id()+
 					"', pecera_id   = '"+m.getPecera_id()+

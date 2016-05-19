@@ -5,14 +5,14 @@ import java.util.Calendar;
 public class Medicion {
 	
 	int ID;
-	String nombre;
+	float valor;
 	Calendar datetime;
 	int tipoMedicion_id;
 	int pecera_id;
 	
-	public Medicion(int ID, String nombre, Calendar datetime, int tipoMedicion_id, int pecera_id){
+	public Medicion(int ID, float valor, Calendar datetime, int tipoMedicion_id, int pecera_id){
 		this.ID=ID;
-		this.nombre=nombre;
+		this.valor=valor;
 		this.datetime=datetime;
 		this.tipoMedicion_id=tipoMedicion_id;
 		this.pecera_id=tipoMedicion_id;
@@ -26,12 +26,12 @@ public class Medicion {
 		ID = iD;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public float getValor() {
+		return valor;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setValor(float valor) {
+		this.valor = valor;
 	}
 
 	public Calendar getDatetime() {

@@ -39,6 +39,35 @@ public class DAOPecera {
 		return lista;
 	}
 
+	static public ArrayList<Pecera> getPecerasPorDueno() throws Exception{
+		Statement stmt;
+		ResultSet result;
+		String strSQL;
+		ArrayList<Pecera> lista = null;
+		Pecera pecera;
+		try
+		{
+
+			lista = new ArrayList<>();
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="SELECT pecera_id,IP,Capacidad,HoraComida"+
+					" FROM PECERA";
+			result = stmt.executeQuery(strSQL);
+			while (result.next()){
+				//Calendar cal = Calendar.getInstance();
+				//cal.setTime(result.getDate("horacomida"));
+					
+				pecera=new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("Nombre"),
+						result.getInt("Capacidad"));
+				lista.add(pecera);
+			}
+			result.close();
+		} catch (Exception e ){
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
 	static public Pecera buscarPorID(int idPecera) throws Exception
 	{
 		Statement stmt;
@@ -58,7 +87,7 @@ public class DAOPecera {
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(result.getDate("horacomida"));
 			p=new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("Nombre"),
-					result.getInt("Capacidad"), cal);
+					result.getInt("Capacidad"));
 			result.close();
 			return p;
 		}
@@ -89,7 +118,7 @@ public class DAOPecera {
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(result.getDate("horacomida"));
 			p=new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("Nombre"),
-					result.getInt("Capacidad"),cal);
+					result.getInt("Capacidad"));
 			result.close();
 			return p;
 		}
@@ -151,6 +180,7 @@ public class DAOPecera {
 			strSQL="UPDATE PECERA "+
 					" SET IP = '"+p.getIP()+
 					"', Capacidad   = '"+p.getCapacidad()+
+					"', nombre   = '"+p.getNombre()+
 					"', horacomida   = '"+p.getHoracomida().getTime()+
 					"' WHERE pecera_id='"+p.getID()+"'";
 			return (stmt.executeUpdate(strSQL)>0);
