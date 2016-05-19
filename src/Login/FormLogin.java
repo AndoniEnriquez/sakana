@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -18,7 +19,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import ConexionDB.DAODueno;
+import ConexionDB.DAOPecera;
 import Fabrica.FabricaAcciones;
+import VarTypes.Dueno;
+import VarTypes.Pecera;
 
 @SuppressWarnings("serial")
 public class FormLogin extends JFrame implements ActionListener {
@@ -110,30 +115,35 @@ public class FormLogin extends JFrame implements ActionListener {
     
   
   @SuppressWarnings("static-access")
-public void actionPerformed(ActionEvent e)
-  {
-    if((e.getSource()==btnOK)||(e.getSource() == this.txtPassword))
-    {
-      //LogCtrl logador=new LogCtrl();
-      //if(logador.validarUser(txtUserName.getText(),String.valueOf(txtPassword.getPassword())))
-      //{
-      //  new FormRecursos(Sesion.getInstance().getUsuario());
+public void actionPerformed(ActionEvent e){
+   
+	if((e.getSource()==btnOK)||(e.getSource() == this.txtPassword)) {
+		
+      LogCtrl logador=new LogCtrl();
+      
+      if(logador.validarUser(txtUserName.getText(),String.valueOf(txtPassword.getPassword()))) {
+    	  
+    	  //new FormRecursos(Sesion.getInstance().getUsuario());
     	
-    	fabrica.getPanelAjustes().bInicio.setEnabled(false);
-    	fabrica.getPanelAjustes().bSalir.setEnabled(true);
-    	fabrica.getPanelAjustes().bBloqueo.setEnabled(true);
+    	  fabrica.getPanelAjustes().bInicio.setEnabled(false);
+    	  fabrica.getPanelAjustes().bSalir.setEnabled(true);
+    	  fabrica.getPanelAjustes().bBloqueo.setEnabled(true);
     	
-        this.setVisible(false);
-        this.dispose();
-      //}
-    //  else {
-    	  JOptionPane.showMessageDialog(this,"Identificaci�n no v�lida", "Error de identificaci�n",
+    	  this.setVisible(false);
+    	  this.dispose();
+      }
+      else {
+    	  JOptionPane.showMessageDialog(this,"Identificacion no valida", "Error de identificacion",
     			    JOptionPane.ERROR_MESSAGE);
-    //  }
+      }
     }
-    else if(e.getSource()==btnSalir)
-    {
+    
+	else if(e.getSource()==btnSalir) {
        this.dispose();
     }
   }
+  
+  
+
+   
 }

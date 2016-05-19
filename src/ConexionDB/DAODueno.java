@@ -8,19 +8,18 @@ import VarTypes.*;
 
 public class DAODueno {
 
-	static public Dueno buscarPorNombre(String username) throws Exception
-	{
+	static public Dueno buscarPorNombre(String username) throws Exception {
+		
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
 		Dueno d;
 
-		try
-		{
+		try {
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT dueno_id, nombreDueno, password"+
 					" FROM DUENO"+
-					" WHERE nombreDueno="+username;
+					" WHERE nombreDueno='"+username+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
 			d = new Dueno(result.getInt("dueno_id"),result.getString("nombreDueno"),
@@ -29,8 +28,8 @@ public class DAODueno {
 			return d;
 		}
 
-		catch(SQLException e)
-		{
+		catch(SQLException e) {
+			
 			e.printStackTrace();
 			return null;
 		}
