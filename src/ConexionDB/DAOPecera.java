@@ -28,7 +28,7 @@ public class DAOPecera {
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(result.getDate("horacomida"));
 					
-				pecera = new Pecera(result.getInt("pecera_id"),result.getString("IP"),
+				pecera = new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("Nombre"),
 						result.getInt("Capacidad"),cal);
 				lista.add(pecera);
 			}
@@ -57,7 +57,7 @@ public class DAOPecera {
 			
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(result.getDate("horacomida"));
-			p=new Pecera(result.getInt("pecera_id"),result.getString("IP"),
+			p=new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("Nombre"),
 					result.getInt("Capacidad"), cal);
 			result.close();
 			return p;
@@ -88,7 +88,7 @@ public class DAOPecera {
 			
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(result.getDate("horacomida"));
-			p=new Pecera(result.getInt("pecera_id"),result.getString("IP"),
+			p=new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("Nombre"),
 					result.getInt("Capacidad"),cal);
 			result.close();
 			return p;

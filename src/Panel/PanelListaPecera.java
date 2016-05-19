@@ -1,105 +1,81 @@
 package Panel;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-import javax.swing.Box;
+import java.awt.Container;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import VarTypes.Pecera;
 
 
 
 
 @SuppressWarnings("serial")
-public class PanelListaPecera extends PanelExample implements MouseListener{
+public class PanelListaPecera extends PanelExample implements ListSelectionListener{
 
 	static int tamX = 400;
 	static int tamY = 650;
 	
 	public JPanel panel, trans, aux;
-	Image fondoLista;
-	Toolkit toolkit;
 	
-	MiPanel miPanel;
+
+	JScrollPane scrollPane;
+	JList<Pecera> list;
+	
+	DefaultListModel<Pecera> modelo;
+	
+	
 	
 	public PanelListaPecera() {
 		super(tamX, tamY);
 		this.setBorder(null);
 		
-		toolkit = Toolkit.getDefaultToolkit();
-		fondoLista = toolkit.createImage("Imagenes/oceano.jpg");
-		
+		modelo = new DefaultListModel<>();
 		this.setContentPane(crearPanelVentana());
 		
 	}
 	
 	private Container crearPanelVentana() {
-		
-		panel = new JPanel(new GridLayout(1,1));
 
-		miPanel = new MiPanel(fondoLista);
+		scrollPane = new JScrollPane();
+		this.setBorder(null);
 		
 		this.controlPeceras();
+		//scrollPane.getViewport().add(list);
 		
-		return panel;
+		return scrollPane;
 		
 	}
 
 	public void controlPeceras(){
 
-		aux = crearPanelTrans();
-		aux.add(Box.createRigidArea(new Dimension(0,115)));
-		//aux.add(); AÑADIR LABEL CON ICONO PARA DISTINGUIR PECERAS ? 
 
+		list = new JList<Pecera>(modelo);
 		
+		Pecera pecera;
+		pecera = new Pecera(1,"192","NE",4, 7.1f , 23.4f);
 		
-		for(int i = 0; i < 8; i++){
-			aux = crearPanelTrans();
-			miPanel.add(aux);
-			panel.add(miPanel);
-		}
+		modelo.addElement(pecera);
+
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list.setCellRenderer(new RenderListaPecera());
+		list.addListSelectionListener(this);
+
+		scrollPane.setViewportView(list);
+			
+		
 	}
 	
-	public JPanel crearPanelTrans(){
 
-		trans = new JPanel();
-		trans.setBackground(new Color(0,0,0,125));
-		trans.setPreferredSize(new Dimension(350,75));
-
-		return trans;
-	}
-	
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
+	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
