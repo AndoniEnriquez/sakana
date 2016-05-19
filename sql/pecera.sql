@@ -17,6 +17,7 @@ CONSTRAINT COMIDA_TIPOCOMIDA_FK FOREIGN KEY (tipocomida_id) REFERENCES TIPOCOMID
 
 CREATE TABLE PECERA (
 pecera_id			INT(3),
+nombrePecera 		VARCHAR(45),
 horacomida			VARCHAR(45),
 IP					VARCHAR(45),
 Capacidad			INT(3),
