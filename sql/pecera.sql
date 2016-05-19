@@ -18,7 +18,7 @@ CONSTRAINT COMIDA_TIPOCOMIDA_FK FOREIGN KEY (tipocomida_id) REFERENCES TIPOCOMID
 CREATE TABLE PECERA (
 pecera_id			INT(3),
 nombrePecera 		VARCHAR(45),
-horacomida			VARCHAR(45),
+horacomida			DATETIME,
 IP					VARCHAR(45),
 Capacidad			INT(3),
 CONSTRAINT PECERA_PRIMARY_KEY PRIMARY KEY (pecera_id));
@@ -69,8 +69,18 @@ CONSTRAINT MEDICION_PRIMARY_KEY PRIMARY KEY (medicion_id),
 CONSTRAINT MEDICION_TIPOMEDICION FOREIGN KEY (tipomedicion_id) REFERENCES TIPOMEDICION (tipomedicion_id),
 CONSTRAINT MEDICION_PECERA_FK FOREIGN KEY (pecera_id) REFERENCES PECERA (pecera_id));
 
-INSERT INTO dueno VALUES (1,'joseba','dima');
+INSERT INTO dueno VALUES (1,'gorospe','dima');
 INSERT INTO dueno VALUES (2, 'ander','gasteiz');
 INSERT INTO dueno values (3, 'enriquez','durango');
 INSERT INTO dueno values (4, 'alzelai','durango');
+
+INSERT INTO medicion VALUES(1,'Nivel PH');
+INSERT INTO medicion VALUES(2,'Temperatura');
+
+INSERT INTO pecera VALUES (1,"Pecera de Iripollen", null, "69.69.69.69", 5);
+
+INSERT INTO tipopez VALUES (1, "GoldFish");
+
+INSERT INTO pez VALUES (1, "Iripollen", "Desconocido", 1, 1, 1);
+
 
