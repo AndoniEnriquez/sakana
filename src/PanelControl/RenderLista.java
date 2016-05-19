@@ -17,7 +17,7 @@ public class RenderLista extends JLabel implements ListCellRenderer{
 
 	 HashMap<String, Icon> elementos;
 	 HashMap<String, String> toolTip;
-	 
+
 	 ImageIcon icononulo = new ImageIcon(("Iconos/error.png"));
 	 
 	 public RenderLista(HashMap<String, Icon> pelementos, HashMap<String, String> tool){

@@ -41,7 +41,7 @@ class PoolConexiones
 	  if (instance == null){
 	    Properties connectionProps = new Properties();
 	    connectionProps.put("user", "root");
-	    connectionProps.put("password", "123");
+	    connectionProps.put("password", "1234");
 
 	   instance = DriverManager.getConnection(SGBDURL, connectionProps);
 	  }
