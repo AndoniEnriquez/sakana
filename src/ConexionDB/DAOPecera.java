@@ -21,15 +21,15 @@ public class DAOPecera {
 
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT pecera_id,IP,Capacidad,horacomida"+
+			strSQL="SELECT pecera_id,IP,Capacidad,HoraComida"+
 					" FROM PECERA";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
-				Calendar cal = Calendar.getInstance();
-				cal.setTime(result.getDate("horacomida"));
+				//Calendar cal = Calendar.getInstance();
+				//cal.setTime(result.getDate("horacomida"));
 					
-				pecera = new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("Nombre"),
-						result.getInt("Capacidad"),cal);
+				pecera = new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("HoraComida"),
+						result.getInt("Capacidad"),0,0);
 				lista.add(pecera);
 			}
 			result.close();
