@@ -31,7 +31,7 @@ public class MenuPrincipal extends JFrame implements WindowListener{
 		setLocation(100, 100);
 		setResizable(false);
 		setVisible(true);
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);//Eztakit zeozer in behar dan isteko, ezpabere windowListener SOBRA!!!
 		
 		desktopIzquierda = new JDesktopPane();
 		desktopDerecha = new JDesktopPane();

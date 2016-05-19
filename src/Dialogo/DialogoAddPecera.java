@@ -9,7 +9,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,7 +28,6 @@ import Fabrica.FabricaAcciones;
 import VarTypes.Pecera;
 import sakana.MenuPrincipal;
 
-@SuppressWarnings("serial")
 public class DialogoAddPecera  extends JDialog implements ActionListener{
 	
 	final static String  TITULO = "Crear nueva Pecera";
@@ -105,7 +103,6 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		return campo;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public void parsearHora(Pecera p) throws ParseException{
 		
 		String tiempo = txHora.getText();
