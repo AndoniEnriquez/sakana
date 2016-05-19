@@ -26,7 +26,7 @@ public class PanelAjustes implements ActionListener{
 
 	JPanel panel;
 	public JButton bBloqueo, bInicio, bSalir;
-	JLabel labelHora;
+	public JLabel labelHora, labelUser;
 	
 	FabricaAcciones fabrica;
 	
@@ -50,6 +50,10 @@ public class PanelAjustes implements ActionListener{
 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
+		labelUser = new JLabel();
+		labelUser.setFont(new Font("Arial", Font.BOLD, 15));
+		labelUser.setForeground(Color.WHITE);
+		
 		bBloqueo = new JButton(new ImageIcon("Iconos/ajustes/lock.png"));
 		bBloqueo.setActionCommand("Bloqueo");
 		bBloqueo.addActionListener(this);
@@ -76,6 +80,8 @@ public class PanelAjustes implements ActionListener{
 		panel.add(labelHora);
 		panel.add(Box.createHorizontalGlue());
 		
+		panel.add(labelUser);
+		panel.add(Box.createRigidArea(new Dimension(25,25)));
 		panel.add(bInicio);
 		panel.add(Box.createRigidArea(new Dimension(25,25)));
 		panel.add(bSalir);
@@ -87,6 +93,7 @@ public class PanelAjustes implements ActionListener{
 
 	}
 	
+	@SuppressWarnings("static-access")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -109,6 +116,7 @@ public class PanelAjustes implements ActionListener{
 				bInicio.setEnabled(true);
 				bSalir.setEnabled(false);
 				bBloqueo.setEnabled(false);
+				fabrica.getPanelAjustes().labelUser.setText("");
 		
 				break;
 				

@@ -125,6 +125,7 @@ public void actionPerformed(ActionEvent e){
     	  
     	  //new FormRecursos(Sesion.getInstance().getUsuario());
     	
+    	  fabrica.getPanelAjustes().labelUser.setText(txtUserName.getText());
     	  fabrica.getPanelAjustes().bInicio.setEnabled(false);
     	  fabrica.getPanelAjustes().bSalir.setEnabled(true);
     	  fabrica.getPanelAjustes().bBloqueo.setEnabled(true);
