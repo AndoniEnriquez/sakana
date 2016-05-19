@@ -9,8 +9,9 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 
-
+import javax.script.SimpleBindings;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -28,10 +29,12 @@ import VarTypes.Pecera;
 @SuppressWarnings("serial")
 public class DialogoAddPecera  extends JDialog implements ActionListener{
 	
-	final static String  TITULO = "Crear nuevo usuario";
+	final static String  TITULO = "Crear nueva Pecera";
 	JComboBox<String> comboResponsable;
 	JTextField txNombrePecera, txIP, txtCapacidad, txMin;
 	JFormattedTextField txHora;
+	
+	SimpleDateFormat simpleDateFormat;
 	
 	public DialogoAddPecera (JFrame frame, boolean modo){
 		super ( frame,TITULO,modo );
@@ -43,6 +46,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		this.setLocation(280,200);
 		this.setSize(300, 380);
 		this.setContentPane(crearPanelDialogo());
+		
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	}
 
@@ -72,19 +76,18 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		JPanel panel = new JPanel (new GridLayout(5,1,0,20));
 
 		panel.add(txNombrePecera = crearCampo("Nombre de la Pecera"));
-		panel.add(txIP = crearCampo("Nombre"));
+		panel.add(txIP = crearCampo("IP"));
 		panel.add(txtCapacidad = crearCampo("Capacidad"));
 		panel.add(txHora = crearCampoFecha("Hora comida"));		
 		return panel;
 	}
+
 	
-	@SuppressWarnings("unused")
 	private JFormattedTextField crearCampoFecha(String titulo) {
 	
-		String dateFormat ="00:00";
-		JFormattedTextField campoFecha = new JFormattedTextField(dateFormat);
-		campoFecha.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createLineBorder(Color.CYAN),titulo));
+		simpleDateFormat = new SimpleDateFormat("hh:mm");
+		JFormattedTextField campoFecha = new JFormattedTextField(simpleDateFormat);
+		campoFecha.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN),titulo));
 		campoFecha.setFont(new Font("Arial",Font.BOLD|Font.ITALIC,18));
 		return campoFecha;
 	}
@@ -97,7 +100,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		return campo;
 	}
 
-	@SuppressWarnings("unused")
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -107,6 +110,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		case "OK" :
 						try{
 						Pecera p = new Pecera(txIP.getText(), txNombrePecera.getText(), Integer.parseInt(txtCapacidad.getText()));
+						
 						anadir = DAOPecera.addPecera(p);
 						if(anadir){
 							
@@ -118,12 +122,9 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 									"Imposible to Add Pecera", JOptionPane.INFORMATION_MESSAGE);
 						}
 						}catch (NumberFormatException e2) {
-							JOptionPane.showMessageDialog(this, "El DNI solo puede tener numeros. SIN LETRA",
-									"Format Error", JOptionPane.INFORMATION_MESSAGE);
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
 
+						} catch (Exception e1) {
+							
 							JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos",
 									"Error datos incompletos", JOptionPane.ERROR_MESSAGE);
 					}
