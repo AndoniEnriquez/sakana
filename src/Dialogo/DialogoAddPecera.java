@@ -5,9 +5,14 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -28,9 +33,14 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 	
 	final static String  TITULO = "Crear nuevo usuario";
 	JComboBox<String> comboResponsable;
+
 	JTextField txNombrePecera, txIP, txtCapacidad, txHora;
 	JDateChooser jDateChooser;
 	
+	JTextField txNombrePecera, txIP, txtCapacidad, txMin;
+	JDateChooser txHora;
+	int i;
+
 	
 	public DialogoAddPecera (JFrame frame, boolean modo){
 		super ( frame,TITULO,modo );
@@ -73,9 +83,20 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		panel.add(txNombrePecera = crearCampo("Nombre de la Pecera"));
 		panel.add(txIP = crearCampo("Nombre"));
 		panel.add(txtCapacidad = crearCampo("Capacidad"));
-		panel.add(txHora = crearCampo("Hora de comer"));
-		
+		panel.add(txHora = crearCampoFecha("Hora comida",LocalDateTime.now().toLocalDate()));		
 		return panel;
+	}
+	
+	@SuppressWarnings("unused")
+	private JDateChooser crearCampoFecha(String titulo,LocalDate fecha) {
+
+		Date date = Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		String dateFormat ="HH:mm";
+		JDateChooser campoFecha = new JDateChooser(date,dateFormat);
+		campoFecha.setBorder(BorderFactory.createTitledBorder(
+				BorderFactory.createLineBorder(Color.CYAN),titulo));
+		campoFecha.setFont(new Font("Arial",Font.BOLD|Font.ITALIC,18));
+		return campoFecha;
 	}
 	
 
@@ -105,7 +126,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 						if(anadir){
 >>>>>>> branch 'HEAD' of https://github.com/AndoniEnriquez/sakana.git
 							
-							JOptionPane.showMessageDialog(this, "Pecera añadida","Accion realizada", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(this, "Pecera anadida","Accion realizada", JOptionPane.INFORMATION_MESSAGE);
 							this.dispose();
 							
 						}else{
