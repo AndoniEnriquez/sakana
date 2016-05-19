@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 
 import javax.script.SimpleBindings;
@@ -99,6 +100,22 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		
 		return campo;
 	}
+	
+	@SuppressWarnings("deprecation")
+	public void parsearHora(Pecera p){
+		
+		String tiempo = txHora.getText();
+		
+		String hora, min;
+		
+		hora = tiempo.substring(0, 1);
+		min = tiempo.substring(3,4);
+		
+		int h1 = Integer.parseInt(hora);
+		int m1 = Integer.parseInt(min);
+		
+		p.setHoracomida(new Time(h1,m1,0));
+	}
 
 
 	@Override
@@ -110,7 +127,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		case "OK" :
 						try{
 						Pecera p = new Pecera(txIP.getText(), txNombrePecera.getText(), Integer.parseInt(txtCapacidad.getText()));
-						
+						this.parsearHora(p);
 						anadir = DAOPecera.addPecera(p);
 						if(anadir){
 							
