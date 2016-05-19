@@ -5,28 +5,26 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import VarTypes.*;
+import VarTypes.TipoPez;
 
-public class DAOTipoMedicion {
-
-
-	static public ArrayList<TipoMedicion> getTiposMedicion() throws Exception{
+public class DAOTipoPez {
+	static public ArrayList<TipoPez> getTiposMedicion() throws Exception{
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
-		ArrayList<TipoMedicion> lista = null;
-		TipoMedicion tipoMedicion;
+		ArrayList<TipoPez> lista = null;
+		TipoPez TipoPez;
 		try
 		{
 
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT tipomedicion_id, nombreMedicion"+
-					"FROM tipomedicion";
+			strSQL="SELECT TipoPez_id, descripcion"+
+					"FROM TipoPez";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
-				tipoMedicion = new TipoMedicion(result.getInt("tipomedicion_id"),result.getString("nombreMedicion"));
-				lista.add(tipoMedicion);
+				TipoPez = new TipoPez(result.getInt("TipoPez_id"),result.getString("descripcion"));
+				lista.add(TipoPez);
 			}
 			result.close();
 		} catch (Exception e ){
@@ -34,24 +32,24 @@ public class DAOTipoMedicion {
 		}
 		return lista;
 	}
-	static public TipoMedicion buscarPorID(int idTipoMedicion) throws Exception
+	static public TipoPez buscarPorID(int idTipoPez) throws Exception
 	{
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
-		TipoMedicion tipoMedicion;
+		TipoPez TipoPez;
 
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT tipomedicion_id, nombreMedicion"+
-					" FROM tipomedicion"+
-					" WHERE tipomedicion_id='"+idTipoMedicion+"'";
+			strSQL="SELECT TipoPez_id, descripcion"+
+					" FROM TipoPez"+
+					" WHERE TipoPez_id='"+idTipoPez+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
-			tipoMedicion = new TipoMedicion(result.getInt("tipomedicion_id"),result.getString("nombreMedicion"));
+			TipoPez = new TipoPez(result.getInt("TipoPez_id"),result.getString("descripcion"));
 			result.close();
-			return tipoMedicion;
+			return TipoPez;
 		}
 
 		catch(SQLException e)
@@ -60,24 +58,24 @@ public class DAOTipoMedicion {
 			return null;
 		}
 	}
-	static public TipoMedicion buscarPorNombre(String nombre) throws Exception
+	static public TipoPez buscarPorDescripcion(String descripcion) throws Exception
 	{
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
-		TipoMedicion tipoMedicion;
+		TipoPez TipoPez;
 
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT tipomedicion_id, nombreMedicion"+
-					" FROM tipomedicion"+
-					" WHERE nombreMedicion='"+nombre+"'";
+			strSQL="SELECT TipoPez_id, descripcion"+
+					" FROM TipoPez"+
+					" WHERE descripcion='"+descripcion+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
-			tipoMedicion = new TipoMedicion(result.getInt("tipomedicion_id"),result.getString("nombreMedicion"));
+			TipoPez = new TipoPez(result.getInt("TipoPez_id"),result.getString("descripcion"));
 			result.close();
-			return tipoMedicion;
+			return TipoPez;
 		}
 
 		catch(SQLException e)
@@ -87,7 +85,7 @@ public class DAOTipoMedicion {
 		}
 	}
 
-	static public boolean addTipoMedicion(TipoMedicion m) throws Exception{
+	static public boolean addTipoPez(TipoPez m) throws Exception{
 
 		Statement stmt;
 		String strSQL;
@@ -95,12 +93,12 @@ public class DAOTipoMedicion {
 
 		try
 		{
-			if(buscarPorID(m.getTipoMedicion_id())==null && buscarPorNombre(m.getNombreMedicion()) == null)
+			if(buscarPorID(m.getTipopez_id())==null && buscarPorDescripcion(m.getDescripcion()) == null)
 			{
 
 				stmt=PoolConexiones.getConexion().createStatement();
-				strSQL="INSERT INTO TIPOMEDICION "+
-						" VALUES ("+m.getTipoMedicion_id()+",'"+m.getNombreMedicion()+")";
+				strSQL="INSERT INTO TipoPez "+
+						" VALUES ("+m.getDescripcion()+",'"+m.getDescripcion()+")";
 				result = stmt.executeUpdate(strSQL);		      
 				return true;
 			}
@@ -114,17 +112,17 @@ public class DAOTipoMedicion {
 		}
 	}
 
-	public static void eliminarTipoMedicion(String nombre) throws SQLException {
+	public static void eliminarTipoPez(String descripcion) throws SQLException {
 		Statement stmt;
 		int result;
 		String strSQL;
 		stmt=PoolConexiones.getConexion().createStatement();
-		strSQL="DELETE FROM  TIPOMEDICION "+
-				" WHERE nombre = '"+nombre+"'";
+		strSQL="DELETE FROM  TipoPez "+
+				" WHERE nombre = '"+descripcion+"'";
 		result = stmt.executeUpdate(strSQL);
 	}
 
-	static public boolean updatePecera(TipoMedicion m) throws Exception
+	static public boolean updatePecera(TipoPez m) throws Exception
 	{    
 		Statement stmt;
 		boolean ok=false;
@@ -133,9 +131,9 @@ public class DAOTipoMedicion {
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="UPDATE TIPOMEDICION "+
-					" SET nombreMedicion = '"+m.getNombreMedicion()+
-					"' WHERE tipomedicion_id='"+m.getTipoMedicion_id()+"'";
+			strSQL="UPDATE TipoPez "+
+					" SET descripcion = '"+m.getDescripcion()+
+					"' WHERE TipoPez_id='"+m.getTipopez_id()+"'";
 			return (stmt.executeUpdate(strSQL)>0);
 		}
 		catch(SQLException e)

@@ -5,28 +5,27 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import VarTypes.*;
+import VarTypes.TipoComida;
 
-public class DAOTipoMedicion {
+public class DAOTipoComida {
 
-
-	static public ArrayList<TipoMedicion> getTiposMedicion() throws Exception{
+	static public ArrayList<TipoComida> getTiposMedicion() throws Exception{
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
-		ArrayList<TipoMedicion> lista = null;
-		TipoMedicion tipoMedicion;
+		ArrayList<TipoComida> lista = null;
+		TipoComida TipoComida;
 		try
 		{
 
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT tipomedicion_id, nombreMedicion"+
-					"FROM tipomedicion";
+			strSQL="SELECT TipoComida_id, descripcionTipoComida"+
+					"FROM TipoComida";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
-				tipoMedicion = new TipoMedicion(result.getInt("tipomedicion_id"),result.getString("nombreMedicion"));
-				lista.add(tipoMedicion);
+				TipoComida = new TipoComida(result.getInt("TipoComida_id"),result.getString("descripcionTipoComida"));
+				lista.add(TipoComida);
 			}
 			result.close();
 		} catch (Exception e ){
@@ -34,24 +33,24 @@ public class DAOTipoMedicion {
 		}
 		return lista;
 	}
-	static public TipoMedicion buscarPorID(int idTipoMedicion) throws Exception
+	static public TipoComida buscarPorID(int idTipoComida) throws Exception
 	{
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
-		TipoMedicion tipoMedicion;
+		TipoComida TipoComida;
 
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT tipomedicion_id, nombreMedicion"+
-					" FROM tipomedicion"+
-					" WHERE tipomedicion_id='"+idTipoMedicion+"'";
+			strSQL="SELECT TipoComida_id, descripcionTipoComida"+
+					" FROM TipoComida"+
+					" WHERE TipoComida_id='"+idTipoComida+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
-			tipoMedicion = new TipoMedicion(result.getInt("tipomedicion_id"),result.getString("nombreMedicion"));
+			TipoComida = new TipoComida(result.getInt("TipoComida_id"),result.getString("descripcionTipoComida"));
 			result.close();
-			return tipoMedicion;
+			return TipoComida;
 		}
 
 		catch(SQLException e)
@@ -60,24 +59,24 @@ public class DAOTipoMedicion {
 			return null;
 		}
 	}
-	static public TipoMedicion buscarPorNombre(String nombre) throws Exception
+	static public TipoComida buscarPorDescripcion(String descripcion) throws Exception
 	{
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
-		TipoMedicion tipoMedicion;
+		TipoComida TipoComida;
 
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT tipomedicion_id, nombreMedicion"+
-					" FROM tipomedicion"+
-					" WHERE nombreMedicion='"+nombre+"'";
+			strSQL="SELECT TipoComida_id, descripcionTipoComida"+
+					" FROM TipoComida"+
+					" WHERE descripcionTipoComida='"+descripcion+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
-			tipoMedicion = new TipoMedicion(result.getInt("tipomedicion_id"),result.getString("nombreMedicion"));
+			TipoComida = new TipoComida(result.getInt("TipoComida_id"),result.getString("descripcionTipoComida"));
 			result.close();
-			return tipoMedicion;
+			return TipoComida;
 		}
 
 		catch(SQLException e)
@@ -87,7 +86,7 @@ public class DAOTipoMedicion {
 		}
 	}
 
-	static public boolean addTipoMedicion(TipoMedicion m) throws Exception{
+	static public boolean addTipoComida(TipoComida m) throws Exception{
 
 		Statement stmt;
 		String strSQL;
@@ -95,12 +94,12 @@ public class DAOTipoMedicion {
 
 		try
 		{
-			if(buscarPorID(m.getTipoMedicion_id())==null && buscarPorNombre(m.getNombreMedicion()) == null)
+			if(buscarPorID(m.getTipocomida_id())==null && buscarPorDescripcion(m.getDescripcionTipoComida()) == null)
 			{
 
 				stmt=PoolConexiones.getConexion().createStatement();
-				strSQL="INSERT INTO TIPOMEDICION "+
-						" VALUES ("+m.getTipoMedicion_id()+",'"+m.getNombreMedicion()+")";
+				strSQL="INSERT INTO TipoComida "+
+						" VALUES ("+m.getTipocomida_id()+",'"+m.getDescripcionTipoComida()+")";
 				result = stmt.executeUpdate(strSQL);		      
 				return true;
 			}
@@ -114,17 +113,17 @@ public class DAOTipoMedicion {
 		}
 	}
 
-	public static void eliminarTipoMedicion(String nombre) throws SQLException {
+	public static void eliminarTipoComida(String descripcion) throws SQLException {
 		Statement stmt;
 		int result;
 		String strSQL;
 		stmt=PoolConexiones.getConexion().createStatement();
-		strSQL="DELETE FROM  TIPOMEDICION "+
-				" WHERE nombre = '"+nombre+"'";
+		strSQL="DELETE FROM  TipoComida "+
+				" WHERE nombre = '"+descripcion+"'";
 		result = stmt.executeUpdate(strSQL);
 	}
 
-	static public boolean updatePecera(TipoMedicion m) throws Exception
+	static public boolean updatePecera(TipoComida m) throws Exception
 	{    
 		Statement stmt;
 		boolean ok=false;
@@ -133,9 +132,9 @@ public class DAOTipoMedicion {
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="UPDATE TIPOMEDICION "+
-					" SET nombreMedicion = '"+m.getNombreMedicion()+
-					"' WHERE tipomedicion_id='"+m.getTipoMedicion_id()+"'";
+			strSQL="UPDATE TipoComida "+
+					" SET descripcionTipoComida = '"+m.getDescripcionTipoComida()+
+					"' WHERE TipoComida_id='"+m.getTipocomida_id()+"'";
 			return (stmt.executeUpdate(strSQL)>0);
 		}
 		catch(SQLException e)

@@ -51,7 +51,7 @@ public class DAOPecera {
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT pecera_id, IP, Capacidad, horacomida"+
 					" FROM PECERA"+
-					" WHERE pecera_id="+idPecera;
+					" WHERE pecera_id='"+idPecera+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
 			
@@ -82,7 +82,7 @@ public class DAOPecera {
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT pecera_id, IP, Capacidad, horacomida"+
 					" FROM PECERA"+
-					" WHERE IP="+IPPecera;
+					" WHERE IP='"+IPPecera+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
 			
@@ -152,7 +152,7 @@ public class DAOPecera {
 					" SET IP = '"+p.getIP()+
 					"', Capacidad   = '"+p.getCapacidad()+
 					"', horacomida   = '"+p.getHoracomida().getTime()+
-					"' WHERE pecera_id="+p.getID();
+					"' WHERE pecera_id='"+p.getID()+"'";
 			return (stmt.executeUpdate(strSQL)>0);
 		}
 		catch(SQLException e)

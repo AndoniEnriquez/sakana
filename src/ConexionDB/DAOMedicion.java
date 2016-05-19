@@ -49,7 +49,7 @@ public class DAOMedicion {
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT medicion_id, nombre, datatimeMedicion, tipomedicion_id, pecera_id"+
 					" FROM MEDICION"+
-					" WHERE medicion_id="+idMedicion;
+					" WHERE medicion_id='"+idMedicion+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
 			
@@ -79,7 +79,7 @@ public class DAOMedicion {
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT medicion_id, nombre, datatimeMedicion, tipomedicion_id, pecera_id"+
 					" FROM MEDICION"+
-					" WHERE nombre="+nombre;
+					" WHERE nombre= '"+nombre+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
 			
@@ -149,7 +149,7 @@ public class DAOMedicion {
 					"', datetimeMedicion   = '"+m.getDatetime().getTime()+
 					"', tipomedicion_id   = '"+m.getTipoMedicion_id()+
 					"', pecera_id   = '"+m.getPecera_id()+
-					"' WHERE medicion_id="+m.getID();
+					"' WHERE medicion_id='"+m.getID()+"'";
 			return (stmt.executeUpdate(strSQL)>0);
 		}
 		catch(SQLException e)

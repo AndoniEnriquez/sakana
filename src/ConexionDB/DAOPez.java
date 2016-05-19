@@ -44,7 +44,7 @@ public class DAOPez {
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT pez_id, nombrePez, genero, tipopez_id, dueno_id, pecera_id"+
 					" FROM pez"+
-					" WHERE pez_id="+idPez;
+					" WHERE pez_id='"+idPez+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
 			pez = new Pez(result.getInt("pez_id"),result.getString("nombrePez"),result.getString("genero"),result.getInt("tipopez_id"),result.getInt("dueno_id"),result.getInt("pecera_id"));
@@ -70,7 +70,7 @@ public class DAOPez {
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT pez_id, nombrePez, genero, tipopez_id, dueno_id, pecera_id"+
 					" FROM pez"+
-					" WHERE nombrePez="+nombre;
+					" WHERE nombrePez='"+nombre+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
 			pez = new Pez(result.getInt("pez_id"),result.getString("nombrePez"),result.getString("genero"),result.getInt("tipopez_id"),result.getInt("dueno_id"),result.getInt("pecera_id"));
@@ -137,7 +137,7 @@ public class DAOPez {
 					" SET tipopez_id = '"+p.getTipoPez_id()+
 					" SET dueno_id = '"+p.getDueno_id()+
 					" SET pecera_id = '"+p.getPecera_id()+
-					"' WHERE pez_id="+p.getPez_id();
+					"' WHERE pez_id='"+p.getPez_id()+"'";
 			return (stmt.executeUpdate(strSQL)>0);
 		}
 		catch(SQLException e)
