@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.toedter.calendar.JDateChooser;
 
 import ConexionDB.DAOPecera;
 import VarTypes.Pecera;
@@ -27,8 +28,8 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 	
 	final static String  TITULO = "Crear nuevo usuario";
 	JComboBox<String> comboResponsable;
-	JTextField txNombrePecera, txIP, txtCapacidad, txHora, txMin;
-
+	JTextField txNombrePecera, txIP, txtCapacidad, txHora;
+	JDateChooser jDateChooser;
 	
 	
 	public DialogoAddPecera (JFrame frame, boolean modo){
@@ -92,12 +93,10 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		boolean añadir;
 		
 		switch (e.getActionCommand()){
-		case "OK" : if (true){
-						JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos",
-								"Error datos incompletos", JOptionPane.ERROR_MESSAGE);
-					}else{
+		case "OK" : 
 						try{
 						Pecera p = new Pecera(txIP.getText(), txNombrePecera.getText(), Integer.parseInt(txtCapacidad.getText()));
+						p.setHoracomida(txHora.getText().toString());
 						añadir = DAOPecera.addPecera(p);
 						if(añadir){
 							
@@ -115,7 +114,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-					}
+					
 					break;
 					
 		case "Cancelar":
