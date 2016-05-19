@@ -36,7 +36,6 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 	JTextField txNombrePecera, txIP, txtCapacidad, txMin;
 	JDateChooser txHora;
 	
-	
 	public DialogoAddPecera (JFrame frame, boolean modo){
 		super ( frame,TITULO,modo );
 		crearVentana();
