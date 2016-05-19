@@ -2,6 +2,7 @@ package Panel;
 
 
 import java.awt.Container;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -11,6 +12,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import ConexionDB.DAOPecera;
 import Fabrica.FabricaAcciones;
 import VarTypes.Pecera;
 import sakana.MenuPrincipal;
@@ -60,11 +62,7 @@ public class PanelListaPecera extends PanelExample implements ListSelectionListe
 
 		list = new JList<Pecera>(modelo);
 		
-		Pecera pecera;
-		pecera = new Pecera(1,"192","NE",4, 7.1f , 23.4f);
-		
-		modelo.addElement(pecera);
-
+		this.cargarPeceras();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setCellRenderer(new RenderListaPecera());
 		list.addListSelectionListener(this);
@@ -73,6 +71,24 @@ public class PanelListaPecera extends PanelExample implements ListSelectionListe
 		scrollPane.setViewportView(list);
 	}
 	
+	public void cargarPeceras(){
+		
+		ArrayList<Pecera> listaPecera = new ArrayList<>();
+		
+		try {
+			listaPecera = DAOPecera.getPeceras();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(int i = 0; i < listaPecera.size(); i++){
+			
+			modelo.addElement(listaPecera.get(i));
+			
+		}
+		
+	}
 
 
 	@Override

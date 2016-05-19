@@ -26,7 +26,7 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 	static int tamY = 0;
 	
 	JLabel txNom,txIP,txCapacidad, txPH, txTemp;
-	JButton bEdit, bComida;
+	JButton bEdit, bAdd;
 	
 	
 	JPanel panel;
@@ -68,12 +68,13 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 			bEdit = new JButton ("Editar");
 			bEdit.setActionCommand("Editar");
 			bEdit.addActionListener(this);
-			bComida = new JButton ("Comida");
-			bComida.setActionCommand("Comida");
-			bComida.addActionListener(this);
+			bAdd = new JButton ("Add");
+			bAdd.setActionCommand("Add");
+			bAdd.addActionListener(this);
 			
+			panel.add(bAdd);
 			panel.add(bEdit);
-			panel.add(bComida);
+			
 			return panel;
 		}
 
