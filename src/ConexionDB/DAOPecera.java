@@ -140,16 +140,12 @@ public class DAOPecera {
 
 		try
 		{
-			if(buscarPorID(p.getID())==null && buscarPorIP(p.getIP()) == null)
-			{
-
 				stmt=PoolConexiones.getConexion().createStatement();
 				strSQL="INSERT INTO PECERA "+
-						" VALUES ("+p.getID()+",'"+p.getIP()+"','"+p.getCapacidad()+"','"+p.getHoracomida().getTime()+")";
+						" VALUES ('"+p.getNombre()+"','"+p.getHoracomida().getTime()+"',"+p.getIP()+")";
 				result = stmt.executeUpdate(strSQL);		      
 				return true;
-			}
-			else return false;
+
 		}
 
 		catch(SQLException e)
@@ -183,7 +179,7 @@ public class DAOPecera {
 					"', Capacidad   = '"+p.getCapacidad()+
 					"', nombre   = '"+p.getNombre()+
 					"', horacomida   = '"+p.getHoracomida().getTime()+
-					"' WHERE pecera_id='"+p.getID()+"'";
+					"' WHERE nombre='"+p.getNombre()+"'";
 			return (stmt.executeUpdate(strSQL)>0);
 		}
 		catch(SQLException e)

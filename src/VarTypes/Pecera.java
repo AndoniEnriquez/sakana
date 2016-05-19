@@ -4,7 +4,6 @@ import java.sql.Time;
 
 public class Pecera {
 
-	int ID;
 	String IP;
 	String nombre;
 	int capacidad;
@@ -14,7 +13,6 @@ public class Pecera {
 	
 	
 	public Pecera(String IP, String nombre, int capacidad){
-		this.ID = ID;
 		this.IP = IP;
 		this.nombre = nombre;
 		this.capacidad = capacidad;
@@ -22,7 +20,6 @@ public class Pecera {
 	}
 
 	public Pecera(String IP, String nombre, int capacidad, float PH, float Temp){
-		this.ID = ID;
 		this.IP = IP;
 		this.nombre = nombre;
 		this.capacidad = capacidad;
@@ -68,17 +65,6 @@ public class Pecera {
 
 	public void setHoracomida(Time horacomida) {
 		this.horacomida = horacomida;
-	}
-
-
-
-	public int getID() {
-		return ID;
-	}
-
-
-	public void setID(int iD) {
-		ID = iD;
 	}
 
 
