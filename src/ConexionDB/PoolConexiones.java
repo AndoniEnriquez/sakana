@@ -49,6 +49,9 @@ class PoolConexiones
 	}
 } 
 
+//DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());//llama al driver
+
+//Connection conexion = DriverManager.getConnection (
 
 
 
