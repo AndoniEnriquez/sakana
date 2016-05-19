@@ -25,7 +25,9 @@ import javax.swing.JTextField;
 
 
 import ConexionDB.DAOPecera;
+import Fabrica.FabricaAcciones;
 import VarTypes.Pecera;
+import sakana.MenuPrincipal;
 
 @SuppressWarnings("serial")
 public class DialogoAddPecera  extends JDialog implements ActionListener{
@@ -36,10 +38,12 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 	JFormattedTextField txHora;
 	
 	SimpleDateFormat simpleDateFormat;
+	FabricaAcciones fabrica;
 	
-	public DialogoAddPecera (JFrame frame, boolean modo){
+	public DialogoAddPecera (JFrame frame, boolean modo, FabricaAcciones fabrica){
 		super ( frame,TITULO,modo );
 		crearVentana();
+		this.fabrica = fabrica;
 		this.setVisible(true);
 	}
 
@@ -132,6 +136,8 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 						if(anadir){
 							
 							JOptionPane.showMessageDialog(this, "Pecera anadida","Accion realizada", JOptionPane.INFORMATION_MESSAGE);
+							MenuPrincipal.desktopIzquierda.removeAll();
+							MenuPrincipal.desktopIzquierda.add(fabrica.accionamientoListaPecera());
 							this.dispose();
 							
 						}else{

@@ -121,7 +121,7 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 			switch (e.getActionCommand()) {
 			case "Add":
 				
-					new DialogoAddPecera(fabrica.getMenuPrincipal(), true);
+					new DialogoAddPecera(fabrica.getMenuPrincipal(), true, fabrica);
 				
 				break;
 

@@ -73,7 +73,7 @@ public class PanelListaPecera extends PanelExample implements ListSelectionListe
 	public void cargarPeceras(){
 		
 		ArrayList<Pecera> listaPecera = new ArrayList<>();
-		
+		modelo.removeAllElements();
 		try {
 			listaPecera = DAOPecera.getPeceras();
 		} catch (Exception e) {
