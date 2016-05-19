@@ -10,9 +10,10 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import javax.script.SimpleBindings;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,7 +23,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 
 import ConexionDB.DAOPecera;
 import Fabrica.FabricaAcciones;
@@ -110,15 +110,16 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		
 		String tiempo = txHora.getText();
 		
-		String hora, min;
+		try {
+			Date date = simpleDateFormat.parse(tiempo);
+			p.setHoracomida(date);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		
-		hora = tiempo.substring(0, 1);
-		min = tiempo.substring(3,4);
-		
-		int h1 = Integer.parseInt(hora);
-		int m1 = Integer.parseInt(min);
-		
-		p.setHoracomida(new Time(h1,m1,0));
 	}
 
 
