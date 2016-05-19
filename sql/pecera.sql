@@ -44,8 +44,8 @@ CONSTRAINT TIPOPEZ_PRIMARY_KEY PRIMARY KEY (dueno_id));
 
 CREATE TABLE PEZ (
 pez_id				INT(3),
-nombrePez			VARCHAR(20),
-genero				VARCHAR(10),
+nombrePez			VARCHAR(45),
+genero				VARCHAR(45),
 tipopez_id			INT(3) NOT NULL,
 dueno_id			INT(3) NOT NULL,
 pecera_id			INT(3) NOT NULL,
@@ -74,8 +74,8 @@ INSERT INTO dueno VALUES (2, 'ander','gasteiz');
 INSERT INTO dueno values (3, 'enriquez','durango');
 INSERT INTO dueno values (4, 'alzelai','durango');
 
-INSERT INTO medicion VALUES(1,'Nivel PH');
-INSERT INTO medicion VALUES(2,'Temperatura');
+INSERT INTO tipomedicion VALUES(1,'Nivel PH');
+INSERT INTO tipomedicion VALUES(2,'Temperatura');
 
 INSERT INTO pecera VALUES (1,"Pecera de Iripollen", null, "69.69.69.69", 5);
 
