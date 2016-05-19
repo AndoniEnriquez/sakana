@@ -1,13 +1,17 @@
 package VarTypes;
 
 import java.sql.Time;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Pecera {
+
+	int ID;
 
 	String IP;
 	String nombre;
 	int capacidad;
-	Time horacomida;
+	Date horacomida;
 	
 	float PH, Temp;
 	
@@ -57,13 +61,13 @@ public class Pecera {
 
 
 
-	public Time getHoracomida() {
+	public Date getHoracomida() {
 		return horacomida;
 	}
 
 
 
-	public void setHoracomida(Time horacomida) {
+	public void setHoracomida(Date horacomida) {
 		this.horacomida = horacomida;
 	}
 
@@ -85,5 +89,13 @@ public class Pecera {
 
 	public void setCapacidad(int capacidad) {
 		this.capacidad = capacidad;
+	}
+	
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
 	}
 }
