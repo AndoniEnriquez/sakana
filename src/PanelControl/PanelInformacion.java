@@ -34,10 +34,9 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 	
 	Pecera pecera;
 	
-	public PanelInformacion(Pecera pecera) {
+	public PanelInformacion() {
 		super(tamX, tamY);
 		this.setLocation(0, -30);
-		this.pecera = pecera;
 		this.setContentPane(crearPanelVentana());
 	}
 
@@ -88,7 +87,17 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 			panel.add(txPH = crearCampo("PH Actual"));
 			panel.add(txTemp = crearCampo("Temperatura Actual"));
 			
+			
+			
 			return panel;
+		}
+		
+		public void setText(Pecera pecera){
+			txNom.setText(pecera.getNombre());
+			txIP.setText(pecera.getIP());
+			txCapacidad.setText(String.valueOf(pecera.getCapacidad()));
+			txPH.setText(String.valueOf(pecera.getPH()));
+			txTemp.setText(String.valueOf(pecera.getTemp()));
 		}
 
 		private JLabel crearCampo(String titulo) {

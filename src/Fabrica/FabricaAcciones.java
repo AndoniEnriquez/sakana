@@ -1,7 +1,15 @@
 package Fabrica;
 
-import Login.*;
-import Panel.*;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+
+import Login.LoginDerecha;
+import Login.LoginIzquierda;
+import Panel.PanelAjustes;
+import Panel.PanelControlPecera;
+import Panel.PanelListaPecera;
+import PanelControl.PanelInformacion;
+import VarTypes.Pecera;
 
 public class FabricaAcciones {
 
@@ -9,7 +17,36 @@ public class FabricaAcciones {
 	public static PanelListaPecera panelListaPecera;
 	public static PanelControlPecera panelControlPecera;
 	public static PanelAjustes panelAjustes;
+	public static PanelInformacion panelInformacion;
 	
+	public static PanelInformacion getPanelInformacion() {
+		return panelInformacion;
+	}
+
+	public static void setPanelInformacion(PanelInformacion panelInformacion) {
+		FabricaAcciones.panelInformacion = panelInformacion;
+	}
+
+	JList<Pecera> listaPecera;
+	public JList<Pecera> getListaPecera() {
+		return listaPecera;
+	}
+
+	public void setListaPecera(JList<Pecera> listaPecera) {
+		this.listaPecera = listaPecera;
+	}
+
+	DefaultListModel<Pecera> modeloPecera;
+	
+	
+	public DefaultListModel<Pecera> getModeloPecera() {
+		return modeloPecera;
+	}
+
+	public void setModeloPecera(DefaultListModel<Pecera> modeloPecera) {
+		this.modeloPecera = modeloPecera;
+	}
+
 	public static PanelAjustes getPanelAjustes() {
 		return panelAjustes;
 	}
@@ -40,14 +77,14 @@ public class FabricaAcciones {
 	
 	public PanelListaPecera accionamientoListaPecera(){
 		
-		panelListaPecera = new PanelListaPecera();
+		panelListaPecera = new PanelListaPecera(this);
 		panelListaPecera.setVisible(true);
 		return panelListaPecera;
 	}
 		
 	public PanelControlPecera accionamientoControlPecera(){
 		
-		panelControlPecera = new PanelControlPecera();
+		panelControlPecera = new PanelControlPecera(this);
 		panelControlPecera.setVisible(true);
 		return panelControlPecera;
 	}

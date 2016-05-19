@@ -11,7 +11,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import Fabrica.FabricaAcciones;
 import VarTypes.Pecera;
+import sakana.MenuPrincipal;
 
 
 
@@ -24,18 +26,18 @@ public class PanelListaPecera extends PanelExample implements ListSelectionListe
 	
 	public JPanel panel, trans, aux;
 	
-
 	JScrollPane scrollPane;
 	JList<Pecera> list;
 	
 	DefaultListModel<Pecera> modelo;
+	FabricaAcciones fabrica;
 	
 	
-	
-	public PanelListaPecera() {
+	public PanelListaPecera(FabricaAcciones fabrica) {
 		super(tamX, tamY);
 		this.setBorder(null);
 		
+		this.fabrica = fabrica;
 		modelo = new DefaultListModel<>();
 		this.setContentPane(crearPanelVentana());
 		
@@ -66,18 +68,17 @@ public class PanelListaPecera extends PanelExample implements ListSelectionListe
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setCellRenderer(new RenderListaPecera());
 		list.addListSelectionListener(this);
-
+		fabrica.setModeloPecera(modelo);
+		fabrica.setListaPecera(list);
 		scrollPane.setViewportView(list);
-			
-		
 	}
 	
 
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
-		
+
+		fabrica.getPanelInformacion().setText(modelo.getElementAt(list.getSelectedIndex()));
 	}
 
 }

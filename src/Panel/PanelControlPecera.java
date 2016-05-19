@@ -7,7 +7,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Fabrica.FabricaAcciones;
 import PanelControl.*;
+import VarTypes.Pecera;
 
 @SuppressWarnings("serial")
 public class PanelControlPecera extends PanelExample implements ChangeListener{
@@ -20,9 +22,12 @@ public class PanelControlPecera extends PanelExample implements ChangeListener{
 	PanelInformacion panelInformacion;
 	PanelPeces panelPeces;
 	
-	public PanelControlPecera() {
+	FabricaAcciones fabrica;
+	
+	public PanelControlPecera(FabricaAcciones fabrica) {
 		super(tamX, tamY);
 	
+		this.fabrica = fabrica;
 		this.xOffset = 0;
 		this.yOffset = -16;
 		setLocation(xOffset, yOffset);
@@ -37,7 +42,13 @@ public class PanelControlPecera extends PanelExample implements ChangeListener{
 		tab.setBackground(Color.GRAY);
 		tab.addChangeListener(this);
 		
+		try{
 		panelInformacion = new PanelInformacion();
+		fabrica.setPanelInformacion(panelInformacion);
+	
+		}catch(Exception e){
+			panelInformacion = new PanelInformacion();
+		}
 		panelPeces = new PanelPeces();
 		
 		tab.addTab("", new ImageIcon("iconos/pestañas/information.png"), panelInformacion);
@@ -49,6 +60,8 @@ public class PanelControlPecera extends PanelExample implements ChangeListener{
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		// TODO Auto-generated method stub
+	
+		
 	}
 
 }
