@@ -13,7 +13,7 @@ public class Pecera {
 	float PH, Temp;
 	
 	
-	public Pecera(int ID, String IP, String nombre, int capacidad){
+	public Pecera(String IP, String nombre, int capacidad){
 		this.ID = ID;
 		this.IP = IP;
 		this.nombre = nombre;
@@ -21,7 +21,7 @@ public class Pecera {
 		
 	}
 
-	public Pecera(int ID, String IP, String nombre, int capacidad, float PH, float Temp){
+	public Pecera(String IP, String nombre, int capacidad, float PH, float Temp){
 		this.ID = ID;
 		this.IP = IP;
 		this.nombre = nombre;
