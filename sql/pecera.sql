@@ -18,7 +18,7 @@ CONSTRAINT COMIDA_TIPOCOMIDA_FK FOREIGN KEY (tipocomida_id) REFERENCES TIPOCOMID
 CREATE TABLE PECERA (
 pecera_id			INT(3) AUTO_INCREMENT,
 nombrePecera 		VARCHAR(45),
-horacomida			DATETIME,
+horacomida			TIME,
 IP					VARCHAR(45),
 Capacidad			INT(3),
 CONSTRAINT PECERA_PRIMARY_KEY PRIMARY KEY (pecera_id));
@@ -82,5 +82,8 @@ INSERT INTO pecera VALUES (1,"Pecera de Iripollen", null, "69.69.69.69", 5);
 INSERT INTO tipopez VALUES (1, "GoldFish");
 
 INSERT INTO pez VALUES (1, "Iripollen", "Desconocido", 1, 1, 1);
+
+INSERT INTO pecera (nombrePecera,horacomida,IP,capacidad) VALUES ("Pecera de MIERDA!!!", "00:11", "69.69.69.69", 5);
+
 
 

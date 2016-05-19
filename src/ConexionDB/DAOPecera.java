@@ -132,17 +132,18 @@ public class DAOPecera {
 	}
 
 
+	@SuppressWarnings("deprecation")
 	static public boolean addPecera(Pecera p) throws Exception{
 
 		Statement stmt;
 		String strSQL;
 		int result;
-
+		String horacomida = p.getHoracomida().getHours()+":"+p.getHoracomida().getMinutes();
 		try
 		{
 				stmt=PoolConexiones.getConexion().createStatement();
-				strSQL="INSERT INTO PECERA "+
-						" VALUES ('"+p.getNombre()+"','"+p.getHoracomida().getTime()+"',"+p.getIP()+",'"+p.getCapacidad()+"')";
+				strSQL="INSERT INTO PECERA (nombre,horacomida,ip,capacidad)"+
+						" VALUES ('"+p.getNombre()+"','"+horacomida+"',"+p.getIP()+",'"+p.getCapacidad()+"')";
 				result = stmt.executeUpdate(strSQL);		      
 				return true;
 
