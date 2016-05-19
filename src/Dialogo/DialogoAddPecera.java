@@ -106,18 +106,13 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 	}
 	
 	@SuppressWarnings("deprecation")
-	public void parsearHora(Pecera p){
+	public void parsearHora(Pecera p) throws ParseException{
 		
 		String tiempo = txHora.getText();
 		
-		try {
-			Date date = simpleDateFormat.parse(tiempo);
-			p.setHoracomida(date);
+		Date date = simpleDateFormat.parse(tiempo);
+		p.setHoracomida(date);
 			
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		
 	}
