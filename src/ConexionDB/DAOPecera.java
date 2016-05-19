@@ -38,6 +38,32 @@ public class DAOPecera {
 		}
 		return lista;
 	}
+	
+	static public void getIdPorNombre(Pecera p) throws Exception{
+		Statement stmt;
+		ResultSet result;
+		String strSQL;
+		try
+		{
+
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="SELECT pecera_id"+
+					"FROM pecera"+
+					"WHERE nombrePecera='"+p.getNombre()+"'";
+			result = stmt.executeQuery(strSQL);
+			while (result.next()){
+				//Calendar cal = Calendar.getInstance();
+				//cal.setTime(result.getDate("horacomida"));
+					
+				p.setID(result.getInt("pecera_id"));
+				
+			}
+			result.close();
+		} catch (Exception e ){
+			e.printStackTrace();
+		}
+	}
+	
 
 	static public ArrayList<Pecera> getPecerasPorDueno(Dueno d) throws Exception{
 		Statement stmt;
