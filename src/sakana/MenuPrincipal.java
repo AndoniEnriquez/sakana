@@ -17,7 +17,7 @@ import Panel.*;
 @SuppressWarnings("serial")
 public class MenuPrincipal extends JFrame implements WindowListener{
 
-	JSplitPane panelPrincipal;
+	public static JSplitPane panelPrincipal;
 	public static JDesktopPane desktopIzquierda, desktopDerecha;
 	public static PanelAjustes panelAjustes;
 	
@@ -58,10 +58,12 @@ public class MenuPrincipal extends JFrame implements WindowListener{
 	}
 	
 	
-	@SuppressWarnings("unused")
+
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		
     	MenuPrincipal menuPrincipal = new MenuPrincipal();	
+    	fabrica.setMenuPrincipal(menuPrincipal);
 		
 	}
 	

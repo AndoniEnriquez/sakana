@@ -16,8 +16,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Dialogo.DialogoAddPecera;
+import Fabrica.FabricaAcciones;
 import Panel.*;
 import VarTypes.Pecera;
+import sakana.MenuPrincipal;
 
 @SuppressWarnings("serial")
 public class PanelInformacion extends PanelExample implements ActionListener{
@@ -33,10 +36,12 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 	MiPanel miPanel;
 	
 	Pecera pecera;
+	FabricaAcciones fabrica;
 	
-	public PanelInformacion() {
+	public PanelInformacion(FabricaAcciones fabrica) {
 		super(tamX, tamY);
 		this.setLocation(0, -30);
+		this.fabrica = fabrica;
 		this.setContentPane(crearPanelVentana());
 	}
 
@@ -109,46 +114,20 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 			return campo;
 		}
 
+		@SuppressWarnings("static-access")
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			/*boolean añadir;
-			switch (e.getActionCommand()){
-			case "OK" : if (camposIncompletos()){
-							JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos",
-									"Error datos incompletos", JOptionPane.ERROR_MESSAGE);
-						}else{
-							try{
-							//Persona p = new Persona(txNomUsuario.getText(), txNombre.getText(), txPassword.getText(), Integer.parseInt(txDNI.getText()), seleccionarTipo());
-							//a�adir = DAOPersonas.addPersona(p);
-							//DAOPersonas.eliminarPersona(p.getUserName());
-							if(a�adir){
-							JOptionPane.showMessageDialog(this, "Usuario a�adido",
-									"Accion realizada", JOptionPane.INFORMATION_MESSAGE);
-							this.dispose();
-							}else{
-								JOptionPane.showMessageDialog(this, "Usuario existente. Cambia el nombre de usuario y/o DNI",
-										"Imposible to Add Person", JOptionPane.INFORMATION_MESSAGE);
-							}
-							}catch (NumberFormatException e2) {
-								JOptionPane.showMessageDialog(this, "El DNI solo puede tener numeros. SIN LETRA",
-										"Format Error", JOptionPane.INFORMATION_MESSAGE);
-							} catch (Exception e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-						}
-						break;
-						
-			case "Cancelar":
-						this.dispose();
-			}
-			*/
-		}
-
-
-
-		private boolean camposIncompletos() {
 			
-			return false;//txNombre.getText().length()==0 ||txUbicaci�n.getText().length()==0 || txDescripci�n.getText().length()==0;
+			switch (e.getActionCommand()) {
+			case "Add":
+				
+					new DialogoAddPecera(fabrica.getMenuPrincipal(), true);
+				
+				break;
+
+			default:
+				break;
+			}
+			
 		}
 }

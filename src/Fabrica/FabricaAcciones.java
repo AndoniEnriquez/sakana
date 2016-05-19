@@ -10,6 +10,7 @@ import Panel.PanelControlPecera;
 import Panel.PanelListaPecera;
 import PanelControl.PanelInformacion;
 import VarTypes.Pecera;
+import sakana.MenuPrincipal;
 
 public class FabricaAcciones {
 
@@ -18,7 +19,16 @@ public class FabricaAcciones {
 	public static PanelControlPecera panelControlPecera;
 	public static PanelAjustes panelAjustes;
 	public static PanelInformacion panelInformacion;
+	public static MenuPrincipal menuPrincipal;
 	
+	public static MenuPrincipal getMenuPrincipal() {
+		return menuPrincipal;
+	}
+
+	public static void setMenuPrincipal(MenuPrincipal menuPrincipal) {
+		FabricaAcciones.menuPrincipal = menuPrincipal;
+	}
+
 	public static PanelInformacion getPanelInformacion() {
 		return panelInformacion;
 	}
