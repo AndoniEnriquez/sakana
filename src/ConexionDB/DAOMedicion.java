@@ -47,7 +47,7 @@ public class DAOMedicion {
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT medicion_id, nombre, datatimeMedicion, TIPOMEDICION_tipomedicion_id, PECERA_pecera_id"+
+			strSQL="SELECT medicion_id, nombre, datatimeMedicion, tipomedicion_id, pecera_id"+
 					" FROM MEDICION"+
 					" WHERE medicion_id="+idMedicion;
 			result = stmt.executeQuery(strSQL);
@@ -56,7 +56,7 @@ public class DAOMedicion {
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(result.getDate("datatimeMedicion"));
 			m = new Medicion(result.getInt("medicion_id"),result.getString("nombre"),cal,
-					result.getInt("TIPOMEDICION_tipomedicion_id"),result.getInt("PECERA_pecera_id"));
+					result.getInt("tipomedicion_id"),result.getInt("pecera_id"));
 			result.close();
 			return m;
 		}
@@ -77,7 +77,7 @@ public class DAOMedicion {
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT medicion_id, nombre, datatimeMedicion, TIPOMEDICION_tipomedicion_id, PECERA_pecera_id"+
+			strSQL="SELECT medicion_id, nombre, datatimeMedicion, tipomedicion_id, pecera_id"+
 					" FROM MEDICION"+
 					" WHERE nombre="+nombre;
 			result = stmt.executeQuery(strSQL);
@@ -86,7 +86,7 @@ public class DAOMedicion {
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(result.getDate("datatimeMedicion"));
 			m = new Medicion(result.getInt("medicion_id"),result.getString("nombre"),cal,
-					result.getInt("TIPOMEDICION_tipomedicion_id"),result.getInt("PECERA_pecera_id"));
+					result.getInt("tipomedicion_id"),result.getInt("pecera_id"));
 			result.close();
 			return m;
 		}
@@ -147,8 +147,8 @@ public class DAOMedicion {
 			strSQL="UPDATE MEDICION "+
 					" SET nombre = '"+m.getNombre()+
 					"', datetimeMedicion   = '"+m.getDatetime().getTime()+
-					"', TIPOMEDICION_tipomedicion_id   = '"+m.getTipoMedicion_id()+
-					"', PECERA_pecera_id   = '"+m.getPecera_id()+
+					"', tipomedicion_id   = '"+m.getTipoMedicion_id()+
+					"', pecera_id   = '"+m.getPecera_id()+
 					"' WHERE medicion_id="+m.getID();
 			return (stmt.executeUpdate(strSQL)>0);
 		}
