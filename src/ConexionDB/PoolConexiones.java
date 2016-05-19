@@ -9,10 +9,10 @@ import java.util.Properties;
 class PoolConexiones
 {
   //protected static String nombreBBDD="jdbc:odbc:gestionMaterial_01";
-	final static String SGBDURL = "jdbc:mysql://localhost:3306/peceradb";
+	final static String SGBDURL = "jdbc:mysql://localhost:3306/pecera";
 	private static Connection instance;
  
-  /* versión basada en JODBC
+  /* versiï¿½n basada en JODBC
    * 
    *
   public static Connection getConexion() throws Exception
@@ -48,3 +48,9 @@ class PoolConexiones
 	  return instance;
 	}
 } 
+
+
+
+
+
+
