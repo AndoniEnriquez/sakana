@@ -90,15 +90,20 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		boolean añadir;
+		boolean anadir;
 		
 		switch (e.getActionCommand()){
 		case "OK" : 
 						try{
 						Pecera p = new Pecera(txIP.getText(), txNombrePecera.getText(), Integer.parseInt(txtCapacidad.getText()));
+<<<<<<< HEAD
 						p.setHoracomida(txHora.getText().toString());
 						añadir = DAOPecera.addPecera(p);
 						if(añadir){
+=======
+						anadir = DAOPecera.addPecera(p);
+						if(anadir){
+>>>>>>> branch 'HEAD' of https://github.com/AndoniEnriquez/sakana.git
 							
 							JOptionPane.showMessageDialog(this, "Pecera añadida","Accion realizada", JOptionPane.INFORMATION_MESSAGE);
 							this.dispose();

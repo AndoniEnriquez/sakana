@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import VarTypes.Pecera;
+import VarTypes.*;
 
 public class DAOPecera {
 
@@ -39,7 +39,7 @@ public class DAOPecera {
 		return lista;
 	}
 
-	static public ArrayList<Pecera> getPecerasPorDueno() throws Exception{
+	static public ArrayList<Pecera> getPecerasPorDueno(Dueno d) throws Exception{
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -51,7 +51,8 @@ public class DAOPecera {
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT IP,Capacidad,NombrePecera, HoraComida"+
-					" FROM PECERA";
+					"FROM (PECERA p JOIN pez pe on p.pecera_id=p.pecera_id) JOIN dueno d on pe.dueno_id=d.dueno_id"+
+					"WHERE d.dueno_id='"+d.getDueno_id()+"'";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				//Calendar cal = Calendar.getInstance();
