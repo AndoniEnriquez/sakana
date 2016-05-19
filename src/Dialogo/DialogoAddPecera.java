@@ -35,7 +35,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 	JComboBox<String> comboResponsable;
 	JTextField txNombrePecera, txIP, txtCapacidad, txMin;
 	JDateChooser txHora;
-	
+	int i;
 	
 	public DialogoAddPecera (JFrame frame, boolean modo){
 		super ( frame,TITULO,modo );
