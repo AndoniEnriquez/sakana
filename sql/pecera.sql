@@ -3,12 +3,12 @@ CREATE database pecera;
 use pecera;
 
 CREATE TABLE TIPOCOMIDA (
-tipocomida_id			INT(3),
+tipocomida_id			INT(3) AUTO_INCREMENT,
 descripcionTipoComida	VARCHAR(20),
 CONSTRAINT TIPOCOMIDA_PRIMARY_KEY PRIMARY KEY (tipocomida_id));
 
 CREATE TABLE COMIDA (
-comida_id			INT(3),
+comida_id			INT(3) AUTO_INCREMENT,
 nombreComida		VARCHAR(20),
 descripcionComida	VARCHAR(45),
 tipocomida_id		INT(3) NOT NULL,
@@ -16,7 +16,7 @@ CONSTRAINT COMIDA_PRIMARY_KEY PRIMARY KEY (comida_id),
 CONSTRAINT COMIDA_TIPOCOMIDA_FK FOREIGN KEY (tipocomida_id) REFERENCES TIPOCOMIDA (tipocomida_id));
 
 CREATE TABLE PECERA (
-pecera_id			INT(3),
+pecera_id			INT(3) AUTO_INCREMENT,
 nombrePecera 		VARCHAR(45),
 horacomida			DATETIME,
 IP					VARCHAR(45),
@@ -32,18 +32,18 @@ CONSTRAINT REGCOMIDA_COMIDA_FK FOREIGN KEY (comida_id) REFERENCES COMIDA (comida
 CONSTRAINT REGCOMIDA_PECERA_FK FOREIGN KEY (pecera_id) REFERENCES PECERA (pecera_id));
 
 CREATE TABLE TIPOPEZ (
-tipopez_id			INT(3),
+tipopez_id			INT(3) AUTO_INCREMENT,
 descripcion			VARCHAR(45),
 CONSTRAINT TIPOPEZ_PRIMARY_KEY PRIMARY KEY (tipopez_id));
 
 CREATE TABLE DUENO (
-dueno_id			INT(3),
+dueno_id			INT(3) AUTO_INCREMENT,
 nombreDueno			VARCHAR(45),
 password			VARCHAR(45),
 CONSTRAINT TIPOPEZ_PRIMARY_KEY PRIMARY KEY (dueno_id));
 
 CREATE TABLE PEZ (
-pez_id				INT(3),
+pez_id				INT(3) AUTO_INCREMENT,
 nombrePez			VARCHAR(45),
 genero				VARCHAR(45),
 tipopez_id			INT(3) NOT NULL,
@@ -55,12 +55,12 @@ CONSTRAINT PEZ_DUENO_FK FOREIGN KEY (dueno_id) REFERENCES DUENO (dueno_id),
 CONSTRAINT PEZ_PECERA_FK FOREIGN KEY (pecera_id) REFERENCES PECERA (pecera_id));
 
 CREATE TABLE TIPOMEDICION (
-tipomedicion_id		INT(3),
+tipomedicion_id		INT(3) AUTO_INCREMENT,
 nombremedicion		VARCHAR(45),
 CONSTRAINT TIPOMEDICION_PRIMARY_KEY PRIMARY KEY (tipomedicion_id));
 
 CREATE TABLE MEDICION (
-medicion_id			INT(3),
+medicion_id			INT(3) AUTO_INCREMENT,
 valor				FLOAT,
 datetimeMedicion	DATETIME,
 tipomedicion_id 	INT NOT NULL,
