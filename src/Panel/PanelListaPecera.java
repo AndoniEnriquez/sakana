@@ -116,7 +116,7 @@ public class PanelListaPecera extends PanelExample implements ListSelectionListe
 		try {
 			listaPecera = DAOPecera.getPeceras();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch blocko
 			e.printStackTrace();
 		}
 		

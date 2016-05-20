@@ -133,7 +133,7 @@ public class DialogoAddPez extends JDialog implements ActionListener{
 						}catch (NumberFormatException e2) {
 							
 						} catch (Exception e1) {
-							// TODO Auto-generated catch block
+							// TODO Auto-generated catch blocko
 							e1.printStackTrace();
 						}
 					
