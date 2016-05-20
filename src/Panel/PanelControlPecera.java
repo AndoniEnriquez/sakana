@@ -23,6 +23,7 @@ public class PanelControlPecera extends PanelExample implements ChangeListener{
 	
 	FabricaAcciones fabrica;
 	
+	@SuppressWarnings("static-access")
 	public PanelControlPecera(FabricaAcciones fabrica) {
 		super(tamX, tamY);
 	
@@ -32,6 +33,8 @@ public class PanelControlPecera extends PanelExample implements ChangeListener{
 		setLocation(xOffset, yOffset);
 		
 		this.setContentPane(crearPanelVentana());
+		
+		//fabrica.setPanelControlPecera(this);
 	}
 
 	@SuppressWarnings("static-access")

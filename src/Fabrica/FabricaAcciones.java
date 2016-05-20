@@ -15,6 +15,22 @@ import sakana.MenuPrincipal;
 public class FabricaAcciones {
 
 	int tamX, tamY;
+	public int getTamY() {
+		return tamY;
+	}
+
+	public void setTamY(int tamY) {
+		this.tamY = tamY;
+	}
+
+	public static PanelControlPecera getPanelControlPecera() {
+		return panelControlPecera;
+	}
+
+	public static void setPanelControlPecera(PanelControlPecera panelControlPecera) {
+		FabricaAcciones.panelControlPecera = panelControlPecera;
+	}
+
 	public static PanelListaPecera panelListaPecera;
 	public static PanelControlPecera panelControlPecera;
 	public static PanelAjustes panelAjustes;

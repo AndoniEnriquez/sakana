@@ -93,7 +93,7 @@ public class PanelListaPecera extends PanelExample implements ListSelectionListe
 	@SuppressWarnings("static-access")
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		//fabrica.getPanelInfo
+		//fabrica.setPanelControlPecera(new PanelControlPecera(fabrica));
 		fabrica.getPanelInformacion().setText(modelo.getElementAt(list.getSelectedIndex()));
 	}
 
