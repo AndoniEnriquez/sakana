@@ -78,7 +78,7 @@ public class DAOPecera {
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT IP,Capacidad,NombrePecera, HoraComida"+
 					"FROM (PECERA p JOIN pez pe on p.pecera_id=p.pecera_id) JOIN dueno d on pe.dueno_id=d.dueno_id"+
-					"WHERE d.dueno_id='"+d.getDueno_id()+"'";
+					"WHERE d.nombreDueno='"+d.getNombreDueno()+"'";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				//Calendar cal = Calendar.getInstance();
