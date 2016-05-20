@@ -143,7 +143,7 @@ public class DAOPez {
 		}
 	}
 
-	static public ArrayList<Pez> getPecesPeceraDueño (Pecera p, Dueno d) throws Exception{
+	static public ArrayList<Pez> getPecesPeceraDueno (Pecera p, Dueno d) throws Exception{
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
