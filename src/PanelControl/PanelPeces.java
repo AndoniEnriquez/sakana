@@ -55,11 +55,13 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 	
 	JList<Pez> list;
 	
+	@SuppressWarnings("static-access")
 	public PanelPeces(FabricaAcciones fabrica) {
 		super(tamX, tamY);
 		this.fabrica = fabrica;
 		modelo = new DefaultListModel<>();
 		this.setContentPane(crearPanelVentana());
+		fabrica.setPanelPeces(this);
 	}
 
 	private Container crearPanelVentana() {

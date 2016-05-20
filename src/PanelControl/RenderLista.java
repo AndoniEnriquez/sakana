@@ -25,15 +25,15 @@ public class RenderLista extends JLabel implements ListCellRenderer<Pez>{
 		
 		if(pez.getGenero() == "macho"){
 			
-			panel.add(new JLabel(new ImageIcon("Imagenes/Blinky.png")), BorderLayout.WEST);
+			panel.add(new JLabel(new ImageIcon("Iconos/pez/Blinky.png")), BorderLayout.WEST);
 			
 		}else if (pez.getGenero() == "hembra"){
 			
-			panel.add(new JLabel(new ImageIcon("Imagenes/Pez_Linterna.png")), BorderLayout.WEST);
+			panel.add(new JLabel(new ImageIcon("Iconos/pez/Pez_Linterna.png")), BorderLayout.WEST);
 			
 		}else{
 			
-			panel.add(new JLabel(new ImageIcon("Imagenes/magikarp.png")), BorderLayout.WEST);
+			panel.add(new JLabel(new ImageIcon("Iconos/pez/magikarp.png")), BorderLayout.WEST);
 			
 		}
 		

@@ -9,34 +9,29 @@ import Panel.PanelAjustes;
 import Panel.PanelControlPecera;
 import Panel.PanelListaPecera;
 import PanelControl.PanelInformacion;
+import PanelControl.PanelPeces;
 import VarTypes.Pecera;
 import sakana.MenuPrincipal;
 
 public class FabricaAcciones {
 
 	int tamX, tamY;
-	public int getTamY() {
-		return tamY;
-	}
-
-	public void setTamY(int tamY) {
-		this.tamY = tamY;
-	}
-
-	public static PanelControlPecera getPanelControlPecera() {
-		return panelControlPecera;
-	}
-
-	public static void setPanelControlPecera(PanelControlPecera panelControlPecera) {
-		FabricaAcciones.panelControlPecera = panelControlPecera;
-	}
 
 	public static PanelListaPecera panelListaPecera;
 	public static PanelControlPecera panelControlPecera;
 	public static PanelAjustes panelAjustes;
 	public static PanelInformacion panelInformacion;
 	public static MenuPrincipal menuPrincipal;
+	public static PanelPeces panelPeces;
 	
+	public static PanelPeces getPanelPeces() {
+		return panelPeces;
+	}
+
+	public static void setPanelPeces(PanelPeces panelPeces) {
+		FabricaAcciones.panelPeces = panelPeces;
+	}
+
 	public static MenuPrincipal getMenuPrincipal() {
 		return menuPrincipal;
 	}
@@ -114,6 +109,23 @@ public class FabricaAcciones {
 		panelControlPecera.setVisible(true);
 		return panelControlPecera;
 	}
+	
+	public int getTamY() {
+		return tamY;
+	}
+
+	public void setTamY(int tamY) {
+		this.tamY = tamY;
+	}
+
+	public static PanelControlPecera getPanelControlPecera() {
+		return panelControlPecera;
+	}
+
+	public static void setPanelControlPecera(PanelControlPecera panelControlPecera) {
+		FabricaAcciones.panelControlPecera = panelControlPecera;
+	}
+
 	
 
 }
