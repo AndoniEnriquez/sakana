@@ -182,13 +182,15 @@ public class DAOPecera {
 		}
 	}
 
-	public static void eliminarPecera(String IP) throws SQLException {
+	public static void eliminarPecera(Pecera p) throws SQLException {
+	
 		Statement stmt;
 		int result;
 		String strSQL;
 		stmt=PoolConexiones.getConexion().createStatement();
-		strSQL="DELETE FROM  PECERA "+
-				" WHERE IP = '"+IP+"'";
+		
+		strSQL=" DELETE FROM PECERA "+
+				" WHERE IP = '"+p.getIP()+"'";
 		result = stmt.executeUpdate(strSQL);
 	}
 
