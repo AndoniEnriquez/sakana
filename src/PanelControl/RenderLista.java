@@ -1,81 +1,59 @@
 package PanelControl;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.util.HashMap;
+import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
-@SuppressWarnings({ "serial", "rawtypes" })
-public class RenderLista extends JLabel implements ListCellRenderer{
+import VarTypes.Pez;
 
-	 HashMap<String, Icon> elementos;
-	 HashMap<String, String> toolTip;
+@SuppressWarnings("serial")
+public class RenderLista extends JLabel implements ListCellRenderer<Pez>{
 
-	 ImageIcon icononulo = new ImageIcon(("Iconos/error.png"));
-	 
-	 public RenderLista(HashMap<String, Icon> pelementos, HashMap<String, String> tool){
 	
-		 this.elementos = pelementos;
-	     toolTip = tool; 
-	 }
-	 
-	 public RenderLista() {
-	
-		 elementos = new HashMap<String, Icon>();   
-	 }
-
-	 
-	@Override
-	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+	public Component getListCellRendererComponent(JList<? extends Pez> list, Pez pez, int index,boolean isSelected, boolean cellHasFocus) {
 		
-		if (elementos.get(value) != null) {
-         
-			setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-            setIcon(elementos.get(value));
-            
-            
-            setText(value.toString());
+		JPanel panel = new JPanel(new BorderLayout());
+		
+		if(pez.getGenero() == "macho"){
+			
+			panel.add(new JLabel(new ImageIcon("Imagenes/Blinky.png")), BorderLayout.WEST);
+			
+		}else if (pez.getGenero() == "hembra"){
+			
+			panel.add(new JLabel(new ImageIcon("Imagenes/Pez_Linterna.png")), BorderLayout.WEST);
+			
+		}else{
+			
+			panel.add(new JLabel(new ImageIcon("Imagenes/magikarp.png")), BorderLayout.WEST);
+			
+		}
+		
+		
+		JPanel panelDer = new JPanel(new GridLayout(1, 1));
+		
+		JLabel nombre = new JLabel(pez.getNombrePez());
+		nombre.setForeground(Color.MAGENTA);
+		nombre.setFont(new Font("Arial",Font.ITALIC,16));
+		panelDer.add(nombre);
+		
+		panel.add(panelDer, BorderLayout.CENTER);
+		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		if(isSelected) panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
+						
+		return panel;
+	}
 
-            if (isSelected) {
-                 
-            	setFont(new Font("Verdana", Font.ITALIC, 16));
-                setForeground(Color.GRAY);
-                setBackground(Color.LIGHT_GRAY);
-                setOpaque(true);
-                 
-            } else {
-                setFont(new Font("Verdana", Font.BOLD, 16));
-                setForeground(Color.LIGHT_GRAY);
-                setOpaque(false);
-            }
-        } else {
-            
-        	setIcon(icononulo);
-            setText(value.toString());
 
-            if (isSelected) {
-                setFont(new Font("Verdana", Font.BOLD, 22));
-                setForeground(new java.awt.Color(24,165,211));
-            } else {
-                setFont(null);
-                setForeground(Color.BLACK);
-            }
-        }
 
-        if (toolTip!=null) {
-             if (toolTip.get(value) != null) {
-                 setToolTipText(toolTip.get(value));
-             }
-        }
-        return this;
-    }
 
 }
 
