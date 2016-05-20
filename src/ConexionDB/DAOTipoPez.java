@@ -20,7 +20,7 @@ public class DAOTipoPez {
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT TipoPez_id, descripcion"+
-					" FROM TipoPez";
+					" FROM TipoPez order by tipoPez_id";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				TipoPez = new TipoPez(result.getInt("TipoPez_id"),result.getString("descripcion"));

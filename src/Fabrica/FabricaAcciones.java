@@ -7,13 +7,23 @@ import Login.LoginDerecha;
 import Login.LoginIzquierda;
 import Panel.PanelAjustes;
 import Panel.PanelControlPecera;
+import Panel.PanelEditPez;
 import Panel.PanelListaPecera;
 import PanelControl.PanelInformacion;
 import PanelControl.PanelPeces;
 import VarTypes.Pecera;
+import VarTypes.Pez;
 import sakana.MenuPrincipal;
 
 public class FabricaAcciones {
+
+	public static PanelEditPez getPanelEditPez() {
+		return panelEditPez;
+	}
+
+	public static void setPanelEditPez(PanelEditPez panelEditPez) {
+		FabricaAcciones.panelEditPez = panelEditPez;
+	}
 
 	int tamX, tamY;
 
@@ -23,7 +33,30 @@ public class FabricaAcciones {
 	public static PanelInformacion panelInformacion;
 	public static MenuPrincipal menuPrincipal;
 	public static PanelPeces panelPeces;
+	public static PanelEditPez panelEditPez;
 	
+	DefaultListModel<Pecera> modeloPecera;
+	JList<Pecera> listaPecera;
+	
+	public DefaultListModel<Pez> getModeloPez() {
+		return modeloPez;
+	}
+
+	public void setModeloPez(DefaultListModel<Pez> modeloPez) {
+		this.modeloPez = modeloPez;
+	}
+
+	DefaultListModel<Pez> modeloPez;
+	JList<Pez> listaPez;
+	
+	public JList<Pez> getListaPez() {
+		return listaPez;
+	}
+
+	public void setListaPez(JList<Pez> listaPez) {
+		this.listaPez = listaPez;
+	}
+
 	public static PanelPeces getPanelPeces() {
 		return panelPeces;
 	}
@@ -48,7 +81,7 @@ public class FabricaAcciones {
 		FabricaAcciones.panelInformacion = panelInformacion;
 	}
 
-	JList<Pecera> listaPecera;
+
 	public JList<Pecera> getListaPecera() {
 		return listaPecera;
 	}
@@ -57,7 +90,7 @@ public class FabricaAcciones {
 		this.listaPecera = listaPecera;
 	}
 
-	DefaultListModel<Pecera> modeloPecera;
+	
 	
 	
 	public DefaultListModel<Pecera> getModeloPecera() {

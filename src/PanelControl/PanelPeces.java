@@ -26,7 +26,7 @@ import ConexionDB.DAOPez;
 import Fabrica.FabricaAcciones;
 import Login.Sesion;
 import Panel.MiPanel;
-import Panel.PanelAddPez;
+import Panel.PanelEditPez;
 import Panel.PanelExample;
 import Panel.RenderListaPecera;
 import VarTypes.Dueno;
@@ -47,12 +47,6 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 	
 	FabricaAcciones fabrica;
 
-	private HashMap<String, Icon> elementos = new HashMap<String, Icon>();
-	private HashMap<String, String> tooltip = new HashMap<String, String>();
-
-	//Object datos  []={"NUEVO PEZ","DORY","Pablo","Juana","NEMO","DORY","Pablo","Juana"};  
-	//String toolTipSexo[]={"Nuevo","Naranja","Naranja","Naranja","Naranja","Naranja","Naranja","Naranja"};
-	
 	JList<Pez> list;
 	
 	@SuppressWarnings("static-access")
@@ -83,34 +77,19 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 		panelSecundario = new JPanel();
 
 		panelSecundario.setBackground(Color.WHITE);
-		//panelSecundario.add(crearPanelAdd());
-		//panelSecundario.add(crearPanelDelete());
-		//panelSecundario.add(crearPanelEdit());
-		
+
 		return panelSecundario;		
 	}
 	
 	private Component crearPanelAdd(){
 		
-		PanelAddPez panelAdd = new PanelAddPez();
+		PanelEditPez panelAdd = new PanelEditPez(fabrica);
 		
 		return panelAdd;
 	}
 	
 
-	private Component crearPanelDelete(){
-		
-		delete = new JButton("DELETE");
-		
-		return null;
-	}
-	
-	private Component crearPanelEdit(){
-		
-		
-		edit = new JButton("EDIT");
-		return null;
-	}
+
 
 	@SuppressWarnings("unchecked")
 	public void controlLista(){
@@ -120,24 +99,11 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setCellRenderer(new RenderLista());
 		list.addListSelectionListener(this);
+	
+		fabrica.setModeloPez(modelo);
+		fabrica.setListaPez(list);
 		scrollPane.setViewportView(list);
-		
-		 /*for(int i = 0; i < datos.length; i++){
-			 
-	            if(toolTipSexo[i].equals("Naranja")) {
-	            	
-	                elementos.put(datos[i].toString(), new ImageIcon("iconos/pez/pezNaranja.png"));
-	                
-	            }else {
-	            	
-	                elementos.put(datos[i].toString(), new ImageIcon("iconos/pez/plus.png"));
-	            }
-	            tooltip.put(datos[i].toString(), toolTipSexo[i]);
-	        }
-
-	        RenderLista render = new RenderLista(elementos, tooltip);
-	        list.setCellRenderer(render);
-*/
+	
 	}
 	
 	public void cargarPeces(){
@@ -184,6 +150,14 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 	public void valueChanged(ListSelectionEvent e) {
 		
 		int index = list.getSelectedIndex();
+		try{
+			fabrica.getPanelEditPez().setTextPez();
+		}catch (Exception e1){
+			
+			
+			
+		}
+		
 		
 		switch (index) {
 		

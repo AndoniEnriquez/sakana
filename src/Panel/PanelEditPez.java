@@ -9,28 +9,34 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ConexionDB.DAOTipoPez;
+import Fabrica.FabricaAcciones;
+import VarTypes.Pez;
+import VarTypes.TipoPez;
 
 
-public class PanelAddPez extends JPanel implements ActionListener{
+
+public class PanelEditPez extends JPanel implements ActionListener{
 	
 	JComboBox<String> comboResponsable;
-	JTextField txNomUsuario,txNombre,txPassword,txDNI;
+	JTextField txNom;
+	JComboBox<String> comboGenero, comboTipo;
+	ArrayList<TipoPez> tipoPez;
+	FabricaAcciones fabrica;
 	
-	public PanelAddPez (){
+	public PanelEditPez (FabricaAcciones fabrica){
+		this.fabrica = fabrica;
 		crearVentana();
 		this.setVisible(true);
+		fabrica.setPanelEditPez(this);
 	}
 
 	private void crearVentana() {
@@ -52,15 +58,15 @@ public class PanelAddPez extends JPanel implements ActionListener{
 	private Component crearPanelBotones() {
 		JPanel panel = new JPanel (new FlowLayout(FlowLayout.CENTER,30,0));
 		panel.setOpaque(false);
-		JButton bOk = new JButton ("Validar");
-		bOk.setActionCommand("OK");
-		bOk.addActionListener(this);
-		JButton bCancel = new JButton ("Cancelar");
-		bCancel.setActionCommand("Cancelar");
-		bCancel.addActionListener(this);
+		JButton bEdit = new JButton ("Editar");
+		bEdit.setActionCommand("Editar");
+		bEdit.addActionListener(this);
+		JButton bBorrar = new JButton ("Borrar");
+		bBorrar.setActionCommand("Borrar");
+		bBorrar.addActionListener(this);
 		
-		panel.add(bOk);
-		panel.add(bCancel);
+		panel.add(bEdit);
+		panel.add(bBorrar);
 		return panel;
 	}
 
@@ -69,27 +75,68 @@ public class PanelAddPez extends JPanel implements ActionListener{
 		
 		String nombres [];
 		panel.setOpaque(false);
-		panel.add(txNombre = crearCampo("Nombre"));
-		panel.add(txNomUsuario = crearCampo("Nombre de Pez"));
-		panel.add(txPassword = crearCampo("Contraseña"));
-		panel.add(txDNI = crearCampo("DNI"));
+	
+		panel.add(txNom = crearCampo("Nombre de Pez"));
+
+		String genero [];
+		genero = new String [3];
+		genero[0] = "Hembra";
+		genero[1] = "Macho";
+		genero[2] = "Desconocido";
 		
 
-		nombres = new String [2];
-		nombres[0] = "1.Administrador";
-		nombres[1] = "2.Normal";
+		comboGenero = new JComboBox<>(genero);
+		comboGenero.setBorder(BorderFactory.createTitledBorder(
+				BorderFactory.createLineBorder(Color.PINK),"Genero del Pez"));
 		
-		/*nombres = new String [listaPersonas.size()];
-		for (int i = 0; i<nombres.length; i++){
-			nombres [i] = listaPersonas.get(i).getNombre();
-		}*/
-		comboResponsable = new JComboBox<>(nombres);
-		comboResponsable.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createLineBorder(Color.PINK),"Tipo Usuario"));
-		panel.add(comboResponsable);
+		panel.add(comboGenero);
+		
+	
+		
+		
+		try {
+			tipoPez = DAOTipoPez.getTiposPez();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+				
+		comboTipo = new JComboBox<>(getTipoPez(tipoPez));
+		comboTipo.setBorder(BorderFactory.createTitledBorder(
+				BorderFactory.createLineBorder(Color.PINK),"Tipo de Pez"));
+		
+		panel.add(comboTipo);
+		
+		this.setTextPez();
+		
 		return panel;
 	}
+	
+	public int seleccionarGenero(Pez p){
+		
+		if(p.getGenero().toLowerCase().contains("macho")){
+			
+			return 1;
+			
+		}else if(p.getGenero().toLowerCase().contains("hembra")) {
+			
+			return 0;
+			
+		}else{
+			
+			return 2;
+		}
+		
+	}
 
+	public void setTextPez(){
+		
+		txNom.setText(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex()).getNombrePez());
+		comboGenero.setSelectedIndex(this.seleccionarGenero(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex())));
+		comboTipo.setSelectedIndex(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex()).getTipoPez_id()-1);
+	}
+
+	
 	private JTextField crearCampo(String titulo) {
 		JTextField campo = new JTextField();
 		campo.setBorder(BorderFactory.createTitledBorder(
@@ -134,6 +181,19 @@ public class PanelAddPez extends JPanel implements ActionListener{
 		*/
 	}
 
+	public String[] getTipoPez(ArrayList<TipoPez> tipo){
+		
+		String tipoPez[] = new String[tipo.size()];
+		
+		for(int i = 0; i < tipo.size(); i++){
+			
+			tipoPez[i] = tipo.get(i).getDescripcion();
+		
+		}
+		
+		return tipoPez;
+	}
+	
 	private int seleccionarTipo() {
 		return comboResponsable.getSelectedIndex() + 1;
 	}
