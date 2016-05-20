@@ -104,7 +104,7 @@ public class DialogoAddDueno extends JDialog implements ActionListener{
 						try{
 							
 						Dueno d = new Dueno(txNombre.getText(), txPassword.getText());
-						//anadir = DAODueno
+						anadir = DAODueno.addDueno(d);
 						
 						if(anadir){
 							
