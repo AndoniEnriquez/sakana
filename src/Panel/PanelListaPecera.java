@@ -114,7 +114,7 @@ public class PanelListaPecera extends PanelExample implements ListSelectionListe
 		ArrayList<Pecera> listaPecera = new ArrayList<>();
 		modelo.removeAllElements();
 		try {
-			listaPecera = DAOPecera.getPecerasPorDueno(Sesion.getInstance().getUsuario());
+			listaPecera = DAOPecera.getPeceras();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
