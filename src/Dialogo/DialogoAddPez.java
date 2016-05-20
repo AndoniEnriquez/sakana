@@ -77,9 +77,9 @@ public class DialogoAddPez extends JDialog implements ActionListener{
 		
 		String genero [];
 		genero = new String [3];
-		genero[0] = "1.Hembra";
-		genero[1] = "2.Macho";
-		genero[2] = "3.Desconocido";
+		genero[0] = "Hembra";
+		genero[1] = "Macho";
+		genero[2] = "Desconocido";
 		
 
 		comboGenero = new JComboBox<>(genero);
