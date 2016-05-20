@@ -42,8 +42,8 @@ public class DialogoAddPez extends JDialog implements ActionListener{
 	}
 
 	private void crearVentana() {
-		this.setLocation(280,200);
-		this.setSize(300, 380);
+		this.setLocation(600,300);
+		this.setSize(300, 300);
 		this.setContentPane(crearPanelDialogo());
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	}
@@ -79,7 +79,7 @@ public class DialogoAddPez extends JDialog implements ActionListener{
 		genero = new String [3];
 		genero[0] = "1.Hembra";
 		genero[1] = "2.Macho";
-		genero[1] = "3.Desconocido";
+		genero[2] = "3.Desconocido";
 		
 
 		comboGenero = new JComboBox<>(genero);
@@ -107,7 +107,7 @@ public class DialogoAddPez extends JDialog implements ActionListener{
 	private JTextField crearCampo(String titulo) {
 		JTextField campo = new JTextField();
 		campo.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createLineBorder(Color.CYAN),titulo));
+				BorderFactory.createLineBorder(Color.PINK),titulo));
 		
 		return campo;
 	}

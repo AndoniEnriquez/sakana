@@ -46,7 +46,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 	}
 
 	private void crearVentana() {
-		this.setLocation(280,200);
+		this.setLocation(600,300);
 		this.setSize(300, 380);
 		this.setContentPane(crearPanelDialogo());
 		
