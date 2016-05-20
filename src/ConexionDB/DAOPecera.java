@@ -169,7 +169,7 @@ public class DAOPecera {
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="INSERT INTO PECERA (nombrePecera,horacomida,ip,capacidad)"+
-					" VALUES ('"+p.getNombre()+"','"+horacomida+"',"+p.getIP()+",'"+p.getCapacidad()+"')";
+					" VALUES ('"+p.getNombre()+"','"+horacomida+"','"+p.getIP()+"','"+p.getCapacidad()+"')";
 			result = stmt.executeUpdate(strSQL);		      
 			return true;
 
