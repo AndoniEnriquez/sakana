@@ -17,18 +17,15 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import ConexionDB.DAODueno;
-import ConexionDB.DAOPecera;
 import Fabrica.FabricaAcciones;
 import VarTypes.Dueno;
-import VarTypes.Pecera;
-import sakana.MenuPrincipal;
+
 
 public class DialogoAddDueno extends JDialog implements ActionListener{
 	
@@ -46,7 +43,7 @@ public class DialogoAddDueno extends JDialog implements ActionListener{
 	}
 
 	private void crearVentana() {
-		this.setLocation(280,200);
+		this.setLocation(600,300);
 		this.setSize(300, 200);
 		this.setContentPane(crearPanelDialogo());
 		
@@ -76,7 +73,7 @@ public class DialogoAddDueno extends JDialog implements ActionListener{
 	}
 
 	private Component crearPanelCampos() {
-		JPanel panel = new JPanel (new GridLayout(5,1,0,20));
+		JPanel panel = new JPanel (new GridLayout(2,1,0,20));
 
 		panel.add(txNombre = crearCampo("Nombre"));
 		panel.add(txPassword = crearCampo("Password"));
@@ -87,7 +84,7 @@ public class DialogoAddDueno extends JDialog implements ActionListener{
 
 	private JTextField crearCampo(String titulo) {
 		JTextField campo = new JTextField();
-		campo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN),titulo));
+		campo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.PINK),titulo));
 		
 		return campo;
 	}
@@ -109,8 +106,6 @@ public class DialogoAddDueno extends JDialog implements ActionListener{
 						if(anadir){
 							
 							JOptionPane.showMessageDialog(this, "Dueno anadido","Accion realizada", JOptionPane.INFORMATION_MESSAGE);
-							MenuPrincipal.desktopIzquierda.removeAll();
-							MenuPrincipal.desktopIzquierda.add(fabrica.accionamientoListaPecera());
 							this.dispose();
 							
 						}else{
