@@ -95,7 +95,8 @@ public class DAOPez {
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="INSERT INTO pez (nombrePez, genero, tipopez_id, dueno_id, pecera_id) "+
-					" VALUES ('"+pez.getNombrePez()+",'"+pez.getGenero()+",'"+pez.getTipoPez_id()+",'"+pez.getDueno_id()+",'"+pez.getPecera_id()+")";
+					" VALUES ('"+pez.getNombrePez()+"','"+pez.getGenero()+"',"+pez.getTipoPez_id()+","+pez.getDueno_id()+","+pez.getPecera_id()+")";
+			System.out.println(strSQL);
 			result = stmt.executeUpdate(strSQL);		      
 			return true;
 
