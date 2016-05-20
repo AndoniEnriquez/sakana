@@ -71,10 +71,10 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 		private Component crearPanelBotones() {
 			JPanel panel = new JPanel (new FlowLayout(FlowLayout.CENTER,30,0));
 			panel.setOpaque(false);
-			bEdit = new JButton ("Editar");
+			bEdit = new JButton ("Editar Pecera");
 			bEdit.setActionCommand("Editar");
 			bEdit.addActionListener(this);
-			bAdd = new JButton ("Add");
+			bAdd = new JButton ("Add Pez");
 			bAdd.setActionCommand("Add");
 			bAdd.addActionListener(this);
 			

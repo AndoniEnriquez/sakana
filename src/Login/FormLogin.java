@@ -41,7 +41,7 @@ public class FormLogin extends JFrame implements ActionListener {
     this.fabrica = fabrica;
     
     this.setContentPane(crearPanelVentana());
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     this.setVisible(true);
    }
     
