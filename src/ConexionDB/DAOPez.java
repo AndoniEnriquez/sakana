@@ -154,9 +154,17 @@ public class DAOPez {
 
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT nombrePez,genero,tipoPez_id, dueno_id,pecera_id"+
-					"FROM (PECERA p JOIN pez pe on p.pecera_id=p.pecera_id) JOIN dueno d on pe.dueno_id=d.dueno_id"+
-					"WHERE d.nombreDueno ='"+d.getNombreDueno()+"' and p.nombrePecera = '" + p.getNombre();
+			/*
+			SELECT pe.nombrePez,pe.genero,pe.tipoPez_id, pe.dueno_id,pe.pecera_id
+			FROM (PECERA p JOIN pez pe on p.pecera_id=p.pecera_id) JOIN dueno d on pe.dueno_id=d.dueno_id 
+			WHERE d.nombreDueno = "gorospe" and p.nombrePecera = "pecera de iripollen";
+			*/
+			System.out.println(p.getNombre());
+			System.out.println(d.getNombreDueno());
+			strSQL="SELECT pe.nombrePez, pe.genero, pe.tipoPez_id, pe.dueno_id, pe.pecera_id"+
+					" FROM (PECERA p JOIN pez pe on p.pecera_id=p.pecera_id) JOIN dueno d on pe.dueno_id=d.dueno_id"+
+					" WHERE d.nombreDueno = '"+d.getNombreDueno()+"' and p.nombrePecera = '" + p.getNombre() + "'";
+			System.out.println(strSQL);
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				//Calendar cal = Calendar.getInstance();

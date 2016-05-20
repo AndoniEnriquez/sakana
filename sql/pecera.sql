@@ -86,4 +86,3 @@ INSERT INTO pez VALUES (1, "Iripollen", "Desconocido", 1, 1, 1);
 INSERT INTO pecera (nombrePecera,horacomida,IP,capacidad) VALUES ("Pecera de MIERDA!!!", "00:11", "69.69.69.69", 5);
 
 
-

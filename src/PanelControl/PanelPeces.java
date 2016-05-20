@@ -50,8 +50,8 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 	private HashMap<String, Icon> elementos = new HashMap<String, Icon>();
 	private HashMap<String, String> tooltip = new HashMap<String, String>();
 
-	Object datos  []={"NUEVO PEZ","DORY","Pablo","Juana","NEMO","DORY","Pablo","Juana"};  
-	String toolTipSexo[]={"Nuevo","Naranja","Naranja","Naranja","Naranja","Naranja","Naranja","Naranja"};
+	//Object datos  []={"NUEVO PEZ","DORY","Pablo","Juana","NEMO","DORY","Pablo","Juana"};  
+	//String toolTipSexo[]={"Nuevo","Naranja","Naranja","Naranja","Naranja","Naranja","Naranja","Naranja"};
 	
 	JList<Pez> list;
 	
@@ -59,7 +59,6 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 		super(tamX, tamY);
 		this.fabrica = fabrica;
 		modelo = new DefaultListModel<>();
-		this.controlLista();
 		this.setContentPane(crearPanelVentana());
 	}
 
@@ -69,9 +68,9 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 		
 		scrollPane = new JScrollPane();
 		this.setBorder(null);
-		this.controlInformacion();
+		this.controlLista();
 		
-		scrollPane.getViewport().add(list);
+		//scrollPane.getViewport().add(list);
 		panel.add(scrollPane);
 		panel.add(crearPanelSecundario());
 		
@@ -161,11 +160,6 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 			modelo.addElement(listaPecera.get(i));
 			
 		}
-		
-	}
-
-	private void controlInformacion() {
-		// TODO Auto-generated method stub
 		
 	}
 
