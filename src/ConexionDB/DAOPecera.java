@@ -78,7 +78,9 @@ public class DAOPecera {
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT p.pecera_id, p.IP,p.Capacidad,p.NombrePecera,p.HoraComida"+
 					" FROM (PECERA p JOIN pez pe on p.pecera_id=pe.pecera_id) JOIN dueno d on pe.dueno_id=d.dueno_id"+
-					" WHERE d.nombreDueno='"+d.getNombreDueno()+"'";
+					" WHERE d.nombreDueno='"+d.getNombreDueno()+"'"+
+					" GROUP BY p.pecera_id";
+			System.out.println(strSQL);
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				//Calendar cal = Calendar.getInstance();

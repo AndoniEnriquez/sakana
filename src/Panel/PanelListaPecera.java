@@ -24,6 +24,7 @@ import javax.swing.event.ListSelectionListener;
 import ConexionDB.DAOPecera;
 import Dialogo.DialogoAddPecera;
 import Fabrica.FabricaAcciones;
+import Login.Sesion;
 import VarTypes.Pecera;
 import sakana.MenuPrincipal;
 
@@ -113,7 +114,7 @@ public class PanelListaPecera extends PanelExample implements ListSelectionListe
 		ArrayList<Pecera> listaPecera = new ArrayList<>();
 		modelo.removeAllElements();
 		try {
-			listaPecera = DAOPecera.getPeceras();
+			listaPecera = DAOPecera.getPecerasPorDueno(Sesion.getInstance().getUsuario());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
