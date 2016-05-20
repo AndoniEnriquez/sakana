@@ -118,9 +118,6 @@ public class DialogoAddPez extends JDialog implements ActionListener{
 		
 		switch (e.getActionCommand()){
 		case "OK" : 
-						JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos",
-								"Error datos incompletos", JOptionPane.ERROR_MESSAGE);
-					
 						try{
 						Pez p = new Pez(txNomPez.getText(), seleccionarGenero(), seleccionarTipo(), Sesion.getInstance().getUsuario().getId(),  
 								fabrica.getModeloPecera().getElementAt(fabrica.getListaPecera().getSelectedIndex()).getID());
