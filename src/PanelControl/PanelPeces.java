@@ -140,11 +140,15 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 	}
 	
 	public void cargarPeces(){
-		
+		Pecera p;
 		ArrayList<Pez> listaPecera = new ArrayList<>();
 		modelo.removeAllElements();
 		Dueno d = Sesion.getInstance().getUsuario();
-		Pecera p =fabrica.getModeloPecera().getElementAt(fabrica.getListaPecera().getSelectedIndex());
+		try{
+		p =fabrica.getModeloPecera().getElementAt(fabrica.getListaPecera().getSelectedIndex());
+		}catch (Exception e) {
+			p =fabrica.getModeloPecera().getElementAt(0);
+		}
 		try {
 			listaPecera = DAOPez.getPecesPeceraDueno(p, d);
 		} catch (Exception e) {
