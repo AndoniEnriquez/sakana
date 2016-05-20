@@ -22,17 +22,16 @@ public class RenderLista extends JLabel implements ListCellRenderer<Pez>{
 	public Component getListCellRendererComponent(JList<? extends Pez> list, Pez pez, int index,boolean isSelected, boolean cellHasFocus) {
 		
 		JPanel panel = new JPanel(new BorderLayout());
-		
-		if(pez.getGenero() == "macho"){
+		if(pez.getGenero().toLowerCase().equals("macho")){
 			
 			panel.add(new JLabel(new ImageIcon("Iconos/pez/Blinky.png")), BorderLayout.WEST);
-			
-		}else if (pez.getGenero() == "hembra"){
-			
+			System.out.println(pez.getGenero().toLowerCase()+"m");
+		}else if (pez.getGenero().toLowerCase().equals("hembra")){
+			System.out.println(pez.getGenero()+"h");
 			panel.add(new JLabel(new ImageIcon("Iconos/pez/Pez_Linterna.png")), BorderLayout.WEST);
 			
 		}else{
-			
+			System.out.println(pez.getGenero()+"d");
 			panel.add(new JLabel(new ImageIcon("Iconos/pez/magikarp.png")), BorderLayout.WEST);
 			
 		}
