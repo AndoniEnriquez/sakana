@@ -76,7 +76,7 @@ public class DAOPecera {
 
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT p.IP,p.Capacidad,p.NombrePecera,p.HoraComida"+
+			strSQL="SELECT p.pecera_id, p.IP,p.Capacidad,p.NombrePecera,p.HoraComida"+
 					" FROM (PECERA p JOIN pez pe on p.pecera_id=pe.pecera_id) JOIN dueno d on pe.dueno_id=d.dueno_id"+
 					" WHERE d.nombreDueno='"+d.getNombreDueno()+"'";
 			result = stmt.executeQuery(strSQL);
@@ -84,7 +84,7 @@ public class DAOPecera {
 				//Calendar cal = Calendar.getInstance();
 				//cal.setTime(result.getDate("horacomida"));
 
-				pecera=new Pecera(result.getString("IP"),result.getString("NombrePecera"),
+				pecera=new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("NombrePecera"),
 						result.getInt("Capacidad"));
 				lista.add(pecera);
 			}

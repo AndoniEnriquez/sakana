@@ -21,6 +21,14 @@ public class Pecera {
 		this.nombre = nombre;
 		this.capacidad = capacidad;
 
+	}	
+	
+	public Pecera(int id, String IP, String nombre, int capacidad){
+		this.ID = id;
+		this.IP = IP;
+		this.nombre = nombre;
+		this.capacidad = capacidad;
+
 	}
 
 	public Pecera(String IP, String nombre, int capacidad, float PH, float Temp){
