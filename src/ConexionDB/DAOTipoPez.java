@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import VarTypes.TipoPez;
 
 public class DAOTipoPez {
-	static public ArrayList<TipoPez> getTiposMedicion() throws Exception{
+	static public ArrayList<TipoPez> getTiposPez() throws Exception{
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -20,7 +20,7 @@ public class DAOTipoPez {
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT TipoPez_id, descripcion"+
-					"FROM TipoPez";
+					" FROM TipoPez";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				TipoPez = new TipoPez(result.getInt("TipoPez_id"),result.getString("descripcion"));
