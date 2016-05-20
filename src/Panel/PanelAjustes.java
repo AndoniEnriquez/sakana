@@ -17,6 +17,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Dialogo.DialogoAddDueno;
+import Dialogo.DialogoAddPecera;
 import Fabrica.*;
 import Login.FormLogin;
 import sakana.MenuPrincipal;
@@ -25,7 +27,7 @@ import sakana.MenuPrincipal;
 public class PanelAjustes implements ActionListener{
 
 	JPanel panel;
-	public JButton bBloqueo, bInicio, bSalir;
+	public JButton bBloqueo, bInicio, bSalir, bAdd;
 	public JLabel labelHora, labelUser;
 	
 	FabricaAcciones fabrica;
@@ -74,6 +76,13 @@ public class PanelAjustes implements ActionListener{
 		bSalir.add(Box.createRigidArea(new Dimension(35,35)));
 		bSalir.setBorder(BorderFactory.createEmptyBorder(10,2,2,2));
 		
+		bAdd = new JButton(new ImageIcon("Iconos/ajustes/plus.png"));
+		bAdd.setActionCommand("Add");
+		bAdd.addActionListener(this);
+		bAdd.setEnabled(false);
+		bAdd.add(Box.createRigidArea(new Dimension(35,35)));
+		bAdd.setBorder(BorderFactory.createEmptyBorder(10,2,2,2));
+		
 		labelHora.setFont(new Font("Arial", Font.BOLD, 15));
 		labelHora.setForeground(Color.WHITE);
 
@@ -83,6 +92,8 @@ public class PanelAjustes implements ActionListener{
 		panel.add(labelUser);
 		panel.add(Box.createRigidArea(new Dimension(25,25)));
 		panel.add(bInicio);
+		panel.add(Box.createRigidArea(new Dimension(25,25)));
+		panel.add(bAdd);
 		panel.add(Box.createRigidArea(new Dimension(25,25)));
 		panel.add(bSalir);
 		panel.add(Box.createRigidArea(new Dimension(25,25)));
@@ -111,10 +122,17 @@ public class PanelAjustes implements ActionListener{
 		
 				break;
 				
+			case "Add":
+				
+				new DialogoAddDueno(fabrica.getMenuPrincipal(), false, fabrica);
+				
+				break;
+				
 			case "Salir":
 				
 				bInicio.setEnabled(true);
 				bSalir.setEnabled(false);
+				bAdd.setEnabled(false);
 				bBloqueo.setEnabled(false);
 				fabrica.getPanelAjustes().labelUser.setText("");
 		
@@ -129,6 +147,7 @@ public class PanelAjustes implements ActionListener{
 
 			this.bloquearCandado();
 			bBloqueo.setIcon(new ImageIcon("Iconos/ajustes/lock.png"));
+			bAdd.setEnabled(true);
 			bSalir.setEnabled(true);
 			bloqueado = true;
 			
@@ -137,6 +156,7 @@ public class PanelAjustes implements ActionListener{
 			this.desbloquearCandado();
 			bBloqueo.setIcon(new ImageIcon("Iconos/ajustes/unlock.png"));
 			bSalir.setEnabled(false);
+			bAdd.setEnabled(false);
 			bloqueado = false;
 			
 		}

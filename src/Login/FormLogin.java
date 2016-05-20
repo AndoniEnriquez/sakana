@@ -112,7 +112,7 @@ public class FormLogin extends JFrame implements ActionListener {
   @SuppressWarnings("static-access")
 public void actionPerformed(ActionEvent e){
    
-	if((e.getSource()==btnOK)||(e.getSource() == this.txtPassword)) {
+	if((e.getSource() == btnOK)||(e.getSource() == this.txtPassword)) {
 		
       LogCtrl logador=new LogCtrl();
       
@@ -123,6 +123,7 @@ public void actionPerformed(ActionEvent e){
     	  fabrica.getPanelAjustes().labelUser.setText(txtUserName.getText());
     	  fabrica.getPanelAjustes().bInicio.setEnabled(false);
     	  fabrica.getPanelAjustes().bSalir.setEnabled(true);
+    	  fabrica.getPanelAjustes().bAdd.setEnabled(true);
     	  fabrica.getPanelAjustes().bBloqueo.setEnabled(true);
     	
     	  this.setVisible(false);
