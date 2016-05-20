@@ -45,7 +45,7 @@ public class PanelControlPecera extends PanelExample implements ChangeListener{
 		panelInformacion = new PanelInformacion(fabrica);
 		fabrica.setPanelInformacion(panelInformacion);
 
-		panelPeces = new PanelPeces();
+		panelPeces = new PanelPeces(fabrica);
 		
 		tab.addTab("", new ImageIcon("iconos/pestañas/information.png"), panelInformacion);
 		tab.addTab("", new ImageIcon("iconos/pestañas/fish.png"), panelPeces);

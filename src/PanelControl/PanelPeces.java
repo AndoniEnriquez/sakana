@@ -6,20 +6,32 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import ConexionDB.DAODueno;
+import ConexionDB.DAOPecera;
+import ConexionDB.DAOPez;
+import Fabrica.FabricaAcciones;
+import Login.Sesion;
 import Panel.MiPanel;
 import Panel.PanelAddPez;
 import Panel.PanelExample;
+import Panel.RenderListaPecera;
+import VarTypes.Dueno;
+import VarTypes.Pecera;
+import VarTypes.Pez;
 
 @SuppressWarnings("serial")
 public class PanelPeces extends PanelExample implements ActionListener, ListSelectionListener{
@@ -31,6 +43,9 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 	JScrollPane scrollPane;
 	MiPanel miPanel;
 	JButton add, delete, edit;
+	DefaultListModel<Pez> modelo;
+	
+	FabricaAcciones fabrica;
 
 	private HashMap<String, Icon> elementos = new HashMap<String, Icon>();
 	private HashMap<String, String> tooltip = new HashMap<String, String>();
@@ -38,12 +53,12 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 	Object datos  []={"NUEVO PEZ","DORY","Pablo","Juana","NEMO","DORY","Pablo","Juana"};  
 	String toolTipSexo[]={"Nuevo","Naranja","Naranja","Naranja","Naranja","Naranja","Naranja","Naranja"};
 	
-	JList<Object> list;
+	JList<Pez> list;
 	
-	public PanelPeces() {
+	public PanelPeces(FabricaAcciones fabrica) {
 		super(tamX, tamY);
-
-		
+		this.fabrica = fabrica;
+		modelo = new DefaultListModel<>();
 		this.controlLista();
 		this.setContentPane(crearPanelVentana());
 	}
@@ -99,11 +114,14 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 	@SuppressWarnings("unchecked")
 	public void controlLista(){
 		
-		list = new JList<Object>();
-		list.setListData(datos);
+		list = new JList<Pez>(modelo);
+		this.cargarPeces();
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list.setCellRenderer(new RenderLista());
 		list.addListSelectionListener(this);
+		scrollPane.setViewportView(list);
 		
-		 for(int i = 0; i < datos.length; i++){
+		 /*for(int i = 0; i < datos.length; i++){
 			 
 	            if(toolTipSexo[i].equals("Naranja")) {
 	            	
@@ -118,7 +136,28 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 
 	        RenderLista render = new RenderLista(elementos, tooltip);
 	        list.setCellRenderer(render);
-
+*/
+	}
+	
+	public void cargarPeces(){
+		
+		ArrayList<Pez> listaPecera = new ArrayList<>();
+		modelo.removeAllElements();
+		Dueno d = Sesion.getInstance().getUsuario();
+		Pecera p =fabrica.getModeloPecera().getElementAt(fabrica.getListaPecera().getSelectedIndex());
+		try {
+			listaPecera = DAOPez.getPecesPeceraDueno(p, d);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(int i = 0; i < listaPecera.size(); i++){
+			
+			modelo.addElement(listaPecera.get(i));
+			
+		}
+		
 	}
 
 	private void controlInformacion() {

@@ -22,7 +22,7 @@ public class DAODueno {
 					" WHERE nombreDueno='"+username+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
-			d = new Dueno(result.getString("nombreDueno"),
+			d = new Dueno(result.getInt("dueno_id"),result.getString("nombreDueno"),
 					result.getString("password"));
 			result.close();
 			return d;
