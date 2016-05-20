@@ -58,7 +58,8 @@ public class PanelControlPecera extends PanelExample implements ChangeListener{
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		// TODO Auto-generated method stub
+		
+		fabrica.getPanelPeces().controlLista();
 	
 		
 	}
