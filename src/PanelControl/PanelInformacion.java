@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Dialogo.DialogoAddPecera;
+import Dialogo.DialogoAddPez;
 import Fabrica.FabricaAcciones;
 import Panel.*;
 import VarTypes.Pecera;
@@ -121,7 +122,7 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 			switch (e.getActionCommand()) {
 			case "Add":
 				
-					new DialogoAddPecera(fabrica.getMenuPrincipal(), false, fabrica);
+					new DialogoAddPez(fabrica.getMenuPrincipal(), false, fabrica);
 				
 				break;
 

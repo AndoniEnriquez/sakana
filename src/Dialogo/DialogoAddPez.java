@@ -19,15 +19,25 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ConexionDB.DAOPez;
+import ConexionDB.DAOTipoPez;
+import Fabrica.FabricaAcciones;
+import Login.Sesion;
+import VarTypes.Pez;
+import VarTypes.TipoPez;
+
 public class DialogoAddPez extends JDialog implements ActionListener{
 	
 	final static String  TITULO = "Crear nuevo usuario";
 	JComboBox<String> comboGenero, comboTipo;
 	JTextField txNomPez;
+	ArrayList<TipoPez> tipoPez;
+	FabricaAcciones fabrica;
 	
-	public DialogoAddPez (JFrame frame, boolean modo){
+	public DialogoAddPez (JFrame frame, boolean modo, FabricaAcciones fabrica){
 		super ( frame,TITULO,modo );
 		crearVentana();
+		this.fabrica = fabrica;
 		this.setVisible(true);
 	}
 
@@ -48,7 +58,7 @@ public class DialogoAddPez extends JDialog implements ActionListener{
 
 	private Component crearPanelBotones() {
 		JPanel panel = new JPanel (new FlowLayout(FlowLayout.CENTER,30,0));
-		JButton bOk = new JButton ("Validar");
+		JButton bOk = new JButton ("Add");
 		bOk.setActionCommand("OK");
 		bOk.addActionListener(this);
 		JButton bCancel = new JButton ("Cancelar");
@@ -61,33 +71,36 @@ public class DialogoAddPez extends JDialog implements ActionListener{
 	}
 
 	private Component crearPanelCampos() {
-		JPanel panel = new JPanel (new GridLayout(5,1,0,20));
+		JPanel panel = new JPanel (new GridLayout(3,1,0,20));
+	
+		panel.add(txNomPez = crearCampo("Nombre"));
 		
-		String nombres [];
+		String genero [];
+		genero = new String [3];
+		genero[0] = "1.Hembra";
+		genero[1] = "2.Macho";
+		genero[1] = "3.Desconocido";
 		
-		panel.add(txNombre = crearCampo("Nombre"));
-		panel.add(txNomUsuario = crearCampo("Nombre de Usuario"));
-		panel.add(txPassword = crearCampo("Contrase�a"));
-		panel.add(txDNI = crearCampo("DNI"));
+
+		comboGenero = new JComboBox<>(genero);
+		comboGenero.setBorder(BorderFactory.createTitledBorder(
+				BorderFactory.createLineBorder(Color.PINK),"Genero del Pez"));
+		panel.add(comboGenero);
+	
+		
 		
 		try {
-			listaPersonas = DAOPersonas.obtenerPersonas();
+			tipoPez = DAOTipoPez.getTiposPez();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		nombres = new String [2];
-		nombres[0] = "1.Administrador";
-		nombres[1] = "2.Normal";
+				
+		comboTipo = new JComboBox<>(getTipoPez(tipoPez));
+		comboTipo.setBorder(BorderFactory.createTitledBorder(
+				BorderFactory.createLineBorder(Color.PINK),"Tipo de Pez"));
+		panel.add(comboTipo);
 		
-		/*nombres = new String [listaPersonas.size()];
-		for (int i = 0; i<nombres.length; i++){
-			nombres [i] = listaPersonas.get(i).getNombre();
-		}*/
-		comboResponsable = new JComboBox<>(nombres);
-		comboResponsable.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createLineBorder(Color.CYAN),"Tipo Usuario"));
-		panel.add(comboResponsable);
 		return panel;
 	}
 
@@ -101,32 +114,32 @@ public class DialogoAddPez extends JDialog implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		boolean a�adir;
+		boolean anadir;
+		
 		switch (e.getActionCommand()){
-		case "OK" : if (camposIncompletos()){
+		case "OK" : 
 						JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos",
 								"Error datos incompletos", JOptionPane.ERROR_MESSAGE);
-					}else{
+					
 						try{
-						Persona p = new Persona(txNomUsuario.getText(), txNombre.getText(), txPassword.getText(), Integer.parseInt(txDNI.getText()), seleccionarTipo());
-						a�adir = DAOPersonas.addPersona(p);
-						//DAOPersonas.eliminarPersona(p.getUserName());
-						if(a�adir){
-						JOptionPane.showMessageDialog(this, "Usuario a�adido",
+						Pez p = new Pez(txNomPez.getText(), seleccionarGenero(), seleccionarTipo(), Sesion.getInstance().getUsuario().getId(),  
+								fabrica.getModeloPecera().getElementAt(fabrica.getListaPecera().getSelectedIndex()).getID());
+						anadir = DAOPez.addPez(p);
+						
+								if(anadir){
+						JOptionPane.showMessageDialog(this, "Pez OK",
 								"Accion realizada", JOptionPane.INFORMATION_MESSAGE);
 						this.dispose();
 						}else{
-							JOptionPane.showMessageDialog(this, "Usuario existente. Cambia el nombre de usuario y/o DNI",
-									"Imposible to Add Person", JOptionPane.INFORMATION_MESSAGE);
+							
 						}
 						}catch (NumberFormatException e2) {
-							JOptionPane.showMessageDialog(this, "El DNI solo puede tener numeros. SIN LETRA",
-									"Format Error", JOptionPane.INFORMATION_MESSAGE);
+							
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-					}
+					
 					break;
 					
 		case "Cancelar":
@@ -135,13 +148,30 @@ public class DialogoAddPez extends JDialog implements ActionListener{
 		
 	}
 
-	private int seleccionarTipo() {
-		return comboResponsable.getSelectedIndex() + 1;
+	private String seleccionarGenero() {
+		return comboGenero.getSelectedItem().toString();
 	}
+	
 
-	private boolean camposIncompletos() {
-		
-		return false;//txNombre.getText().length()==0 ||txUbicaci�n.getText().length()==0 || txDescripci�n.getText().length()==0;
+	private int seleccionarTipo() {
+		return comboTipo.getSelectedIndex() + 1;
 	}
+	
+	public String[] getTipoPez(ArrayList<TipoPez> tipo){
+		
+		String tipoPez[] = new String[tipo.size()];
+		
+		for(int i = 0; i < tipo.size(); i++){
+			
+			tipoPez[i] = tipo.get(i).getDescripcion();
+		
+		}
+		
+		return tipoPez;
+	}
+	
+	
+
+
 
 }
