@@ -2,13 +2,17 @@ package Panel;
 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -21,6 +25,7 @@ import ConexionDB.DAOPecera;
 import Dialogo.DialogoAddPecera;
 import Fabrica.FabricaAcciones;
 import VarTypes.Pecera;
+import sakana.MenuPrincipal;
 
 
 
@@ -39,7 +44,7 @@ public class PanelListaPecera extends PanelExample implements ListSelectionListe
 	DefaultListModel<Pecera> modelo;
 	FabricaAcciones fabrica;
 	
-	JButton bAdd;
+	JButton bAdd, bDelete;
 	
 	
 	public PanelListaPecera(FabricaAcciones fabrica) {
@@ -57,12 +62,23 @@ public class PanelListaPecera extends PanelExample implements ListSelectionListe
 		panel = new JPanel(new BorderLayout());
 		
 		panelSup = new JPanel();
+		panelSup.setBackground(Color.LIGHT_GRAY);
 		panelSup.setPreferredSize(new Dimension(0, 45));
 		
-		bAdd = new JButton ("Add Pecera");
+		bAdd = new JButton (new ImageIcon("Iconos/ajustes/plus.png"));
 		bAdd.setActionCommand("Add");
 		bAdd.addActionListener(this);
+		bAdd.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+		
+		
+		bDelete = new JButton (new ImageIcon("Iconos/ajustes/delete.png"));
+		bDelete.setActionCommand("Delete");
+		bDelete.addActionListener(this);
+		bDelete.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+		
 		panelSup.add(bAdd);
+		panelSup.add(Box.createRigidArea(new Dimension(25,25)));
+		panelSup.add(bDelete);
 		
 		panel.add(panelSup, BorderLayout.SOUTH);
 		panel.add(this.crearPanelVentana(), BorderLayout.CENTER);
@@ -82,9 +98,7 @@ public class PanelListaPecera extends PanelExample implements ListSelectionListe
 
 	public void controlPeceras(){
 
-
 		list = new JList<Pecera>(modelo);
-		
 		this.cargarPeceras();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setCellRenderer(new RenderListaPecera());
@@ -132,6 +146,20 @@ public class PanelListaPecera extends PanelExample implements ListSelectionListe
 			
 			break;
 
+		case "Delete":
+			
+			try{
+				
+				Pecera p = modelo.getElementAt(list.getSelectedIndex());
+				DAOPecera.eliminarPecera(p);
+				MenuPrincipal.desktopIzquierda.removeAll();
+				MenuPrincipal.desktopIzquierda.add(fabrica.accionamientoListaPecera());
+				
+			}catch (Exception e1){
+				
+			}
+			
+			break;
 		default:
 			break;
 		}
