@@ -27,7 +27,7 @@ public class DAOPecera {
 			while (result.next()){
 				//Calendar cal = Calendar.getInstance();
 				//cal.setTime(result.getDate("horacomida"));
-					
+
 				pecera = new Pecera(result.getString("IP"),result.getString("NombrePecera"),
 						result.getInt("Capacidad"),0,0);
 				lista.add(pecera);
@@ -38,7 +38,7 @@ public class DAOPecera {
 		}
 		return lista;
 	}
-	
+
 	static public void getIdPorNombre(Pecera p) throws Exception{
 		Statement stmt;
 		ResultSet result;
@@ -54,16 +54,16 @@ public class DAOPecera {
 			while (result.next()){
 				//Calendar cal = Calendar.getInstance();
 				//cal.setTime(result.getDate("horacomida"));
-					
+
 				p.setID(result.getInt("pecera_id"));
-				
+
 			}
 			result.close();
 		} catch (Exception e ){
 			e.printStackTrace();
 		}
 	}
-	
+
 
 	static public ArrayList<Pecera> getPecerasPorDueno(Dueno d) throws Exception{
 		Statement stmt;
@@ -83,7 +83,7 @@ public class DAOPecera {
 			while (result.next()){
 				//Calendar cal = Calendar.getInstance();
 				//cal.setTime(result.getDate("horacomida"));
-					
+
 				pecera=new Pecera(result.getString("IP"),result.getString("NombrePecera"),
 						result.getInt("Capacidad"));
 				lista.add(pecera);
@@ -94,7 +94,7 @@ public class DAOPecera {
 		}
 		return lista;
 	}
-	
+
 	static public Pecera buscarPorID(int idPecera) throws Exception
 	{
 		Statement stmt;
@@ -110,7 +110,7 @@ public class DAOPecera {
 					" WHERE pecera_id='"+idPecera+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
-			
+
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(result.getDate("horacomida"));
 			p=new Pecera(result.getString("IP"),result.getString("NombrePecera"),
@@ -141,7 +141,7 @@ public class DAOPecera {
 					" WHERE IP='"+IPPecera+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
-			
+
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(result.getDate("horacomida"));
 			p=new Pecera(result.getString("IP"),result.getString("NombrePecera"),
@@ -167,11 +167,11 @@ public class DAOPecera {
 		String horacomida = p.getHoracomida().getHours()+":"+p.getHoracomida().getMinutes();
 		try
 		{
-				stmt=PoolConexiones.getConexion().createStatement();
-				strSQL="INSERT INTO PECERA (nombrePecera,horacomida,ip,capacidad)"+
-						" VALUES ('"+p.getNombre()+"','"+horacomida+"',"+p.getIP()+",'"+p.getCapacidad()+"')";
-				result = stmt.executeUpdate(strSQL);		      
-				return true;
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="INSERT INTO PECERA (nombrePecera,horacomida,ip,capacidad)"+
+					" VALUES ('"+p.getNombre()+"','"+horacomida+"',"+p.getIP()+",'"+p.getCapacidad()+"')";
+			result = stmt.executeUpdate(strSQL);		      
+			return true;
 
 		}
 

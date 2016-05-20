@@ -1,13 +1,12 @@
 package VarTypes;
 
 public class Pez {
-	
+
 	int pez_id, tipoPez_id, dueno_id, pecera_id;
 	String nombrePez, genero;
 
-	
-	public Pez(int pez_id, String nombrePez, String genero, int tipoPez_id, int dueno_id, int pecera_id){
-		this.pez_id = pez_id;
+
+	public Pez(String nombrePez, String genero, int tipoPez_id, int dueno_id, int pecera_id){
 		this.nombrePez = nombrePez;
 		this.genero = genero;
 		this.tipoPez_id = tipoPez_id;
@@ -74,5 +73,5 @@ public class Pez {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
-	
+
 }

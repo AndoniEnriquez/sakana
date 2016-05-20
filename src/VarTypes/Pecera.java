@@ -12,15 +12,15 @@ public class Pecera {
 	String nombre;
 	int capacidad;
 	Date horacomida;
-	
+
 	float PH, Temp;
-	
-	
+
+
 	public Pecera(String IP, String nombre, int capacidad){
 		this.IP = IP;
 		this.nombre = nombre;
 		this.capacidad = capacidad;
-		
+
 	}
 
 	public Pecera(String IP, String nombre, int capacidad, float PH, float Temp){
@@ -32,7 +32,7 @@ public class Pecera {
 	}
 
 
-	
+
 	public float getPH() {
 		return PH;
 	}
@@ -90,7 +90,7 @@ public class Pecera {
 	public void setCapacidad(int capacidad) {
 		this.capacidad = capacidad;
 	}
-	
+
 	public int getID() {
 		return ID;
 	}

@@ -4,9 +4,8 @@ public class Comida {
 
 	int comida_id, tipocomida_id;
 	String nombreComida, descripcionComida;
-	
-	public Comida(int comida_id, String nombreComida, String descripcionComida, int tipocomida_id){
-		this.comida_id = comida_id;
+
+	public Comida(String nombreComida, String descripcionComida, int tipocomida_id){
 		this.nombreComida=nombreComida;
 		this.descripcionComida=descripcionComida;
 		this.tipocomida_id=tipocomida_id;
@@ -43,5 +42,5 @@ public class Comida {
 	public void setDescripcionComida(String descripcionComida) {
 		this.descripcionComida = descripcionComida;
 	}
-	
+
 }

@@ -3,15 +3,14 @@ package VarTypes;
 import java.util.Calendar;
 
 public class Medicion {
-	
+
 	int ID;
 	float valor;
 	Calendar datetime;
 	int tipoMedicion_id;
 	int pecera_id;
-	
-	public Medicion(int ID, float valor, Calendar datetime, int tipoMedicion_id, int pecera_id){
-		this.ID=ID;
+
+	public Medicion(float valor, Calendar datetime, int tipoMedicion_id, int pecera_id){
 		this.valor=valor;
 		this.datetime=datetime;
 		this.tipoMedicion_id=tipoMedicion_id;
@@ -57,7 +56,7 @@ public class Medicion {
 	public void setPecera_id(int pecera_id) {
 		this.pecera_id = pecera_id;
 	}
-	
-	
+
+
 
 }

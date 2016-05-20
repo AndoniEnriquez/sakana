@@ -2,12 +2,11 @@ package VarTypes;
 
 public class Dueno {
 
-	
+
 	int dueno_id;
 	String nombreDueno, password;
-	
-	public Dueno(int dueno_id, String nombreDueno, String password){
-		this.dueno_id = dueno_id;
+
+	public Dueno(String nombreDueno, String password){
 		this.nombreDueno = nombreDueno;
 		this.password = password;
 	}

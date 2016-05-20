@@ -9,7 +9,7 @@ import VarTypes.*;
 public class DAODueno {
 
 	static public Dueno buscarPorNombre(String username) throws Exception {
-		
+
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -22,17 +22,17 @@ public class DAODueno {
 					" WHERE nombreDueno='"+username+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
-			d = new Dueno(result.getInt("dueno_id"),result.getString("nombreDueno"),
+			d = new Dueno(result.getString("nombreDueno"),
 					result.getString("password"));
 			result.close();
 			return d;
 		}
 
 		catch(SQLException e) {
-			
+
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 }

@@ -9,7 +9,7 @@ import java.util.Calendar;
 import VarTypes.*;
 
 public class DAOMedicion {
-	
+
 	static public ArrayList<Medicion> getMediciones() throws Exception{
 		Statement stmt;
 		ResultSet result;
@@ -21,13 +21,13 @@ public class DAOMedicion {
 
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT medicion_id, valor, datatimeMedicion, tipomedicion_id, pecera_id"+
+			strSQL="SELECT medicion_id, valor, datetimeMedicion, tipomedicion_id, pecera_id"+
 					" FROM MEDICION";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				Calendar cal = Calendar.getInstance();
-				cal.setTime(result.getDate("datatimeMedicion"));
-				medicion = new Medicion(result.getInt("medicion_id"),result.getFloat("valor"),cal,
+				cal.setTime(result.getDate("datetimeMedicion"));
+				medicion = new Medicion(result.getFloat("valor"),cal,
 						result.getInt("tipomedicion_id"),result.getInt("pecera_id"));
 				lista.add(medicion);
 			}
@@ -47,15 +47,15 @@ public class DAOMedicion {
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT medicion_id, nombre, datatimeMedicion, tipomedicion_id, pecera_id"+
+			strSQL="SELECT medicion_id, nombre, datetimeMedicion, tipomedicion_id, pecera_id"+
 					" FROM MEDICION"+
 					" WHERE medicion_id='"+idMedicion+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
-			
+
 			Calendar cal = Calendar.getInstance();
-			cal.setTime(result.getDate("datatimeMedicion"));
-			m = new Medicion(result.getInt("medicion_id"),result.getFloat("valor"),cal,
+			cal.setTime(result.getDate("datetimeMedicion"));
+			m = new Medicion(result.getFloat("valor"),cal,
 					result.getInt("tipomedicion_id"),result.getInt("pecera_id"));
 			result.close();
 			return m;
@@ -77,15 +77,15 @@ public class DAOMedicion {
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT medicion_id, nombre, datatimeMedicion, tipomedicion_id, pecera_id"+
+			strSQL="SELECT medicion_id, valor, datetimeMedicion, tipomedicion_id, pecera_id"+
 					" FROM MEDICION"+
 					" WHERE nombre= '"+nombre+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
-			
+
 			Calendar cal = Calendar.getInstance();
-			cal.setTime(result.getDate("datatimeMedicion"));
-			m = new Medicion(result.getInt("medicion_id"),result.getFloat("valor"),cal,
+			cal.setTime(result.getDate("datetimeMedicion"));
+			m = new Medicion(result.getFloat("valor"),cal,
 					result.getInt("tipomedicion_id"),result.getInt("pecera_id"));
 			result.close();
 			return m;
@@ -97,7 +97,7 @@ public class DAOMedicion {
 			return null;
 		}
 	}
-	
+
 	static public boolean addMedicion(Medicion m) throws Exception{
 
 		Statement stmt;
@@ -106,16 +106,15 @@ public class DAOMedicion {
 
 		try
 		{
-			if(buscarPorID(m.getID())==null)
-			{
 
-				stmt=PoolConexiones.getConexion().createStatement();
-				strSQL="INSERT INTO MEDICION "+
-						" VALUES ("+m.getID()+",'"+m.getValor()+"','"+m.getDatetime().getTime()+"','"+m.getTipoMedicion_id()+"','"+m.getPecera_id()+")";
-				result = stmt.executeUpdate(strSQL);		      
-				return true;
-			}
-			else return false;
+			//EZTAKIT ZLN SARTU BEHAR DAN CALENDARIOA!!!
+			String timeMedicion = m.getDatetime().toString();
+
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="INSERT INTO MEDICION (valor, datetimeMedicion, tipomedicion_id, pecera_id) "+
+					" VALUES ("+m.getValor()+",'"+timeMedicion+"','"+m.getTipoMedicion_id()+"','"+m.getPecera_id()+")";
+			result = stmt.executeUpdate(strSQL);		      
+			return true;
 		}
 
 		catch(SQLException e)

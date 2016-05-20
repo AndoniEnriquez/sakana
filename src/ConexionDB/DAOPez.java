@@ -23,7 +23,7 @@ public class DAOPez {
 					"FROM pez";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
-				pez = new Pez(result.getInt("pez_id"),result.getString("nombrePez"),result.getString("genero"),result.getInt("tipopez_id"),result.getInt("dueno_id"),result.getInt("pecera_id"));
+				pez = new Pez(result.getString("nombrePez"),result.getString("genero"),result.getInt("tipopez_id"),result.getInt("dueno_id"),result.getInt("pecera_id"));
 				lista.add(pez);
 			}
 			result.close();
@@ -47,7 +47,7 @@ public class DAOPez {
 					" WHERE pez_id='"+idPez+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
-			pez = new Pez(result.getInt("pez_id"),result.getString("nombrePez"),result.getString("genero"),result.getInt("tipopez_id"),result.getInt("dueno_id"),result.getInt("pecera_id"));
+			pez = new Pez(result.getString("nombrePez"),result.getString("genero"),result.getInt("tipopez_id"),result.getInt("dueno_id"),result.getInt("pecera_id"));
 			result.close();
 			return pez;
 		}
@@ -73,7 +73,7 @@ public class DAOPez {
 					" WHERE nombrePez='"+nombre+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
-			pez = new Pez(result.getInt("pez_id"),result.getString("nombrePez"),result.getString("genero"),result.getInt("tipopez_id"),result.getInt("dueno_id"),result.getInt("pecera_id"));
+			pez = new Pez(result.getString("nombrePez"),result.getString("genero"),result.getInt("tipopez_id"),result.getInt("dueno_id"),result.getInt("pecera_id"));
 			result.close();
 			return pez;
 		}
@@ -84,7 +84,7 @@ public class DAOPez {
 			return null;
 		}
 	}
-	
+
 	static public boolean addPez(Pez pez) throws Exception{
 
 		Statement stmt;
@@ -93,16 +93,12 @@ public class DAOPez {
 
 		try
 		{
-			if(buscarPorID(pez.getPez_id())==null && buscarPorNombre(pez.getNombrePez()) == null)
-			{
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="INSERT INTO pez (nombrePez, genero, tipopez_id, dueno_id, pecera_id) "+
+					" VALUES ('"+pez.getNombrePez()+",'"+pez.getGenero()+",'"+pez.getTipoPez_id()+",'"+pez.getDueno_id()+",'"+pez.getPecera_id()+")";
+			result = stmt.executeUpdate(strSQL);		      
+			return true;
 
-				stmt=PoolConexiones.getConexion().createStatement();
-				strSQL="INSERT INTO pez "+
-						" VALUES ("+pez.getPez_id()+",'"+pez.getNombrePez()+",'"+pez.getGenero()+",'"+pez.getTipoPez_id()+",'"+pez.getDueno_id()+",'"+pez.getPecera_id()+")";
-				result = stmt.executeUpdate(strSQL);		      
-				return true;
-			}
-			else return false;
 		}
 
 		catch(SQLException e)
@@ -137,7 +133,7 @@ public class DAOPez {
 					" SET tipopez_id = '"+p.getTipoPez_id()+
 					" SET dueno_id = '"+p.getDueno_id()+
 					" SET pecera_id = '"+p.getPecera_id()+
-					"' WHERE pez_id='"+p.getPez_id()+"'";
+					"' WHERE nombrePez ='"+p.getNombrePez()+"'";
 			return (stmt.executeUpdate(strSQL)>0);
 		}
 		catch(SQLException e)
@@ -145,5 +141,35 @@ public class DAOPez {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	static public ArrayList<Pez> getPecesPeceraDueño (Pecera p, Dueno d) throws Exception{
+		Statement stmt;
+		ResultSet result;
+		String strSQL;
+		ArrayList<Pez> lista = null;
+		Pez pez;
+		try
+		{
+
+			lista = new ArrayList<>();
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="SELECT nombrePez,genero,tipoPez_id, dueno_id,pecera_id"+
+					"FROM (PECERA p JOIN pez pe on p.pecera_id=p.pecera_id) JOIN dueno d on pe.dueno_id=d.dueno_id"+
+					"WHERE d.nombreDueno ='"+d.getNombreDueno()+"' and p.nombrePecera = '" + p.getNombre();
+			result = stmt.executeQuery(strSQL);
+			while (result.next()){
+				//Calendar cal = Calendar.getInstance();
+				//cal.setTime(result.getDate("horacomida"));
+
+				pez=new Pez(result.getString("nombrePez"),result.getString("genero"),
+						result.getInt("tipopez_id"),result.getInt("dueno_id"),result.getInt("pecera_id"));
+				lista.add(pez);
+			}
+			result.close();
+		} catch (Exception e ){
+			e.printStackTrace();
+		}
+		return lista;
 	}
 }
