@@ -141,7 +141,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		switch (e.getActionCommand()){
 		case "OK" :
 
-			if(edit=false){
+			if(edit==false){
 				try{
 					Pecera p = new Pecera(txIP.getText(), txNombrePecera.getText(), Integer.parseInt(txtCapacidad.getText()));
 					this.parsearHora(p);
@@ -158,9 +158,11 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 								"Imposible to Add Pecera", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}catch (NumberFormatException e2) {
-
-				} catch (Exception e1) {
-
+					System.out.println("edit==false");
+					e2.printStackTrace();
+					} catch (Exception e1) {
+					System.out.println("edit==false");
+					e1.printStackTrace();
 					JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos",
 							"Error datos incompletos", JOptionPane.ERROR_MESSAGE);
 				}
@@ -183,9 +185,10 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 								"Imposible to Edit Pecera", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}catch (NumberFormatException e2) {
+					e2.printStackTrace();
 
 				} catch (Exception e1) {
-
+					e1.printStackTrace();
 					JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos",
 							"Error datos incompletos", JOptionPane.ERROR_MESSAGE);
 				}
