@@ -49,7 +49,7 @@ public class DAOMedicion {
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT medicion_id, nombre, datetimeMedicion, tipomedicion_id, pecera_id"+
 					" FROM MEDICION"+
-					" WHERE medicion_id='"+idMedicion+"'";
+					" WHERE medicion_id="+idMedicion;
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
 

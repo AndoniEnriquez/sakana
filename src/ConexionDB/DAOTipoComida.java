@@ -21,7 +21,7 @@ public class DAOTipoComida {
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT TipoComida_id, descripcionTipoComida"+
-					"FROM TipoComida";
+					" FROM TipoComida";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				TipoComida = new TipoComida(result.getInt("TipoComida_id"),result.getString("descripcionTipoComida"));
@@ -45,7 +45,7 @@ public class DAOTipoComida {
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT TipoComida_id, descripcionTipoComida"+
 					" FROM TipoComida"+
-					" WHERE TipoComida_id='"+idTipoComida+"'";
+					" WHERE TipoComida_id="+idTipoComida;
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
 			TipoComida = new TipoComida(result.getInt("TipoComida_id"),result.getString("descripcionTipoComida"));
