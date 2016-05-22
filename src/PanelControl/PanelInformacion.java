@@ -28,17 +28,17 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 
 	static int tamX = 0;
 	static int tamY = 0;
-	
+
 	JLabel txNom,txIP,txCapacidad, txPH, txTemp;
 	JButton bEdit, bAdd;
-	
-	
+
+
 	JPanel panel;
 	MiPanel miPanel;
-	
+
 	Pecera pecera;
 	FabricaAcciones fabrica;
-	
+
 	public PanelInformacion(FabricaAcciones fabrica) {
 		super(tamX, tamY);
 		this.setLocation(0, -30);
@@ -47,88 +47,95 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 	}
 
 	private Container crearPanelVentana() {
-		
+
 		panel = new JPanel();
-		
+
 		this.setBorder(null);
 		panel.add(crearPanel());
-		
+
 		return panel;
 	}
 
 
-	
+
 
 	private Container crearPanel() {
 		JPanel panel = new JPanel (new BorderLayout(0,20));
 		panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-			panel.setOpaque(false);
-			panel.add(crearPanelCampos (), BorderLayout.CENTER);
-			panel.add(crearPanelBotones(), BorderLayout.SOUTH);
-			return panel;
-		}
+		panel.setOpaque(false);
+		panel.add(crearPanelCampos (), BorderLayout.CENTER);
+		panel.add(crearPanelBotones(), BorderLayout.SOUTH);
+		return panel;
+	}
 
-		private Component crearPanelBotones() {
-			JPanel panel = new JPanel (new FlowLayout(FlowLayout.CENTER,30,0));
-			panel.setOpaque(false);
-			bEdit = new JButton ("Editar Pecera");
-			bEdit.setActionCommand("Editar");
-			bEdit.addActionListener(this);
-			bAdd = new JButton ("Add Pez");
-			bAdd.setActionCommand("Add");
-			bAdd.addActionListener(this);
-			
-			panel.add(bAdd);
-			panel.add(bEdit);
-			
-			return panel;
-		}
+	private Component crearPanelBotones() {
+		JPanel panel = new JPanel (new FlowLayout(FlowLayout.CENTER,30,0));
+		panel.setOpaque(false);
+		bEdit = new JButton ("Editar Pecera");
+		bEdit.setActionCommand("Editar");
+		bEdit.addActionListener(this);
+		bAdd = new JButton ("Add Pez");
+		bAdd.setActionCommand("Add");
+		bAdd.addActionListener(this);
 
-		private Component crearPanelCampos() {
-			JPanel panel = new JPanel (new GridLayout(5,1,0,20));
-			
-			panel.setOpaque(false);
-			panel.add(txNom = crearCampo("Nombre"));
-			panel.add(txIP = crearCampo("IP"));
-			panel.add(txCapacidad = crearCampo("Capacidad"));
-			panel.add(txPH = crearCampo("PH Actual"));
-			panel.add(txTemp = crearCampo("Temperatura Actual"));
-			
-			
-			
-			return panel;
-		}
-		
-		public void setText(Pecera pecera){
-			txNom.setText(pecera.getNombre());
-			txIP.setText(pecera.getIP());
-			txCapacidad.setText(String.valueOf(pecera.getCapacidad()));
-			txPH.setText(String.valueOf(pecera.getPH()));
-			txTemp.setText(String.valueOf(pecera.getTemp()));
-		}
+		panel.add(bAdd);
+		panel.add(bEdit);
 
-		private JLabel crearCampo(String titulo) {
-			JLabel campo = new JLabel();
-			campo.setBorder(BorderFactory.createTitledBorder(
-					BorderFactory.createLineBorder(Color.PINK),titulo));
-			
-			return campo;
-		}
+		return panel;
+	}
 
-		@SuppressWarnings("static-access")
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-			switch (e.getActionCommand()) {
-			case "Add":
-				
-					new DialogoAddPez(fabrica.getMenuPrincipal(), false, fabrica);
-				
-				break;
+	private Component crearPanelCampos() {
+		JPanel panel = new JPanel (new GridLayout(5,1,0,20));
 
-			default:
-				break;
+		panel.setOpaque(false);
+		panel.add(txNom = crearCampo("Nombre"));
+		panel.add(txIP = crearCampo("IP"));
+		panel.add(txCapacidad = crearCampo("Capacidad"));
+		panel.add(txPH = crearCampo("PH Actual"));
+		panel.add(txTemp = crearCampo("Temperatura Actual"));
+
+
+
+		return panel;
+	}
+
+	public void setText(Pecera pecera){
+		this.pecera = pecera;
+		txNom.setText(pecera.getNombre());
+		txIP.setText(pecera.getIP());
+		txCapacidad.setText(String.valueOf(pecera.getCapacidad()));
+		txPH.setText(String.valueOf(pecera.getPH()));
+		txTemp.setText(String.valueOf(pecera.getTemp()));
+	}
+
+	private JLabel crearCampo(String titulo) {
+		JLabel campo = new JLabel();
+		campo.setBorder(BorderFactory.createTitledBorder(
+				BorderFactory.createLineBorder(Color.PINK),titulo));
+
+		return campo;
+	}
+
+	@SuppressWarnings("static-access")
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		switch (e.getActionCommand()) {
+		case "Add":
+
+			new DialogoAddPez(fabrica.getMenuPrincipal(), false, fabrica);
+
+			break;
+
+		case "Editar":
+
+			if(pecera!=null){
+				new DialogoAddPecera(fabrica.getMenuPrincipal(),false,fabrica,pecera);
 			}
-			
+
+		default:
+			break;
 		}
+
+	}
 }

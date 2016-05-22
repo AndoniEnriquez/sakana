@@ -38,16 +38,16 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 
 	static int tamX = 0;
 	static int tamY = 0;
-	
+
 	JPanel panel, panelSecundario;
 	JScrollPane scrollPane;
 	MiPanel miPanel;
 	DefaultListModel<Pez> modelo;
-	
+
 	FabricaAcciones fabrica;
 
 	JList<Pez> list;
-	
+
 	@SuppressWarnings("static-access")
 	public PanelPeces(FabricaAcciones fabrica) {
 		super(tamX, tamY);
@@ -58,20 +58,20 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 	}
 
 	private Container crearPanelVentana() {
-		
+
 		panel = new JPanel(new GridLayout(1, 2));
-		
+
 		scrollPane = new JScrollPane();
 		this.setBorder(null);
 		this.controlLista();
-		
+
 		//scrollPane.getViewport().add(list);
 		panel.add(scrollPane);
 		panel.add(crearPanelSecundario());
-		
+
 		return panel;
 	}
-	
+
 	private Component crearPanelSecundario(){
 		panelSecundario = new JPanel();
 
@@ -79,43 +79,43 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 
 		return panelSecundario;		
 	}
-	
+
 	private Component crearPanelAdd(){
-		
+
 		PanelEditPez panelAdd = new PanelEditPez(fabrica);
-		
+
 		return panelAdd;
 	}
-	
+
 
 
 
 	@SuppressWarnings("unchecked")
 	public void controlLista(){
-		
+
 		list = new JList<Pez>(modelo);
 		this.cargarPeces();
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setCellRenderer(new RenderLista());
 		list.addListSelectionListener(this);
-	
+
 		fabrica.setModeloPez(modelo);
 		fabrica.setListaPez(list);
 		scrollPane.setViewportView(list);
-	
+
 	}
-	
+
 	public void cargarPeces(){
 		Pecera p;
 		ArrayList<Pez> listaPecera = new ArrayList<>();
 		modelo.removeAllElements();
 		Dueno d = Sesion.getInstance().getUsuario();
 		try{
-			
+
 			p = fabrica.getModeloPecera().getElementAt(fabrica.getListaPecera().getSelectedIndex());
-			
+
 		}catch (Exception e) {
-			
+
 			p = fabrica.getModeloPecera().getElementAt(0);
 		}
 		try {
@@ -124,60 +124,36 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		for(int i = 0; i < listaPecera.size(); i++){
-			
+
 			modelo.addElement(listaPecera.get(i));
-			
+
 		}
-		
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
 
 
-		
+
+
 	}
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		
+
 		int index = list.getSelectedIndex();
 		try{
 			fabrica.getPanelEditPez().setTextPez();
 		}catch (Exception e1){
-			
-			
-			
-		}
-		
-		
-		switch (index) {
-		
-		case 0:
-			
-			panelSecundario.removeAll();
-			panelSecundario.add(crearPanelAdd());
-			
-			break;
 
-			
-		default:
-			
-			try{
-				
-				//INDEX DE CADA PEZ
-				
-			}catch(Exception e1){
-				
-				
-			}
-			
-			break;
 		}
 		
+		panelSecundario.removeAll();
+		panelSecundario.add(crearPanelAdd());
+
 	}
-	
+
 }

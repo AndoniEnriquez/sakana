@@ -202,6 +202,7 @@ public class PanelEditPez extends JPanel implements ActionListener{
 				fabrica.getPanelPeces().controlLista();
 			
 			} catch (Exception e3) {
+				//Array index out of bounds errorea saltetan badau 0 hartu
 				
 				e3.printStackTrace();
 			}
