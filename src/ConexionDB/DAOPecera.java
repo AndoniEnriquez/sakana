@@ -3,8 +3,10 @@ package ConexionDB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import VarTypes.*;
 
@@ -16,20 +18,25 @@ public class DAOPecera {
 		String strSQL;
 		ArrayList<Pecera> lista = null;
 		Pecera pecera;
+		Date horacomida;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
 		try
 		{
 
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT pecera_id, IP,Capacidad,NombrePecera"+
+			strSQL="SELECT pecera_id, IP,Capacidad,NombrePecera,horacomida"+
 					" FROM PECERA";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				//Calendar cal = Calendar.getInstance();
 				//cal.setTime(result.getDate("horacomida"));
+				
+				Date date = simpleDateFormat.parse(result.getString("horacomida"));
 
 				pecera = new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("NombrePecera"),
 						result.getInt("Capacidad"));
+				pecera.setHoracomida(date);
 				lista.add(pecera);
 			}
 			result.close();
