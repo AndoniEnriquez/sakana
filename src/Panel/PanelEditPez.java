@@ -169,9 +169,6 @@ public class PanelEditPez extends JPanel implements ActionListener{
 			comboGenero.setSelectedIndex(this.seleccionarGenero(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex())));
 			comboTipo.setSelectedIndex(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex()).getTipoPez_id()-1);
 		}catch (ArrayIndexOutOfBoundsException e) {
-			txNom.setText(fabrica.getModeloPez().getElementAt(0).getNombrePez());
-			comboGenero.setSelectedIndex(this.seleccionarGenero(fabrica.getModeloPez().getElementAt(0)));
-			comboTipo.setSelectedIndex(fabrica.getModeloPez().getElementAt(0).getTipoPez_id()-1);
 		}
 	}
 
@@ -201,7 +198,7 @@ public class PanelEditPez extends JPanel implements ActionListener{
 				nombreAnterior = p.getNombrePez();
 				p.setNombrePez(txNom.getText());
 				p.setGenero(this.conseguirGenero(comboGenero.getSelectedIndex()));
-				p.setTipoPez_id(comboTipo.getSelectedIndex());
+				p.setTipoPez_id(comboTipo.getSelectedIndex()+1);
 
 				editar = DAOPez.updatePez(p, nombreAnterior);
 				fabrica.getPanelPeces().controlLista();
