@@ -30,13 +30,13 @@ import sakana.MenuPrincipal;
 
 
 public class PanelEditPez extends JPanel implements ActionListener{
-	
+
 	JComboBox<String> comboResponsable;
 	JTextField txNom;
 	JComboBox<String> comboGenero, comboTipo;
 	ArrayList<TipoPez> tipoPez;
 	FabricaAcciones fabrica;
-	
+
 	public PanelEditPez (FabricaAcciones fabrica){
 		this.fabrica = fabrica;
 		crearVentana();
@@ -69,7 +69,7 @@ public class PanelEditPez extends JPanel implements ActionListener{
 		JButton bBorrar = new JButton ("Borrar");
 		bBorrar.setActionCommand("Borrar");
 		bBorrar.addActionListener(this);
-		
+
 		panel.add(bEdit);
 		panel.add(bBorrar);
 		return panel;
@@ -77,10 +77,10 @@ public class PanelEditPez extends JPanel implements ActionListener{
 
 	private Component crearPanelCampos() {
 		JPanel panel = new JPanel (new GridLayout(5,1,0,20));
-		
+
 		String nombres [];
 		panel.setOpaque(false);
-	
+
 		panel.add(txNom = crearCampo("Nombre de Pez"));
 
 		String genero [];
@@ -88,171 +88,176 @@ public class PanelEditPez extends JPanel implements ActionListener{
 		genero[0] = "Hembra";
 		genero[1] = "Macho";
 		genero[2] = "Desconocido";
-		
+
 
 		comboGenero = new JComboBox<>(genero);
 		comboGenero.setBorder(BorderFactory.createTitledBorder(
 				BorderFactory.createLineBorder(Color.PINK),"Genero del Pez"));
-		
+
 		panel.add(comboGenero);
-		
-	
-		
-		
+
+
+
+
 		try {
 			tipoPez = DAOTipoPez.getTiposPez();
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
-				
+
 		comboTipo = new JComboBox<>(getTipoPez(tipoPez));
 		comboTipo.setBorder(BorderFactory.createTitledBorder(
 				BorderFactory.createLineBorder(Color.PINK),"Tipo de Pez"));
-		
+
 		panel.add(comboTipo);
-		
+
 		this.setTextPez();
-		
+
 		return panel;
 	}
-	
+
 	public int seleccionarGenero(Pez p){
-		
+
 		if(p.getGenero().toLowerCase().contains("macho")){
-			
+
 			return 1;
-			
+
 		}else if(p.getGenero().toLowerCase().contains("hembra")) {
-			
+
 			return 0;
-			
+
 		}else{
-			
+
 			return 2;
 		}
-		
+
 	}
-	
+
 	public String conseguirGenero(int index){
-		
+
 		String genero = null;
-		
+
 		switch (index) {
-		
+
 		case 0:
-			
+
 			genero =  "hembra";
 			break;
 
 		case 1: 
-			
+
 			genero = "macho";
 			break;
-			
+
 		case 2:
-			
+
 			genero = "desconocido";
 			break;
-			
+
 		default:
 			break;
 		}
-		
+
 		return genero;
-		
+
 	}
 
 	public void setTextPez(){
-		
-		txNom.setText(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex()).getNombrePez());
-		comboGenero.setSelectedIndex(this.seleccionarGenero(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex())));
-		comboTipo.setSelectedIndex(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex()).getTipoPez_id()-1);
+		try{
+			txNom.setText(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex()).getNombrePez());
+			comboGenero.setSelectedIndex(this.seleccionarGenero(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex())));
+			comboTipo.setSelectedIndex(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex()).getTipoPez_id()-1);
+		}catch (ArrayIndexOutOfBoundsException e) {
+			txNom.setText(fabrica.getModeloPez().getElementAt(0).getNombrePez());
+			comboGenero.setSelectedIndex(this.seleccionarGenero(fabrica.getModeloPez().getElementAt(0)));
+			comboTipo.setSelectedIndex(fabrica.getModeloPez().getElementAt(0).getTipoPez_id()-1);
+		}
 	}
 
-	
+
 	private JTextField crearCampo(String titulo) {
 		JTextField campo = new JTextField();
 		campo.setBorder(BorderFactory.createTitledBorder(
 				BorderFactory.createLineBorder(Color.PINK),titulo));
-		
+
 		return campo;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		boolean editar;
 		Pez p;
 		String nombreAnterior;
-		
+
 		switch (e.getActionCommand()){
 
 		case "Editar":
-			
+
 			try {
-			
+
 				p = fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex());
 				nombreAnterior = p.getNombrePez();
 				p.setNombrePez(txNom.getText());
 				p.setGenero(this.conseguirGenero(comboGenero.getSelectedIndex()));
 				p.setTipoPez_id(comboTipo.getSelectedIndex());
-				
+
 				editar = DAOPez.updatePez(p, nombreAnterior);
 				fabrica.getPanelPeces().controlLista();
-			
+
 			} catch (Exception e3) {
 				//Array index out of bounds errorea saltetan badau 0 hartu
-				
+
 				e3.printStackTrace();
 			}
-			
+
 			break;
-					
+
 		case "Borrar":
-					
+
 			try {
-				
+
 				DAOPez.eliminarPez(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex()).getNombrePez());
 				fabrica.getPanelPeces().controlLista();
-				
-				
+
+
 			} catch (SQLException e1) {
-				
+
 				e1.printStackTrace();
-				
+
 			} catch (Exception e2){
-				
+
 			}
-			
+
 			break;
-			
-			default: 
-				break;
-			
+
+		default: 
+			break;
+
 		}
-		
+
 	}
 
 	public String[] getTipoPez(ArrayList<TipoPez> tipo){
-		
+
 		String tipoPez[] = new String[tipo.size()];
-		
+
 		for(int i = 0; i < tipo.size(); i++){
-			
+
 			tipoPez[i] = tipo.get(i).getDescripcion();
-		
+
 		}
-		
+
 		return tipoPez;
 	}
-	
+
 	private int seleccionarTipo() {
 		return comboResponsable.getSelectedIndex() + 1;
 	}
 
 	private boolean camposIncompletos() {
-		
+
 		return false;//txNombre.getText().length()==0 ||txUbicaci�n.getText().length()==0 || txDescripci�n.getText().length()==0;
 	}
 }
