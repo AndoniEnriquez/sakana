@@ -21,7 +21,7 @@ public class DAOPez {
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT pez_id, nombrePez, genero, tipopez_id, dueno_id, pecera_id"+
-					"FROM pez";
+					" FROM pez";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				pez = new Pez(result.getString("nombrePez"),result.getString("genero"),result.getInt("tipopez_id"),result.getInt("dueno_id"),result.getInt("pecera_id"));

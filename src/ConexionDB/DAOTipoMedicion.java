@@ -22,7 +22,7 @@ public class DAOTipoMedicion {
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT tipomedicion_id, nombreMedicion"+
-					"FROM tipomedicion";
+					" FROM tipomedicion";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				tipoMedicion = new TipoMedicion(result.getInt("tipomedicion_id"),result.getString("nombreMedicion"));
@@ -46,7 +46,7 @@ public class DAOTipoMedicion {
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="SELECT tipomedicion_id, nombreMedicion"+
 					" FROM tipomedicion"+
-					" WHERE tipomedicion_id='"+idTipoMedicion+"'";
+					" WHERE tipomedicion_id="+idTipoMedicion;
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
 			tipoMedicion = new TipoMedicion(result.getInt("tipomedicion_id"),result.getString("nombreMedicion"));
@@ -135,7 +135,7 @@ public class DAOTipoMedicion {
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="UPDATE TIPOMEDICION "+
 					" SET nombreMedicion = '"+m.getNombreMedicion()+
-					"' WHERE tipomedicion_id='"+m.getTipoMedicion_id()+"'";
+					"' WHERE tipomedicion_id="+m.getTipoMedicion_id();
 			return (stmt.executeUpdate(strSQL)>0);
 		}
 		catch(SQLException e)
