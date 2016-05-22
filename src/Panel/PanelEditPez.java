@@ -9,6 +9,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -17,10 +18,14 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ConexionDB.DAOPecera;
+import ConexionDB.DAOPez;
 import ConexionDB.DAOTipoPez;
 import Fabrica.FabricaAcciones;
+import VarTypes.Pecera;
 import VarTypes.Pez;
 import VarTypes.TipoPez;
+import sakana.MenuPrincipal;
 
 
 
@@ -128,6 +133,35 @@ public class PanelEditPez extends JPanel implements ActionListener{
 		}
 		
 	}
+	
+	public String conseguirGenero(int index){
+		
+		String genero = null;
+		
+		switch (index) {
+		
+		case 0:
+			
+			genero =  "hembra";
+			break;
+
+		case 1: 
+			
+			genero = "macho";
+			break;
+			
+		case 2:
+			
+			genero = "desconocido";
+			break;
+			
+		default:
+			break;
+		}
+		
+		return genero;
+		
+	}
 
 	public void setTextPez(){
 		
@@ -147,38 +181,56 @@ public class PanelEditPez extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		/*boolean añadir;
+		
+		boolean editar;
+		Pez p;
+		String nombreAnterior;
+		
 		switch (e.getActionCommand()){
-		case "OK" : if (camposIncompletos()){
-						JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos",
-								"Error datos incompletos", JOptionPane.ERROR_MESSAGE);
-					}else{
-						try{
-						//Persona p = new Persona(txNomUsuario.getText(), txNombre.getText(), txPassword.getText(), Integer.parseInt(txDNI.getText()), seleccionarTipo());
-						//a�adir = DAOPersonas.addPersona(p);
-						//DAOPersonas.eliminarPersona(p.getUserName());
-						if(a�adir){
-						JOptionPane.showMessageDialog(this, "Usuario a�adido",
-								"Accion realizada", JOptionPane.INFORMATION_MESSAGE);
-						this.dispose();
-						}else{
-							JOptionPane.showMessageDialog(this, "Usuario existente. Cambia el nombre de usuario y/o DNI",
-									"Imposible to Add Person", JOptionPane.INFORMATION_MESSAGE);
-						}
-						}catch (NumberFormatException e2) {
-							JOptionPane.showMessageDialog(this, "El DNI solo puede tener numeros. SIN LETRA",
-									"Format Error", JOptionPane.INFORMATION_MESSAGE);
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
-					break;
+
+		case "Editar":
+			
+			try {
+			
+				p = fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex());
+				nombreAnterior = p.getNombrePez();
+				p.setNombrePez(txNom.getText());
+				p.setGenero(this.conseguirGenero(comboGenero.getSelectedIndex()));
+				p.setTipoPez_id(comboTipo.getSelectedIndex());
+				
+				editar = DAOPez.updatePez(p, nombreAnterior);
+				fabrica.getPanelPeces().controlLista();
+			
+			} catch (Exception e3) {
+				
+				e3.printStackTrace();
+			}
+			
+			break;
 					
-		case "Cancelar":
-					this.dispose();
+		case "Borrar":
+					
+			try {
+				
+				DAOPez.eliminarPez(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex()).getNombrePez());
+				fabrica.getPanelPeces().controlLista();
+				
+				
+			} catch (SQLException e1) {
+				
+				e1.printStackTrace();
+				
+			} catch (Exception e2){
+				
+			}
+			
+			break;
+			
+			default: 
+				break;
+			
 		}
-		*/
+		
 	}
 
 	public String[] getTipoPez(ArrayList<TipoPez> tipo){

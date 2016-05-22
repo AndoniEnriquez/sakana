@@ -42,7 +42,6 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 	JPanel panel, panelSecundario;
 	JScrollPane scrollPane;
 	MiPanel miPanel;
-	JButton add, delete, edit;
 	DefaultListModel<Pez> modelo;
 	
 	FabricaAcciones fabrica;
@@ -112,8 +111,11 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 		modelo.removeAllElements();
 		Dueno d = Sesion.getInstance().getUsuario();
 		try{
-		p =fabrica.getModeloPecera().getElementAt(fabrica.getListaPecera().getSelectedIndex());
+			
+			p = fabrica.getModeloPecera().getElementAt(fabrica.getListaPecera().getSelectedIndex());
+			
 		}catch (Exception e) {
+			
 			p = fabrica.getModeloPecera().getElementAt(0);
 		}
 		try {
@@ -134,14 +136,7 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		
-		switch(e.getActionCommand()){
-		
-			case "Add":
-				
-				break;
-		}
-		
+
 
 		
 	}

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import VarTypes.*;
 
 public class DAOPez {
+	
 	static public ArrayList<Pez> getPeces() throws Exception{
 		Statement stmt;
 		ResultSet result;
@@ -119,7 +120,7 @@ public class DAOPez {
 		result = stmt.executeUpdate(strSQL);
 	}
 
-	static public boolean updatePecera(Pez p) throws Exception
+	static public boolean updatePez(Pez p, String nombreAnterior) throws Exception
 	{    
 		Statement stmt;
 		boolean ok=false;
@@ -128,13 +129,15 @@ public class DAOPez {
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="UPDATE pez "+
-					" SET nombrePez = '"+p.getNombrePez()+
-					" SET genero = '"+p.getGenero()+
-					" SET tipopez_id = '"+p.getTipoPez_id()+
-					" SET dueno_id = '"+p.getDueno_id()+
-					" SET pecera_id = '"+p.getPecera_id()+
-					"' WHERE nombrePez ='"+p.getNombrePez()+"'";
+			strSQL="UPDATE pez"+
+					" SET nombrePez = '"+p.getNombrePez()+ "'" +
+					" , genero = '"+p.getGenero()+ "'" +
+					" , tipopez_id = "+p.getTipoPez_id()+ 
+					" , dueno_id = "+p.getDueno_id()+ 
+					" , pecera_id = "+p.getPecera_id()+
+					" WHERE nombrePez ='"+nombreAnterior+"'";
+			
+			System.out.println(strSQL);
 			return (stmt.executeUpdate(strSQL)>0);
 		}
 		catch(SQLException e)
