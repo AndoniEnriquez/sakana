@@ -62,7 +62,6 @@ public class DialogoRegistroComida extends JDialog implements ListSelectionListe
 
 	private Container crearPanelVentana() {
 		JPanel panel = new JPanel(new BorderLayout(0,10));
-		panel.add(crearToolBar(),BorderLayout.NORTH);
 		panel.add(crearPanelDatos(),BorderLayout.CENTER);
 		panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		return panel;
