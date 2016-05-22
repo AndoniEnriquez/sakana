@@ -123,6 +123,7 @@ public class DAOPez {
 	static public boolean updatePez(Pez p, String nombreAnterior) throws Exception
 	{    
 		Statement stmt;
+	
 		boolean ok=false;
 		String strSQL;
 
