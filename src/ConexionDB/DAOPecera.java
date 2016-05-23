@@ -45,6 +45,58 @@ public class DAOPecera {
 		}
 		return lista;
 	}
+	
+	static public float[] getPhporPecera(Pecera p) throws Exception {
+		Statement stmt;
+		ResultSet result;
+		String strSQL;
+		float[] ph = new float[2];
+		try
+		{
+
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="select MAX(phmin), MIN(phMax)"+
+					" from tipopez"+
+					" where tipopez_id IN (select tipopez_id"+
+					" from pez join pecera on pez.pecera_id = pecera.pecera_id"+
+					" where pecera.pecera_id ="+p.getID()+")";
+			result = stmt.executeQuery(strSQL);
+			while (result.next()){
+				ph[0] = result.getFloat("MAX(phmin)");
+				ph[1] = result.getFloat("MAX(phMax)");
+			}
+			result.close();
+		} catch (Exception e ){
+			e.printStackTrace();
+		}
+		return ph;
+	}
+	
+	static public float[] getTempporPecera(Pecera p) throws Exception {
+		Statement stmt;
+		ResultSet result;
+		String strSQL;
+		float[] temperatura = new float[2];
+		try
+		{
+
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="select MAX(tempMin), MIN(tempMax)"+
+					" from tipopez"+
+					" where tipopez_id IN (select tipopez_id"+
+					" from pez join pecera on pez.pecera_id = pecera.pecera_id"+
+					" where pecera.pecera_id ="+p.getID()+")";
+			result = stmt.executeQuery(strSQL);
+			while (result.next()){
+				temperatura[0] = result.getFloat("MAX(tempMin)");
+				temperatura[1] = result.getFloat("MIN(tempMax)");
+			}
+			result.close();
+		} catch (Exception e ){
+			e.printStackTrace();
+		}
+		return temperatura;
+	}
 
 	static public void getIdPorNombre(Pecera p) throws Exception{
 		Statement stmt;
