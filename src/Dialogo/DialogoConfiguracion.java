@@ -121,8 +121,11 @@ public class DialogoConfiguracion extends JDialog implements ActionListener{
 			break;
 		case "AddTipoPez":
 			new DialogoAddTipoPez(fabrica.getMenuPrincipal(), fabrica);
-
-
+			break;
+		
+		case "EditTipoPez":
+			new DialogoAddTipoPez(fabrica.getMenuPrincipal(), fabrica, tipoPez.get(cTipoPez.getSelectedIndex()));
+			break;
 		}
 	}
 

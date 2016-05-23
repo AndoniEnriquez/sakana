@@ -15,6 +15,14 @@ public class TipoPez {
 		this.temMin = temMin;
 		this.temMax = temMax;
 	}
+	
+	public TipoPez(String descripcion, float phMin, float phMax, float temMin, float temMax){
+		this.descripcion = descripcion;
+		this.phMin = phMin;
+		this.phMax = phMax;
+		this.temMin = temMin;
+		this.temMax = temMax;
+	}
 
 	public int getTipopez_id() {
 		return tipopez_id;

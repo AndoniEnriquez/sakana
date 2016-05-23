@@ -7,6 +7,8 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,17 +19,21 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ConexionDB.DAOPecera;
+import ConexionDB.DAOTipoPez;
 import Fabrica.FabricaAcciones;
 import VarTypes.*;
+import sakana.MenuPrincipal;
 
-public class DialogoAddTipoPez extends JDialog{
+public class DialogoAddTipoPez extends JDialog implements ActionListener{
 	
 	final static String  TITULO = "Añadir tipo de pez";
 	JComboBox<String> comboResponsable;
-	JTextField txNombretipoPez, txIP, txtCapacidad, txMin;
+	JTextField txNombretipoPez;
 	JTextField txPhMin, txPhMax, txTempMin, txTempMax;
 	JFormattedTextField txHora;
 
@@ -38,7 +44,7 @@ public class DialogoAddTipoPez extends JDialog{
 	boolean edit;
 	
 	public DialogoAddTipoPez (JFrame frame, FabricaAcciones fabrica){
-		super ( frame,TITULO,true );
+		super ( frame,TITULO,false );
 		edit = false;
 		crearVentana();
 		this.fabrica = fabrica;
@@ -50,14 +56,17 @@ public class DialogoAddTipoPez extends JDialog{
 		super ( frame,TITULO,true);
 		edit = true;
 		this.tipoPez = p;
-		simpleDateFormat = new SimpleDateFormat("hh:mm");
-		crearVentana();
+		System.out.println(p.getDescripcion());
 		this.fabrica = fabrica;
 		this.setVisible(true);
-		//txNombretipoPez.setText(tipoPez.getNombre());
-		//txIP.setText(tipoPez.getIP());
-		//txtCapacidad.setText(String.valueOf(tipoPez.getCapacidad()));
-		//txHora.setText(simpleDateFormat.format(tipoPez.getHoracomida()));
+		crearVentana();
+		System.out.println(p);
+		txNombretipoPez.setText(tipoPez.getDescripcion());
+		txPhMin.setText(String.valueOf(tipoPez.getPhMin()));
+		txPhMax.setText(String.valueOf(tipoPez.getPhMax()));
+		txTempMin.setText(String.valueOf(tipoPez.getTemMin()));
+		txTempMax.setText(String.valueOf(tipoPez.getTemMax()));
+
 	}
 
 	private void crearVentana() {
@@ -80,10 +89,10 @@ public class DialogoAddTipoPez extends JDialog{
 		JPanel panel = new JPanel (new FlowLayout(FlowLayout.CENTER,30,0));
 		JButton bOk = new JButton ("OK");
 		bOk.setActionCommand("OK");
-		//bOk.addActionListener(this);
+		bOk.addActionListener(this);
 		JButton bCancel = new JButton ("Cancelar");
 		bCancel.setActionCommand("Cancelar");
-		//bCancel.addActionListener(this);
+		bCancel.addActionListener(this);
 
 		panel.add(bOk);
 		panel.add(bCancel);
@@ -116,6 +125,67 @@ public class DialogoAddTipoPez extends JDialog{
 		campo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN),titulo));
 
 		return campo;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		boolean anadir;
+		switch (e.getActionCommand()){
+		case "OK" :
+
+			if(edit==false){
+				try{
+					TipoPez tp = new TipoPez(txNombretipoPez.getText(),Float.valueOf(txPhMin.getText()),Float.valueOf(txPhMax.getText()),Float.valueOf(txTempMin.getText()),Float.valueOf(txTempMax.getText()));
+					anadir = DAOTipoPez.addTipoPez(tp);
+					if(anadir){
+
+						JOptionPane.showMessageDialog(this, "TipoPez anadido","Accion realizada", JOptionPane.INFORMATION_MESSAGE);
+						this.dispose();
+
+					}else{
+						JOptionPane.showMessageDialog(this, "ERROR",
+								"Imposible to Add TipoPez", JOptionPane.INFORMATION_MESSAGE);
+					}
+				}catch (NumberFormatException e2) {
+					e2.printStackTrace();
+					} catch (Exception e1) {
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos",
+							"Error datos incompletos", JOptionPane.ERROR_MESSAGE);
+				}
+			}else{
+				try{
+					tipoPez.setDescripcion(txNombretipoPez.getText());
+					tipoPez.setPhMin(Float.parseFloat(txPhMin.getText()));
+					tipoPez.setPhMax(Float.parseFloat(txPhMax.getText()));
+					tipoPez.setTemMin(Float.parseFloat(txTempMin.getText()));
+					tipoPez.setTemMax(Float.parseFloat(txTempMax.getText()));
+					anadir = DAOTipoPez.updatePecera(tipoPez);
+					if(anadir){
+
+						JOptionPane.showMessageDialog(this, "TipoPez editado","Accion realizada", JOptionPane.INFORMATION_MESSAGE);
+						//MenuPrincipal.desktopIzquierda.removeAll();
+						//MenuPrincipal.desktopIzquierda.add(fabrica.accionamientoListaPecera());
+						this.dispose();
+
+					}else{
+						JOptionPane.showMessageDialog(this, "ERROR",
+								"Imposible to Edit TipoPez", JOptionPane.INFORMATION_MESSAGE);
+					}
+				}catch (NumberFormatException e2) {
+					e2.printStackTrace();
+
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(this, "Es necesario rellenar todos los campos",
+							"Error datos incompletos", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			break;
+
+		case "Cancelar":
+			this.dispose();
+		}		
 	}
 
 
