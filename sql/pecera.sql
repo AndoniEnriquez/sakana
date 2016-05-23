@@ -34,6 +34,10 @@ CONSTRAINT REGCOMIDA_PECERA_FK FOREIGN KEY (pecera_id) REFERENCES PECERA (pecera
 CREATE TABLE TIPOPEZ (
 tipopez_id		 	INT(3) AUTO_INCREMENT,
 descripcion		 	VARCHAR(45),
+phMin			 	FLOAT(3),
+phMax				FLOAT(3),
+tempMin			 	FLOAT(3),
+tempMax	 			FLOAT(3),	 
 CONSTRAINT TIPOPEZ_PRIMARY_KEY PRIMARY KEY (tipopez_id));
 
 CREATE TABLE DUENO (
@@ -95,11 +99,11 @@ INSERT INTO dueno values (4, 'alzelai','durango');
 INSERT INTO tipomedicion VALUES(1,'Nivel PH');
 INSERT INTO tipomedicion VALUES(2,'Temperatura');
 
-INSERT INTO tipopez VALUES (1, "GoldFish");
-INSERT INTO tipopez VALUES (2, "Tiburon");
-INSERT INTO tipopez VALUES (3, "Pez payaso");
-INSERT INTO tipopez VALUES (4, "Magikarp");
-INSERT INTO tipopez VALUES (5, "Desconocido");
+INSERT INTO tipopez VALUES (1, "GoldFish", 6,8,10,30);
+INSERT INTO tipopez VALUES (2, "Tiburon",5,7,10,200);
+INSERT INTO tipopez VALUES (3, "Pez payaso",6,8,10,30);
+INSERT INTO tipopez VALUES (4, "Magikarp",6,8,10,30);
+INSERT INTO tipopez VALUES (5, "Desconocido",1,10,0,40);
 
 INSERT INTO pez VALUES (1, "Iripollen", "Desconocido", 4, 1, 1);
 INSERT INTO pez VALUES (2, "Okinawa", "Hembra", 5, 1, 1);
