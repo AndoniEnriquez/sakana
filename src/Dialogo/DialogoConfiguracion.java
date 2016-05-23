@@ -118,7 +118,9 @@ public class DialogoConfiguracion extends JDialog implements ActionListener{
 		case "AddUsuario":
 
 			new DialogoAddDueno(fabrica.getMenuPrincipal(), false, fabrica);
-
+			break;
+		case "AddTipoPez":
+			new DialogoAddTipoPez(fabrica.getMenuPrincipal(), fabrica);
 
 
 		}
