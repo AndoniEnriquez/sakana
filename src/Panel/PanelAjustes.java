@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 
 import Dialogo.DialogoAddDueno;
 import Dialogo.DialogoAddPecera;
+import Dialogo.DialogoConfiguracion;
 import Fabrica.*;
 import Login.FormLogin;
 import sakana.MenuPrincipal;
@@ -124,7 +125,8 @@ public class PanelAjustes implements ActionListener{
 				
 			case "Add":
 				
-				new DialogoAddDueno(fabrica.getMenuPrincipal(), false, fabrica);
+				//new DialogoAddDueno(fabrica.getMenuPrincipal(), false, fabrica);
+				new DialogoConfiguracion(fabrica.getMenuPrincipal(),fabrica);
 				
 				break;
 				
