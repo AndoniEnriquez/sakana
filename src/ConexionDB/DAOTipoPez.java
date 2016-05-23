@@ -19,11 +19,11 @@ public class DAOTipoPez {
 
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT TipoPez_id, descripcion"+
+			strSQL="SELECT TipoPez_id, descripcion, phMin, phMax, tempMin, tempMax"+
 					" FROM TipoPez order by tipoPez_id";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
-				TipoPez = new TipoPez(result.getInt("TipoPez_id"),result.getString("descripcion"));
+				TipoPez = new TipoPez(result.getInt("TipoPez_id"),result.getString("descripcion"), result.getFloat("phMin"),result.getFloat("phMax"),result.getFloat("tempMin"),result.getFloat("tempMax"));
 				lista.add(TipoPez);
 			}
 			result.close();
@@ -42,12 +42,12 @@ public class DAOTipoPez {
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT TipoPez_id, descripcion"+
+			strSQL="SELECT TipoPez_id, descripcion, phMin, phMax, tempMin, tempMax"+
 					" FROM TipoPez"+
 					" WHERE TipoPez_id='"+idTipoPez+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
-			TipoPez = new TipoPez(result.getInt("TipoPez_id"),result.getString("descripcion"));
+			TipoPez = new TipoPez(result.getInt("TipoPez_id"),result.getString("descripcion"), result.getFloat("phMin"),result.getFloat("phMax"),result.getFloat("tempMin"),result.getFloat("tempMax"));
 			result.close();
 			return TipoPez;
 		}
@@ -68,12 +68,12 @@ public class DAOTipoPez {
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT TipoPez_id, descripcion"+
+			strSQL="SELECT TipoPez_id, descripcion, phMin, phMax, tempMin, tempMax"+
 					" FROM TipoPez"+
 					" WHERE descripcion='"+descripcion+"'";
 			result = stmt.executeQuery(strSQL);
 			if(!result.next()) return null;
-			TipoPez = new TipoPez(result.getInt("TipoPez_id"),result.getString("descripcion"));
+			TipoPez = new TipoPez(result.getInt("TipoPez_id"),result.getString("descripcion"), result.getFloat("phMin"),result.getFloat("phMax"),result.getFloat("tempMin"),result.getFloat("tempMax"));
 			result.close();
 			return TipoPez;
 		}
@@ -97,8 +97,8 @@ public class DAOTipoPez {
 			{
 
 				stmt=PoolConexiones.getConexion().createStatement();
-				strSQL="INSERT INTO TipoPez "+
-						" VALUES ("+m.getDescripcion()+",'"+m.getDescripcion()+")";
+				strSQL="INSERT INTO TipoPez (descripcion, phMin, phMax, tempMin, tempMax"+
+						" VALUES ('"+m.getDescripcion()+"', "+m.getPhMin()+","+m.getPhMax()+","+m.getTemMin()+","+m.getTemMax()+")";
 				result = stmt.executeUpdate(strSQL);		      
 				return true;
 			}
@@ -132,8 +132,12 @@ public class DAOTipoPez {
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="UPDATE TipoPez "+
-					" SET descripcion = '"+m.getDescripcion()+
-					"' WHERE TipoPez_id='"+m.getTipopez_id()+"'";
+					" SET descripcion = '"+m.getDescripcion()+"'"+
+					" SET phMin = "+m.getPhMin()+
+					" SET phMax = "+m.getPhMax()+
+					" SET tempMin = "+m.getTemMin()+
+					" SET tempMax = "+m.getTemMax()+
+					" WHERE TipoPez_id='"+m.getTipopez_id()+"'";
 			return (stmt.executeUpdate(strSQL)>0);
 		}
 		catch(SQLException e)
