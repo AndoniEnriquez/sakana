@@ -9,6 +9,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -30,7 +31,7 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 	static int tamX = 0;
 	static int tamY = 0;
 
-	JLabel txNom,txIP,txCapacidad, txPH, txTemp;
+	JLabel txNom,txIP,txCapacidad, txHoraComida, txPH, txTemp;
 	JButton bEdit, bAdd, bRegComida;
 
 
@@ -91,12 +92,13 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 	}
 
 	private Component crearPanelCampos() {
-		JPanel panel = new JPanel (new GridLayout(5,1,0,20));
+		JPanel panel = new JPanel (new GridLayout(6,1,0,20));
 
 		panel.setOpaque(false);
 		panel.add(txNom = crearCampo("Nombre"));
 		panel.add(txIP = crearCampo("IP"));
 		panel.add(txCapacidad = crearCampo("Capacidad"));
+		panel.add(txHoraComida = crearCampo("HoraComida"));
 		panel.add(txPH = crearCampo("PH Actual"));
 		panel.add(txTemp = crearCampo("Temperatura Actual"));
 
@@ -107,8 +109,11 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 
 	public void setText(Pecera pecera){
 		this.pecera = pecera;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
+
 		txNom.setText(pecera.getNombre());
 		txIP.setText(pecera.getIP());
+		txHoraComida.setText(simpleDateFormat.format(pecera.getHoracomida()));
 		txCapacidad.setText(String.valueOf(pecera.getCapacidad()));
 		txPH.setText(String.valueOf(pecera.getPH()));
 		txTemp.setText(String.valueOf(pecera.getTemp()));
