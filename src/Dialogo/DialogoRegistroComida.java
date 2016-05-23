@@ -50,7 +50,7 @@ public class DialogoRegistroComida extends JDialog implements ListSelectionListe
 	Pecera pecera;
 	
 	public DialogoRegistroComida (JFrame ventana, Pecera p){
-		super (ventana,"Reservas",true);
+		super (ventana,"Registro Comidas",true);
 		this.pecera = p;
 		this.setLocation(200,100);
 		this.setSize(600, 450);
@@ -71,7 +71,7 @@ public class DialogoRegistroComida extends JDialog implements ListSelectionListe
 		JPanel panel = new JPanel (new BorderLayout(0,20));
 		panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 		panel.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createLineBorder(Color.CYAN), "Datos Recurso"));
+				BorderFactory.createLineBorder(Color.CYAN), "Datos Pecera"));
 		panel.add(crearPanelRecurso(),BorderLayout.NORTH);
 		panel.add(crearPanelTabla(),BorderLayout.CENTER);
 		return panel;
@@ -119,7 +119,7 @@ public class DialogoRegistroComida extends JDialog implements ListSelectionListe
 	private Component crearPanelTitulo() {
 		JPanel panel = new JPanel (new FlowLayout(FlowLayout.CENTER));
 		panel.setBorder (BorderFactory.createRaisedBevelBorder());
-		panel.add(new JLabel("Reservas recurso"));
+		panel.add(new JLabel("Registro de comidas"));
 		return panel;
 	}
 

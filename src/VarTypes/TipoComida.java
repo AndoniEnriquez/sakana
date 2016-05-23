@@ -25,4 +25,11 @@ public class TipoComida {
 	public void setDescripcionTipoComida(String descripcionTipoComida) {
 		this.descripcionTipoComida = descripcionTipoComida;
 	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.descripcionTipoComida;
+	}
+
 }

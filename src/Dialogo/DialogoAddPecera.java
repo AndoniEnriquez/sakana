@@ -54,13 +54,14 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		super ( frame,TITULO,modo );
 		edit = true;
 		this.pecera = p;
+		simpleDateFormat = new SimpleDateFormat("hh:mm");
 		crearVentana();
 		this.fabrica = fabrica;
 		this.setVisible(true);
 		txNombrePecera.setText(pecera.getNombre());
 		txIP.setText(pecera.getIP());
 		txtCapacidad.setText(String.valueOf(pecera.getCapacidad()));
-		txHora.setText(pecera.getHoracomida().getHours()+":"+pecera.getHoracomida().getMinutes());
+		txHora.setText(simpleDateFormat.format(pecera.getHoracomida()));
 	}
 
 	private void crearVentana() {
@@ -106,7 +107,6 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 
 	private JFormattedTextField crearCampoFecha(String titulo) {
 
-		simpleDateFormat = new SimpleDateFormat("hh:mm");
 		JFormattedTextField campoFecha = new JFormattedTextField(simpleDateFormat);
 		campoFecha.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN),titulo));
 		campoFecha.setFont(new Font("Arial",Font.BOLD|Font.ITALIC,18));
@@ -124,7 +124,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 	public void parsearHora(Pecera p) throws ParseException{
 
 		String tiempo = txHora.getText();
-
+		simpleDateFormat = new SimpleDateFormat("hh:mm");
 		Date date = simpleDateFormat.parse(tiempo);
 		p.setHoracomida(date);
 

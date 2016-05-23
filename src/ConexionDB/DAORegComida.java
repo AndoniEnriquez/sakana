@@ -3,8 +3,9 @@ package ConexionDB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.util.Date;
 
 import VarTypes.Pecera;
 import VarTypes.RegComida;
@@ -42,6 +43,9 @@ public class DAORegComida {
 		String strSQL;
 		ArrayList<RegComida> lista = null;
 		RegComida registro;
+		Date dateTime;
+		SimpleDateFormat simpleDateFormat;
+		simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm");
 		try
 		{
 
@@ -53,10 +57,12 @@ public class DAORegComida {
 			System.out.println(strSQL);
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
-				//Calendar cal = Calendar.getInstance();
-				//cal.setTime(result.getDate("horacomida"));
-
-				registro = new RegComida(result.getInt("comida_id"),result.getInt("pecera_id"),result.getDate("datetime"));
+				String tiempo = result.getString("datetime");
+				System.out.println(tiempo);
+				dateTime = simpleDateFormat.parse(tiempo);
+				System.out.println(simpleDateFormat.format(dateTime));
+				
+				registro = new RegComida(result.getInt("comida_id"),result.getInt("pecera_id"),dateTime);
 				lista.add(registro);
 			}
 			result.close();

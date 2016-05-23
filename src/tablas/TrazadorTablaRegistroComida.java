@@ -1,6 +1,7 @@
 package tablas;
 
 import java.awt.Component;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -28,9 +29,9 @@ public class TrazadorTablaRegistroComida extends DefaultTableCellRenderer {
 
 	private String formatearFecha(Object valor) {
 		Date fecha = (Date) valor;
-		String fechaFormato = fecha.getYear() + "/" + fecha.getMonth() + "/" + fecha.getDay() + "  " + fecha.getHours() + ":" +fecha.getMinutes();
-		DateTimeFormatter formatter =   DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm");
-	    return fechaFormato;
+		SimpleDateFormat simpleDateFormat;
+		simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm");
+	    return simpleDateFormat.format(fecha);
 		
 	}
 

@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 
 import Dialogo.DialogoAddPecera;
 import Dialogo.DialogoAddPez;
+import Dialogo.DialogoRegistroComida;
 import Fabrica.FabricaAcciones;
 import Panel.*;
 import VarTypes.Pecera;
@@ -30,7 +31,7 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 	static int tamY = 0;
 
 	JLabel txNom,txIP,txCapacidad, txPH, txTemp;
-	JButton bEdit, bAdd;
+	JButton bEdit, bAdd, bRegComida;
 
 
 	JPanel panel;
@@ -77,9 +78,14 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 		bAdd = new JButton ("Add Pez");
 		bAdd.setActionCommand("Add");
 		bAdd.addActionListener(this);
+		bRegComida = new JButton ("Registro Comida");
+		bRegComida.setActionCommand("Reg");
+		bRegComida.addActionListener(this);
 
 		panel.add(bAdd);
 		panel.add(bEdit);
+		panel.add(bRegComida);
+
 
 		return panel;
 	}
@@ -132,6 +138,14 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 			if(pecera!=null){
 				new DialogoAddPecera(fabrica.getMenuPrincipal(),false,fabrica,pecera);
 			}
+			break;
+			
+		case "Reg":
+
+			if(pecera!=null){
+				new DialogoRegistroComida(fabrica.getMenuPrincipal(),pecera);
+			}
+			break;
 
 		default:
 			break;
