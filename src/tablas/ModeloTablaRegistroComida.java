@@ -1,6 +1,5 @@
 package tablas;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;

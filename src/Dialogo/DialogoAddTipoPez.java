@@ -22,6 +22,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.plaf.synth.SynthSplitPaneUI;
 
 import ConexionDB.DAOPecera;
 import ConexionDB.DAOTipoPez;
@@ -31,7 +32,7 @@ import sakana.MenuPrincipal;
 
 public class DialogoAddTipoPez extends JDialog implements ActionListener{
 	
-	final static String  TITULO = "Añadir tipo de pez";
+	final static String  TITULO = "Anadir tipo de pez";
 	JComboBox<String> comboResponsable;
 	JTextField txNombretipoPez;
 	JTextField txPhMin, txPhMax, txTempMin, txTempMax;
@@ -54,19 +55,16 @@ public class DialogoAddTipoPez extends JDialog implements ActionListener{
 	@SuppressWarnings("deprecation")
 	public DialogoAddTipoPez (JFrame frame, FabricaAcciones fabrica, TipoPez p){
 		super ( frame,TITULO,true);
-		edit = true;
-		this.tipoPez = p;
-		System.out.println(p.getDescripcion());
-		this.fabrica = fabrica;
-		this.setVisible(true);
 		crearVentana();
-		System.out.println(p);
+		this.tipoPez = p;
 		txNombretipoPez.setText(tipoPez.getDescripcion());
 		txPhMin.setText(String.valueOf(tipoPez.getPhMin()));
 		txPhMax.setText(String.valueOf(tipoPez.getPhMax()));
 		txTempMin.setText(String.valueOf(tipoPez.getTemMin()));
 		txTempMax.setText(String.valueOf(tipoPez.getTemMax()));
-
+		edit = true;
+		this.fabrica = fabrica;
+		this.setVisible(true);
 	}
 
 	private void crearVentana() {
@@ -99,24 +97,40 @@ public class DialogoAddTipoPez extends JDialog implements ActionListener{
 		return panel;
 	}
 	
-	private Component crearPanelCampoDoble(String titulo, JTextField TF1, JTextField TF2){
+	private Component crearPanelPH(){
 		JPanel panel = new JPanel(new GridLayout(1,2,30,60));
 		
-		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLUE),titulo));
+		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLUE), "Niveles PH"));
 		
-		panel.add(TF1 = crearCampo(titulo+ " min."));
-		panel.add(TF2 = crearCampo(titulo+ " max."));
+		panel.add(txPhMin = crearCampo("PH" + " min."));
+		panel.add(txPhMax = crearCampo("PH" + " max."));
+		
+		
+		
+		return panel;
+	}
+	
+	private Component crearPanelTemp(){
+		JPanel panel = new JPanel(new GridLayout(1,2,30,60));
+		
+		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLUE), "Temperatura"));
+		
+		panel.add(txTempMin = crearCampo("Temp" + " min."));
+		panel.add(txTempMax = crearCampo("Temp" + " max."));
+		
 		
 		
 		return panel;
 	}
 
+
 	private Component crearPanelCampos() {
 		JPanel panel = new JPanel (new GridLayout(3,1,0,20));
-
+		
 		panel.add(txNombretipoPez = crearCampo("Nombre del tipo de Pez"));
-		panel.add(crearPanelCampoDoble("PH",txPhMin, txPhMax));
-		panel.add(crearPanelCampoDoble("Temperatura",txTempMin, txTempMax));	
+	
+		panel.add(crearPanelPH());
+		panel.add(crearPanelTemp());	
 		return panel;
 	}
 
@@ -135,7 +149,9 @@ public class DialogoAddTipoPez extends JDialog implements ActionListener{
 
 			if(edit==false){
 				try{
-					TipoPez tp = new TipoPez(txNombretipoPez.getText(),Float.valueOf(txPhMin.getText()),Float.valueOf(txPhMax.getText()),Float.valueOf(txTempMin.getText()),Float.valueOf(txTempMax.getText()));
+					
+					TipoPez tp = new TipoPez(txNombretipoPez.getText(),Float.parseFloat(txPhMin.getText()),Float.parseFloat(txPhMax.getText()),Float.parseFloat(txTempMin.getText()),Float.parseFloat(txTempMax.getText()));
+					
 					anadir = DAOTipoPez.addTipoPez(tp);
 					if(anadir){
 

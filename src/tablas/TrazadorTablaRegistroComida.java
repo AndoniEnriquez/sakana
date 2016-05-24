@@ -2,7 +2,6 @@ package tablas;
 
 import java.awt.Component;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.swing.JTable;
