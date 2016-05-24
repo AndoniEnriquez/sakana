@@ -133,10 +133,10 @@ public class DAOTipoPez {
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="UPDATE TipoPez "+
 					" SET descripcion = '"+m.getDescripcion()+"'"+
-					" SET phMin = "+m.getPhMin()+
-					" SET phMax = "+m.getPhMax()+
-					" SET tempMin = "+m.getTemMin()+
-					" SET tempMax = "+m.getTemMax()+
+					" , phMin = "+m.getPhMin()+
+					" , phMax = "+m.getPhMax()+
+					" , tempMin = "+m.getTemMin()+
+					" , tempMax = "+m.getTemMax()+
 					" WHERE TipoPez_id='"+m.getTipopez_id()+"'";
 			return (stmt.executeUpdate(strSQL)>0);
 		}
