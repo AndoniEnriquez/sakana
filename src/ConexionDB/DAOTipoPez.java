@@ -97,7 +97,7 @@ public class DAOTipoPez {
 			{
 
 				stmt=PoolConexiones.getConexion().createStatement();
-				strSQL="INSERT INTO TipoPez (descripcion, phMin, phMax, tempMin, tempMax"+
+				strSQL="INSERT INTO TipoPez (descripcion, phMin, phMax, tempMin, tempMax)"+
 						" VALUES ('"+m.getDescripcion()+"', "+m.getPhMin()+","+m.getPhMax()+","+m.getTemMin()+","+m.getTemMax()+")";
 				result = stmt.executeUpdate(strSQL);		      
 				return true;
