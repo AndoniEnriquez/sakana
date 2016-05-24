@@ -36,7 +36,7 @@ public class DAOPecera {
 				Date date = simpleDateFormat.parse(result.getString("horacomida"));
 
 				pecera = new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("NombrePecera"),
-						result.getInt("Capacidad"));
+						result.getInt("Capacidad"), result.getInt("comida_id"));
 				pecera.setHoracomida(date);
 				lista.add(pecera);
 			}
@@ -99,7 +99,7 @@ public class DAOPecera {
 		return temperatura;
 	}
 
-	static public void getIdPorNombre(Pecera p) throws Exception{
+	static public void getIdPorNombre(Pecera p) {
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -147,7 +147,7 @@ public class DAOPecera {
 				//cal.setTime(result.getDate("horacomida"));
 
 				pecera=new Pecera(result.getInt("pecera_id"),result.getString("IP"),result.getString("NombrePecera"),
-						result.getInt("Capacidad"));
+						result.getInt("Capacidad"), result.getInt("comida_id"));
 				lista.add(pecera);
 			}
 			result.close();
@@ -176,7 +176,7 @@ public class DAOPecera {
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(result.getDate("horacomida"));
 			p=new Pecera(result.getString("IP"),result.getString("NombrePecera"),
-					result.getInt("Capacidad"));
+					result.getInt("Capacidad"), result.getInt("comida_id"));
 			result.close();
 			return p;
 		}
@@ -188,7 +188,7 @@ public class DAOPecera {
 		}
 	}
 
-	static public Pecera buscarPorIP(String IPPecera) throws Exception
+	static public Pecera buscarPorIP(String IPPecera)
 	{
 		Statement stmt;
 		ResultSet result;
@@ -207,14 +207,13 @@ public class DAOPecera {
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(result.getDate("horacomida"));
 			p=new Pecera(result.getString("IP"),result.getString("NombrePecera"),
-					result.getInt("Capacidad"));
+					result.getInt("Capacidad"), result.getInt("comida_id"));
 			result.close();
 			return p;
 		}
 
 		catch(SQLException e)
 		{
-			e.printStackTrace();
 			return null;
 		}
 	}
@@ -239,7 +238,7 @@ public class DAOPecera {
 
 		catch(SQLException e)
 		{
-			e.printStackTrace();;
+			e.printStackTrace();
 			return false;
 		}
 	}

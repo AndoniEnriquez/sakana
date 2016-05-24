@@ -1,10 +1,16 @@
 package conexionMicro;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import ConexionDB.DAOComida;
+import ConexionDB.DAOMedicion;
 import ConexionDB.DAOPecera;
+import ConexionDB.DAORegComida;
+import ConexionDB.DAOTipoMedicion;
+import VarTypes.Medicion;
 import VarTypes.Pecera;
+import VarTypes.RegComida;
 
 public class SincronizadorPeceras extends Thread {
 
@@ -18,6 +24,12 @@ public class SincronizadorPeceras extends Thread {
 	public void run() {
 		while(true){
 			sincronizarPeceras();
+			try {
+				sleep(3000000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		
@@ -39,12 +51,28 @@ public class SincronizadorPeceras extends Thread {
 
 	private void sincronizarPecera(Pecera p) {
 		InterfazMicro interfaz = new InterfazMicro(p);
-		
-		interfaz.getPh();
-		interfaz.getTemp();
-		DAOComida.
-		interfaz.getFeedLogEntry(c)
-		
+		RegComida regComida;
+		Float ph, temp;
+		Medicion medicionPh, medicionTemp;
+		ph = interfaz.getPh();
+		temp = interfaz.getTemp();
+		if(ph >= 0){
+			medicionPh = new Medicion(	ph, 
+										Calendar.getInstance(), 
+										(DAOTipoMedicion.buscarPorNombre("Nivel PH")).getTipoMedicion_id(),
+										p.getID());
+			DAOMedicion.addMedicion(medicionPh);
+		}
+		if(temp >= 0){
+			medicionTemp = new Medicion(	temp, 
+											Calendar.getInstance(), 
+											(DAOTipoMedicion.buscarPorNombre("Temperatura")).getTipoMedicion_id(),
+											p.getID());
+			DAOMedicion.addMedicion(medicionTemp);
+		}
+		while((regComida = interfaz.getFeedLogEntry()) != null){
+			DAORegComida.addRegistro(regComida);
+		}
 	}
 
 }

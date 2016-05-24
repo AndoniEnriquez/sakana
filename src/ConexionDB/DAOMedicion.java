@@ -98,7 +98,7 @@ public class DAOMedicion {
 		}
 	}
 
-	static public boolean addMedicion(Medicion m) throws Exception{
+	static public boolean addMedicion(Medicion m) {
 
 		Statement stmt;
 		String strSQL;

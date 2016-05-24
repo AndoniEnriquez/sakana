@@ -9,32 +9,42 @@ public class Pecera {
 	String IP;
 	String nombre;
 	int capacidad;
+	int comida_id;
 	Date horacomida;
 
 	float PH, Temp;
 
 
-	public Pecera(String IP, String nombre, int capacidad){
+	public Pecera(String IP, String nombre, int capacidad, int comida_id){
 		this.IP = IP;
 		this.nombre = nombre;
 		this.capacidad = capacidad;
-
+		this.comida_id = comida_id;
 	}	
 	
-	public Pecera(int id, String IP, String nombre, int capacidad){
+	public int getComida_id() {
+		return comida_id;
+	}
+
+	public void setComida_id(int comida_id) {
+		this.comida_id = comida_id;
+	}
+
+	public Pecera(int id, String IP, String nombre, int capacidad,  int comida_id){
 		this.ID = id;
 		this.IP = IP;
 		this.nombre = nombre;
 		this.capacidad = capacidad;
-
+		this.comida_id = comida_id;
 	}
 
-	public Pecera(String IP, String nombre, int capacidad, float PH, float Temp){
+	public Pecera(String IP, String nombre, int capacidad, float PH, float Temp, int comida_id){
 		this.IP = IP;
 		this.nombre = nombre;
 		this.capacidad = capacidad;
 		this.PH = PH;
 		this.Temp = Temp;
+		this.comida_id = comida_id;
 	}
 
 

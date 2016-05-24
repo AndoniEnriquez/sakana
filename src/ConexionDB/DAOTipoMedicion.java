@@ -60,8 +60,7 @@ public class DAOTipoMedicion {
 			return null;
 		}
 	}
-	static public TipoMedicion buscarPorNombre(String nombre) throws Exception
-	{
+	static public TipoMedicion buscarPorNombre(String nombre) {
 		Statement stmt;
 		ResultSet result;
 		String strSQL;

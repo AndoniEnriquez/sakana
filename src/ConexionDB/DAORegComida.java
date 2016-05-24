@@ -72,12 +72,12 @@ public class DAORegComida {
 		return lista;
 	}
 	@SuppressWarnings("deprecation")
-	static public boolean addRegistro(RegComida r) throws Exception{
+	static public boolean addRegistro(RegComida r){
 
 		Statement stmt;
 		String strSQL;
 		int result;
-		String horacomida = r.getDatetime().getHours()+":"+r.getDatetime().getMinutes();
+		String horacomida = r.getDatetime().getHours() + ":" + r.getDatetime().getMinutes();
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();

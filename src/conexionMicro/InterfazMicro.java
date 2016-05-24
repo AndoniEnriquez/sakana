@@ -1,5 +1,6 @@
 package conexionMicro;
 
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
@@ -577,7 +578,7 @@ public class InterfazMicro {
 	}
 	
 	
-	public RegComida getFeedLogEntry(Comida c){
+	public RegComida getFeedLogEntry(){
 		respuesta = null;
 		
 		Thread t = new Thread( new Runnable() {
@@ -601,32 +602,15 @@ public class InterfazMicro {
 			String[] sa = respuesta.split(" ");
 			Long l = Long.parseLong(sa[1]);
 			RegComida rc = null;
-			try {
-				rc = new RegComida(c.getComida_id(), DAOPecera.buscarPorIP(cliente.servidor).getID(), new Date(l));
-			} catch (Exception e) {}
+			
+			Pecera p = null;
+			p = DAOPecera.buscarPorIP(cliente.servidor);
+			if(p != null){
+				rc = new RegComida(p.getComida_id(), p.getID(), new Date(l));
+			}
 			return rc;
 		}
 		return null;
-	}
-	
-	
-	
-	
-	
-	
-		
-	
-	public static void main(String[] args) {
-		Scanner s = new Scanner(System.in);
-		Pecera p = new Pecera("192.168.1.15", "juan", 3);
-		InterfazMicro i = new InterfazMicro(p);
-		
-		while(true){
-			s.nextLine();
-			Calendar c = i.getDateTime();
-			System.out.println(c.getTimeInMillis());
-		}
-		
 	}
 }
 
