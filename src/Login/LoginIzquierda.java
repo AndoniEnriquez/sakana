@@ -7,7 +7,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
-import Panel.*;
+import Panel.MiPanel;
 
 
 @SuppressWarnings("serial")

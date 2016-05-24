@@ -2,13 +2,15 @@ package Panel;
 
 import java.awt.Color;
 import java.awt.Container;
+
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import Fabrica.FabricaAcciones;
-import PanelControl.*;
+import PanelControl.PanelInformacion;
+import PanelControl.PanelPeces;
 
 @SuppressWarnings("serial")
 public class PanelControlPecera extends PanelExample implements ChangeListener{

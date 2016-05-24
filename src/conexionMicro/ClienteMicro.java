@@ -2,18 +2,10 @@ package conexionMicro;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.SocketTimeoutException;
-import java.nio.charset.Charset;
 import java.util.Scanner;
-
-import javax.swing.plaf.synth.SynthSpinnerUI;
-
-import com.mysql.fabric.xmlrpc.Client;
 
 public class ClienteMicro {
 	String servidor;

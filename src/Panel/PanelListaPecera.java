@@ -24,7 +24,6 @@ import javax.swing.event.ListSelectionListener;
 import ConexionDB.DAOPecera;
 import Dialogo.DialogoAddPecera;
 import Fabrica.FabricaAcciones;
-import Login.Sesion;
 import VarTypes.Pecera;
 import sakana.MenuPrincipal;
 

@@ -5,7 +5,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import VarTypes.*;
+import VarTypes.Dueno;
+import VarTypes.Pecera;
+import VarTypes.Pez;
 
 public class DAOPez {
 	

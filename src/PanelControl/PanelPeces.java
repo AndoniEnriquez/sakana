@@ -7,12 +7,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.DefaultListModel;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,15 +16,12 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import ConexionDB.DAODueno;
-import ConexionDB.DAOPecera;
 import ConexionDB.DAOPez;
 import Fabrica.FabricaAcciones;
 import Login.Sesion;
 import Panel.MiPanel;
 import Panel.PanelEditPez;
 import Panel.PanelExample;
-import Panel.RenderListaPecera;
 import VarTypes.Dueno;
 import VarTypes.Pecera;
 import VarTypes.Pez;

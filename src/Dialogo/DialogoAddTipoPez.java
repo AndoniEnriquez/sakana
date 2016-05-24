@@ -5,13 +5,10 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -22,13 +19,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.plaf.synth.SynthSplitPaneUI;
 
-import ConexionDB.DAOPecera;
 import ConexionDB.DAOTipoPez;
 import Fabrica.FabricaAcciones;
-import VarTypes.*;
-import sakana.MenuPrincipal;
+import VarTypes.TipoPez;
 
 public class DialogoAddTipoPez extends JDialog implements ActionListener{
 	

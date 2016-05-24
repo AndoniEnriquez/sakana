@@ -1,5 +1,11 @@
 package conexionMicro;
 
+import java.util.ArrayList;
+
+import ConexionDB.DAOComida;
+import ConexionDB.DAOPecera;
+import VarTypes.Pecera;
+
 public class SincronizadorPeceras extends Thread {
 
 	
@@ -10,20 +16,35 @@ public class SincronizadorPeceras extends Thread {
 	
 	@Override
 	public void run() {
-		while(true) {
-			
-			sincronizarHora();
-			sincronizarLogComidas();
-			sincronizarDatosSensores();
-			sincronizar
-			
-			
-			try {
-				sleep(60000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+		while(true){
+			sincronizarPeceras();
 		}
+		
+		
+	}
+	
+	private void sincronizarPeceras() {
+		ArrayList<Pecera> peceras = null;
+		try {
+			peceras = DAOPecera.getPeceras();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(Pecera p : peceras) {
+			sincronizarPecera(p);
+		}
+	}
+
+	private void sincronizarPecera(Pecera p) {
+		InterfazMicro interfaz = new InterfazMicro(p);
+		
+		interfaz.getPh();
+		interfaz.getTemp();
+		DAOComida.
+		interfaz.getFeedLogEntry(c)
+		
 	}
 
 }

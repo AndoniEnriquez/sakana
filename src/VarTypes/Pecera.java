@@ -1,7 +1,5 @@
 package VarTypes;
 
-import java.sql.Time;
-import java.util.Calendar;
 import java.util.Date;
 
 public class Pecera {

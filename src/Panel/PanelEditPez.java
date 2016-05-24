@@ -18,14 +18,11 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import ConexionDB.DAOPecera;
 import ConexionDB.DAOPez;
 import ConexionDB.DAOTipoPez;
 import Fabrica.FabricaAcciones;
-import VarTypes.Pecera;
 import VarTypes.Pez;
 import VarTypes.TipoPez;
-import sakana.MenuPrincipal;
 
 
 

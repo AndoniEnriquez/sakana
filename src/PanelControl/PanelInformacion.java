@@ -15,15 +15,14 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import Dialogo.DialogoAddPecera;
 import Dialogo.DialogoAddPez;
 import Dialogo.DialogoRegistroComida;
 import Fabrica.FabricaAcciones;
-import Panel.*;
+import Panel.MiPanel;
+import Panel.PanelExample;
 import VarTypes.Pecera;
-import sakana.MenuPrincipal;
 
 @SuppressWarnings("serial")
 public class PanelInformacion extends PanelExample implements ActionListener{

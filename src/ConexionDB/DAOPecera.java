@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import VarTypes.*;
+import VarTypes.Dueno;
+import VarTypes.Pecera;
 
 public class DAOPecera {
 

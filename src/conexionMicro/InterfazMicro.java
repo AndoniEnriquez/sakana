@@ -1,11 +1,13 @@
 package conexionMicro;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
 
+import ConexionDB.DAOPecera;
+import VarTypes.Comida;
 import VarTypes.Pecera;
+import VarTypes.RegComida;
 
 
 
@@ -575,7 +577,37 @@ public class InterfazMicro {
 	}
 	
 	
-	
+	public RegComida getFeedLogEntry(Comida c){
+		respuesta = null;
+		
+		Thread t = new Thread( new Runnable() {
+			@Override
+			public void run() {
+				respuesta = cliente.enviarComando("get feedlog;");				
+			}
+		});
+		
+		t.start();
+		long start = Calendar.getInstance().getTimeInMillis();
+		while(t.isAlive() && Calendar.getInstance().getTimeInMillis() - start < 2000 ){}
+		
+		if(t.isAlive()){
+			t.stop();
+			return null;
+		}
+		if (respuesta == null) return null;
+		if(respuesta.startsWith("")) {
+			respuesta = respuesta.replace(";", "");
+			String[] sa = respuesta.split(" ");
+			Long l = Long.parseLong(sa[1]);
+			RegComida rc = null;
+			try {
+				rc = new RegComida(c.getComida_id(), DAOPecera.buscarPorIP(cliente.servidor).getID(), new Date(l));
+			} catch (Exception e) {}
+			return rc;
+		}
+		return null;
+	}
 	
 	
 	

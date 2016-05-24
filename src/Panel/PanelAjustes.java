@@ -17,10 +17,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Dialogo.DialogoAddDueno;
-import Dialogo.DialogoAddPecera;
 import Dialogo.DialogoConfiguracion;
-import Fabrica.*;
+import Fabrica.FabricaAcciones;
 import Login.FormLogin;
 import sakana.MenuPrincipal;
 

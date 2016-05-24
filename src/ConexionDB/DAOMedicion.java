@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import VarTypes.*;
+import VarTypes.Medicion;
 
 public class DAOMedicion {
 
