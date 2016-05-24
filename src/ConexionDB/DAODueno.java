@@ -8,7 +8,7 @@ import VarTypes.Dueno;
 
 public class DAODueno {
 
-	static public Dueno buscarPorNombre(String username) throws Exception {
+	static public Dueno buscarPorNombre(String username){
 
 		Statement stmt;
 		ResultSet result;
@@ -36,7 +36,7 @@ public class DAODueno {
 	}
 	
 	
-	static public boolean addDueno(Dueno d) throws Exception{
+	static public boolean addDueno(Dueno d){
 
 		Statement stmt;
 		String strSQL;

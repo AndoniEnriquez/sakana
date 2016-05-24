@@ -10,7 +10,7 @@ import VarTypes.Medicion;
 
 public class DAOMedicion {
 
-	static public ArrayList<Medicion> getMediciones() throws Exception{
+	static public ArrayList<Medicion> getMediciones(){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -37,8 +37,7 @@ public class DAOMedicion {
 		}
 		return lista;
 	}
-	static public Medicion buscarPorID(int idMedicion) throws Exception
-	{
+	static public Medicion buscarPorID(int idMedicion){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -67,8 +66,7 @@ public class DAOMedicion {
 			return null;
 		}
 	}
-	static public Medicion buscarPorNombre(String nombre) throws Exception
-	{
+	static public Medicion buscarPorNombre(String nombre){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -124,18 +122,23 @@ public class DAOMedicion {
 		}
 	}
 
-	public static void eliminarMedicion(String nombre) throws SQLException {
+	public static boolean eliminarMedicion(String nombre){
 		Statement stmt;
 		int result;
 		String strSQL;
-		stmt=PoolConexiones.getConexion().createStatement();
-		strSQL="DELETE FROM  MEDICION "+
-				" WHERE nombre = '"+nombre+"'";
-		result = stmt.executeUpdate(strSQL);
+		try {
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="DELETE FROM  MEDICION "+
+					" WHERE nombre = '"+nombre+"'";
+			result = stmt.executeUpdate(strSQL);
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+		
 	}
 
-	static public boolean updateMedicion(Medicion m) throws Exception
-	{    
+	static public boolean updateMedicion(Medicion m){    
 		Statement stmt;
 		boolean ok=false;
 		String strSQL;

@@ -11,7 +11,7 @@ import VarTypes.Pez;
 
 public class DAOPez {
 	
-	static public ArrayList<Pez> getPeces() throws Exception{
+	static public ArrayList<Pez> getPeces(){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -35,8 +35,7 @@ public class DAOPez {
 		}
 		return lista;
 	}
-	static public Pez buscarPorID(int idPez) throws Exception
-	{
+	static public Pez buscarPorID(int idPez){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -61,8 +60,7 @@ public class DAOPez {
 			return null;
 		}
 	}
-	static public Pez buscarPorNombre(String nombre) throws Exception
-	{
+	static public Pez buscarPorNombre(String nombre){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -88,7 +86,7 @@ public class DAOPez {
 		}
 	}
 
-	static public boolean addPez(Pez pez) throws Exception{
+	static public boolean addPez(Pez pez){
 
 		Statement stmt;
 		String strSQL;
@@ -112,18 +110,23 @@ public class DAOPez {
 		}
 	}
 
-	public static void eliminarPez(String nombre) throws SQLException {
+	public static boolean eliminarPez(String nombre){
 		Statement stmt;
 		int result;
 		String strSQL;
-		stmt=PoolConexiones.getConexion().createStatement();
-		strSQL="DELETE FROM  pez "+
-				" WHERE nombrePez = '"+nombre+"'";
-		result = stmt.executeUpdate(strSQL);
+		try {
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="DELETE FROM  pez "+
+					" WHERE nombrePez = '"+nombre+"'";
+			result = stmt.executeUpdate(strSQL);
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+		
 	}
 
-	static public boolean updatePez(Pez p, String nombreAnterior) throws Exception
-	{    
+	static public boolean updatePez(Pez p, String nombreAnterior){    
 		Statement stmt;
 	
 		boolean ok=false;
@@ -150,7 +153,7 @@ public class DAOPez {
 		}
 	}
 
-	static public ArrayList<Pez> getPecesPeceraDueno (Pecera p, Dueno d) throws Exception{
+	static public ArrayList<Pez> getPecesPeceraDueno (Pecera p, Dueno d){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;

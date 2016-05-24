@@ -9,7 +9,7 @@ import VarTypes.TipoComida;
 
 public class DAOTipoComida {
 
-	static public ArrayList<TipoComida> getTiposMedicion() throws Exception{
+	static public ArrayList<TipoComida> getTiposMedicion(){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -33,8 +33,7 @@ public class DAOTipoComida {
 		}
 		return lista;
 	}
-	static public TipoComida buscarPorID(int idTipoComida) throws Exception
-	{
+	static public TipoComida buscarPorID(int idTipoComida){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -59,8 +58,7 @@ public class DAOTipoComida {
 			return null;
 		}
 	}
-	static public TipoComida buscarPorDescripcion(String descripcion) throws Exception
-	{
+	static public TipoComida buscarPorDescripcion(String descripcion){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -86,7 +84,7 @@ public class DAOTipoComida {
 		}
 	}
 
-	static public boolean addTipoComida(TipoComida m) throws Exception{
+	static public boolean addTipoComida(TipoComida m){
 
 		Statement stmt;
 		String strSQL;
@@ -113,18 +111,23 @@ public class DAOTipoComida {
 		}
 	}
 
-	public static void eliminarTipoComida(String descripcion) throws SQLException {
+	public static boolean eliminarTipoComida(String descripcion){
 		Statement stmt;
 		int result;
 		String strSQL;
-		stmt=PoolConexiones.getConexion().createStatement();
-		strSQL="DELETE FROM  TipoComida "+
-				" WHERE nombre = '"+descripcion+"'";
-		result = stmt.executeUpdate(strSQL);
+		try {
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="DELETE FROM  TipoComida "+
+					" WHERE nombre = '"+descripcion+"'";
+			result = stmt.executeUpdate(strSQL);
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+		
 	}
 
-	static public boolean updatePecera(TipoComida m) throws Exception
-	{    
+	static public boolean updatePecera(TipoComida m){    
 		Statement stmt;
 		boolean ok=false;
 		String strSQL;

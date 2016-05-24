@@ -12,7 +12,7 @@ import VarTypes.RegComida;
 
 public class DAORegComida {
 	
-	static public ArrayList<RegComida> getRegistros() throws Exception{
+	static public ArrayList<RegComida> getRegistros(){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -37,7 +37,7 @@ public class DAORegComida {
 		return lista;
 	}
 	
-	static public ArrayList<RegComida> getRegistrosPorPecera(Pecera p) throws Exception{
+	static public ArrayList<RegComida> getRegistrosPorPecera(Pecera p){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -95,16 +95,22 @@ public class DAORegComida {
 		}
 	}
 	@SuppressWarnings("deprecation")
-	public static void eliminarPecera(RegComida r) throws SQLException {
+	public static boolean eliminarPecera(RegComida r){
 		
 		Statement stmt;
 		int result;
 		String strSQL;
 		String horacomida = r.getDatetime().getHours()+":"+r.getDatetime().getMinutes();
-		stmt=PoolConexiones.getConexion().createStatement();
+		try {
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL=" DELETE FROM regcomida "+
+					" WHERE datetime = '"+horacomida+"'";
+			result = stmt.executeUpdate(strSQL);
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
 		
-		strSQL=" DELETE FROM regcomida "+
-				" WHERE datetime = '"+horacomida+"'";
-		result = stmt.executeUpdate(strSQL);
+		
 	}
 }

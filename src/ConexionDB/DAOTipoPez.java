@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import VarTypes.TipoPez;
 
 public class DAOTipoPez {
-	static public ArrayList<TipoPez> getTiposPez() throws Exception{
+	static public ArrayList<TipoPez> getTiposPez(){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -32,8 +32,7 @@ public class DAOTipoPez {
 		}
 		return lista;
 	}
-	static public TipoPez buscarPorID(int idTipoPez) throws Exception
-	{
+	static public TipoPez buscarPorID(int idTipoPez){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -58,8 +57,7 @@ public class DAOTipoPez {
 			return null;
 		}
 	}
-	static public TipoPez buscarPorDescripcion(String descripcion) throws Exception
-	{
+	static public TipoPez buscarPorDescripcion(String descripcion){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -85,7 +83,7 @@ public class DAOTipoPez {
 		}
 	}
 
-	static public boolean addTipoPez(TipoPez m) throws Exception{
+	static public boolean addTipoPez(TipoPez m){
 
 		Statement stmt;
 		String strSQL;
@@ -112,18 +110,23 @@ public class DAOTipoPez {
 		}
 	}
 
-	public static void eliminarTipoPez(String descripcion) throws SQLException {
+	public static boolean eliminarTipoPez(String descripcion){
 		Statement stmt;
 		int result;
 		String strSQL;
-		stmt=PoolConexiones.getConexion().createStatement();
-		strSQL="DELETE FROM  TipoPez "+
-				" WHERE nombre = '"+descripcion+"'";
-		result = stmt.executeUpdate(strSQL);
+		try {
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="DELETE FROM  TipoPez "+
+					" WHERE nombre = '"+descripcion+"'";
+			result = stmt.executeUpdate(strSQL);
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+		
 	}
 
-	static public boolean updatePecera(TipoPez m) throws Exception
-	{    
+	static public boolean updatePecera(TipoPez m){    
 		Statement stmt;
 		boolean ok=false;
 		String strSQL;

@@ -10,7 +10,7 @@ import VarTypes.TipoMedicion;
 public class DAOTipoMedicion {
 
 
-	static public ArrayList<TipoMedicion> getTiposMedicion() throws Exception{
+	static public ArrayList<TipoMedicion> getTiposMedicion(){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -34,8 +34,7 @@ public class DAOTipoMedicion {
 		}
 		return lista;
 	}
-	static public TipoMedicion buscarPorID(int idTipoMedicion) throws Exception
-	{
+	static public TipoMedicion buscarPorID(int idTipoMedicion){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -86,7 +85,7 @@ public class DAOTipoMedicion {
 		}
 	}
 
-	static public boolean addTipoMedicion(TipoMedicion m) throws Exception{
+	static public boolean addTipoMedicion(TipoMedicion m){
 
 		Statement stmt;
 		String strSQL;
@@ -113,18 +112,24 @@ public class DAOTipoMedicion {
 		}
 	}
 
-	public static void eliminarTipoMedicion(String nombre) throws SQLException {
+	public static boolean eliminarTipoMedicion(String nombre){
 		Statement stmt;
 		int result;
 		String strSQL;
-		stmt=PoolConexiones.getConexion().createStatement();
-		strSQL="DELETE FROM  TIPOMEDICION "+
-				" WHERE nombre = '"+nombre+"'";
-		result = stmt.executeUpdate(strSQL);
+		try {
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="DELETE FROM  TIPOMEDICION "+
+					" WHERE nombre = '"+nombre+"'";
+			result = stmt.executeUpdate(strSQL);
+			return true;
+			
+		} catch (SQLException e) {
+			return false;
+		}
+		
 	}
 
-	static public boolean updatePecera(TipoMedicion m) throws Exception
-	{    
+	static public boolean updatePecera(TipoMedicion m){    
 		Statement stmt;
 		boolean ok=false;
 		String strSQL;

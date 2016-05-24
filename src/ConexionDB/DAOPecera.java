@@ -13,7 +13,7 @@ import VarTypes.Pecera;
 
 public class DAOPecera {
 
-	static public ArrayList<Pecera> getPeceras() throws Exception{
+	static public ArrayList<Pecera> getPeceras(){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -47,7 +47,7 @@ public class DAOPecera {
 		return lista;
 	}
 	
-	static public float[] getPhporPecera(Pecera p) throws Exception {
+	static public float[] getPhporPecera(Pecera p){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -73,7 +73,7 @@ public class DAOPecera {
 		return ph;
 	}
 	
-	static public float[] getTempporPecera(Pecera p) throws Exception {
+	static public float[] getTempporPecera(Pecera p){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -125,7 +125,7 @@ public class DAOPecera {
 	}
 
 
-	static public ArrayList<Pecera> getPecerasPorDueno(Dueno d) throws Exception{
+	static public ArrayList<Pecera> getPecerasPorDueno(Dueno d){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -157,8 +157,7 @@ public class DAOPecera {
 		return lista;
 	}
 
-	static public Pecera buscarPorID(int idPecera) throws Exception
-	{
+	static public Pecera buscarPorID(int idPecera){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -220,7 +219,7 @@ public class DAOPecera {
 
 
 	@SuppressWarnings("deprecation")
-	static public boolean addPecera(Pecera p) throws Exception{
+	static public boolean addPecera(Pecera p){
 
 		Statement stmt;
 		String strSQL;
@@ -243,20 +242,25 @@ public class DAOPecera {
 		}
 	}
 
-	public static void eliminarPecera(Pecera p) throws SQLException {
+	public static boolean eliminarPecera(Pecera p){
 	
 		Statement stmt;
 		int result;
 		String strSQL;
-		stmt=PoolConexiones.getConexion().createStatement();
+		try {
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL=" DELETE FROM PECERA "+
+					" WHERE IP = '"+p.getIP()+"'";
+			result = stmt.executeUpdate(strSQL);
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
 		
-		strSQL=" DELETE FROM PECERA "+
-				" WHERE IP = '"+p.getIP()+"'";
-		result = stmt.executeUpdate(strSQL);
+		
 	}
 
-	static public boolean updatePecera(Pecera p) throws Exception
-	{    
+	static public boolean updatePecera(Pecera p){    
 		Statement stmt;
 		boolean ok=false;
 		String strSQL;

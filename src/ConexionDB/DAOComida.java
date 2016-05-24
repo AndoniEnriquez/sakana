@@ -11,7 +11,7 @@ public class DAOComida {
 
 
 
-	static public ArrayList<Comida> getComidas() throws Exception{
+	static public ArrayList<Comida> getComidas(){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -39,8 +39,7 @@ public class DAOComida {
 	}
 
 
-	static public Comida buscarPorID(int idComida) throws Exception
-	{
+	static public Comida buscarPorID(int idComida){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -68,8 +67,7 @@ public class DAOComida {
 		}
 	}
 
-	static public Comida buscarPorNombre(String nombreComida) throws Exception
-	{
+	static public Comida buscarPorNombre(String nombreComida){
 		Statement stmt;
 		ResultSet result;
 		String strSQL;
@@ -98,7 +96,7 @@ public class DAOComida {
 	}
 
 
-	static public boolean addComida(Comida p) throws Exception{
+	static public boolean addComida(Comida p){
 
 		Statement stmt;
 		String strSQL;
@@ -125,14 +123,20 @@ public class DAOComida {
 		}
 	}
 
-	public static void eliminarComida(String nombre) throws SQLException {
+	public static boolean eliminarComida(String nombre){
 		Statement stmt;
 		int result;
 		String strSQL;
-		stmt=PoolConexiones.getConexion().createStatement();
-		strSQL="DELETE FROM  Comida "+
-				" WHERE nombreComida = '"+nombre+"'";
-		result = stmt.executeUpdate(strSQL);
+		try {
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="DELETE FROM  Comida "+
+					" WHERE nombreComida = '"+nombre+"'";
+			result = stmt.executeUpdate(strSQL);
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+		
 	}
 
 	static public boolean updateComida(Comida p) throws Exception
