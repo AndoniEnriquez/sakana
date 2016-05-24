@@ -21,7 +21,9 @@ nombrePecera 	 	VARCHAR(45),
 horacomida		 	TIME,
 IP				 	VARCHAR(45) UNIQUE,
 Capacidad		 	INT(3),
-CONSTRAINT PECERA_PRIMARY_KEY PRIMARY KEY (pecera_id));
+comida_id			INT(3),
+CONSTRAINT PECERA_PRIMARY_KEY PRIMARY KEY (pecera_id),
+CONSTRAINT PECERA_COMIDA_FK FOREIGN KEY (comida_id) REFERENCES COMIDA (comida_id));
 
 CREATE TABLE REGCOMIDA (
 comida_id		 	INT(3) NOT NULL,
@@ -82,9 +84,9 @@ INSERT INTO comida VALUES (2, "Segunda Comida", "Okinawa tampoco ha comido nada"
 INSERT INTO comida VALUES (3, "Tercera Comida", "Okinawa se ha comido al resto de los peces. Sige sin comer personas", 3);
 
 
-INSERT INTO pecera VALUES (1,"Pecera de Iripollen", "03:00", "69.69.69.69", 5);
-INSERT INTO pecera VALUES (2,"MinePecera", "11:00", "69.69.69.70", 7);
-INSERT INTO pecera (nombrePecera,horacomida,IP,capacidad) VALUES ("Pecera de MIERDA!!!", "00:11", "69.69.69.71", 5);
+INSERT INTO pecera(nombrePecera,horacomida,IP,capacidad) VALUES ("Pecera de Iripollen", "03:00", "69.69.69.69", 5);
+INSERT INTO pecera(nombrePecera,horacomida,IP,capacidad) VALUES ("MinePecera", "11:00", "69.69.69.70", 7);
+INSERT INTO pecera(nombrePecera,horacomida,IP,capacidad) VALUES ("Pecera de MIERDA!!!", "00:11", "69.69.69.71", 5);
 
 
 INSERT INTO regcomida VALUES (1,1, "2016/05/20 11:00");
