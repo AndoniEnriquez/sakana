@@ -268,6 +268,7 @@ public class DAOPecera {
 					" SET IP = '"+p.getIP()+
 					"', Capacidad   = '"+p.getCapacidad()+
 					"', nombre   = '"+p.getNombre()+
+					"', comida_id   = '"+p.getComida_id()+
 					"', horacomida   = '"+p.getHoracomida().getTime()+
 					"' WHERE nombre='"+p.getNombre()+"'";
 			return (stmt.executeUpdate(strSQL)>0);
