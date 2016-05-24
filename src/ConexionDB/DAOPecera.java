@@ -26,7 +26,7 @@ public class DAOPecera {
 
 			lista = new ArrayList<>();
 			stmt=PoolConexiones.getConexion().createStatement();
-			strSQL="SELECT pecera_id, IP,Capacidad,NombrePecera,horacomida"+
+			strSQL="SELECT pecera_id, IP,Capacidad,NombrePecera,horacomida, comida_id"+
 					" FROM PECERA";
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
@@ -281,6 +281,64 @@ public class DAOPecera {
 		{
 			e.printStackTrace();
 			return false;
+		}
+	}
+
+	public static String getValorPHPecera(Pecera p) {
+		Statement stmt;
+		ResultSet result;
+		String strSQL;
+		String valor;
+
+		try
+		{
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="SELECT m.valor"+
+					" FROM medicion m JOIN pecera p ON p.pecera_id = m.pecera_id"+
+					" where p.pecera_id = "+ p.getID() + " and m.tipomedicion_id = 1"+
+					" order by m.datetimeMedicion DESC"+ 
+					" limit 1";
+			result = stmt.executeQuery(strSQL);
+			if(!result.next()) return null;
+
+			
+			valor = String.valueOf(result.getFloat("valor"));
+			result.close();
+			return valor;
+		}
+
+		catch(SQLException e)
+		{
+			return null;
+		}
+	}
+
+	public static String getValorTempPecera(Pecera p) {
+		Statement stmt;
+		ResultSet result;
+		String strSQL;
+		String valor;
+
+		try
+		{
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="SELECT m.valor"+
+					" FROM medicion m JOIN pecera p ON p.pecera_id = m.pecera_id"+
+					" where p.pecera_id = "+ p.getID() + " and m.tipomedicion_id = 2"+
+					" order by m.datetimeMedicion DESC"+ 
+					" limit 1";
+			result = stmt.executeQuery(strSQL);
+			if(!result.next()) return null;
+
+			
+			valor = String.valueOf(result.getFloat("valor"));
+			result.close();
+			return valor;
+		}
+
+		catch(SQLException e)
+		{
+			return null;
 		}
 	}
 }

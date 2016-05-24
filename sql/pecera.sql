@@ -111,5 +111,10 @@ INSERT INTO pez VALUES (1, "Iripollen", "Desconocido", 4, 1, 1);
 INSERT INTO pez VALUES (2, "Okinawa", "Hembra", 5, 1, 1);
 INSERT INTO pez VALUES (3, "TxampiNEITOR", "Macho", 2, 1, 2);
 
+insert into medicion values (1,6.5,"2016/05/20 11:00", 1,1);
+insert into medicion values (2,8,"2016/05/20 11:00", 1,2);
+insert into medicion values (3,23,"2016/05/20 11:00", 2,1);
+insert into medicion values (4,25,"2016/05/20 11:00", 2,2);
+insert into medicion values (5,21,"2016/05/21 11:00", 2,1);
 
 

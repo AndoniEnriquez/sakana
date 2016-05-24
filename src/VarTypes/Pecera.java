@@ -12,7 +12,6 @@ public class Pecera {
 	int comida_id;
 	Date horacomida;
 
-	float PH, Temp;
 
 
 	public Pecera(String IP, String nombre, int capacidad, int comida_id){
@@ -36,33 +35,6 @@ public class Pecera {
 		this.nombre = nombre;
 		this.capacidad = capacidad;
 		this.comida_id = comida_id;
-	}
-
-	public Pecera(String IP, String nombre, int capacidad, float PH, float Temp, int comida_id){
-		this.IP = IP;
-		this.nombre = nombre;
-		this.capacidad = capacidad;
-		this.PH = PH;
-		this.Temp = Temp;
-		this.comida_id = comida_id;
-	}
-
-
-
-	public float getPH() {
-		return PH;
-	}
-
-	public void setPH(float pH) {
-		PH = pH;
-	}
-
-	public float getTemp() {
-		return Temp;
-	}
-
-	public void setTemp(float temp) {
-		Temp = temp;
 	}
 
 	public String getNombre() {

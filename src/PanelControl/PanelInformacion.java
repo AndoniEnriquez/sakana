@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import ConexionDB.DAOPecera;
 import Dialogo.DialogoAddPecera;
 import Dialogo.DialogoAddPez;
 import Dialogo.DialogoRegistroComida;
@@ -114,9 +115,22 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 		txIP.setText(pecera.getIP());
 		txHoraComida.setText(simpleDateFormat.format(pecera.getHoracomida()));
 		txCapacidad.setText(String.valueOf(pecera.getCapacidad()));
-		txPH.setText(String.valueOf(pecera.getPH()));
-		txTemp.setText(String.valueOf(pecera.getTemp()));
+		txPH.setText(recuperarValorPH());
+		txTemp.setText(recuperarValorTemp());
 	}
+
+	private String recuperarValorTemp() {
+		String valor;
+		valor = DAOPecera.getValorTempPecera(pecera);
+		return valor;
+	}
+
+	private String recuperarValorPH() {
+		String valor;
+		valor = DAOPecera.getValorPHPecera(pecera);
+		return valor;
+	}
+	
 
 	private JLabel crearCampo(String titulo) {
 		JLabel campo = new JLabel();
