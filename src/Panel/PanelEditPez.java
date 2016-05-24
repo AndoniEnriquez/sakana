@@ -216,10 +216,6 @@ public class PanelEditPez extends JPanel implements ActionListener{
 				fabrica.getPanelPeces().controlLista();
 
 
-			} catch (SQLException e1) {
-
-				e1.printStackTrace();
-
 			} catch (Exception e2){
 
 			}

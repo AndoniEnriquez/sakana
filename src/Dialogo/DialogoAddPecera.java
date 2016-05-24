@@ -143,7 +143,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 
 			if(edit==false){
 				try{
-					Pecera p = new Pecera(txIP.getText(), txNombrePecera.getText(), Integer.parseInt(txtCapacidad.getText()));
+					Pecera p = new Pecera(txIP.getText(), txNombrePecera.getText(), Integer.parseInt(txtCapacidad.getText()),-1);
 					this.parsearHora(p);
 					anadir = DAOPecera.addPecera(p);
 					if(anadir){
