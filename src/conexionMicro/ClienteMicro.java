@@ -39,7 +39,6 @@ public class ClienteMicro {
 				 c = (char) in.read();
 				 respuesta = "" + respuesta + c;
 			 }while(c != ';');
-			 client.close();
 		} catch (Exception e) {
 			respuesta = null;
 		} finally {
