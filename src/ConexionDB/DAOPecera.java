@@ -264,17 +264,20 @@ public class DAOPecera {
 		Statement stmt;
 		boolean ok=false;
 		String strSQL;
-
+		SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
+		
+		
 		try
 		{
 			stmt=PoolConexiones.getConexion().createStatement();
 			strSQL="UPDATE PECERA "+
 					" SET IP = '"+p.getIP()+
 					"', Capacidad   = '"+p.getCapacidad()+
-					"', nombre   = '"+p.getNombre()+
-					"', comida_id   = '"+p.getComida_id()+
-					"', horacomida   = '"+p.getHoracomida().getTime()+
-					"' WHERE nombre='"+p.getNombre()+"'";
+					"', nombrePecera   = '"+p.getNombre()+
+					"', comida_id   = "+null+
+					", horacomida   = '"+ formatter.format(p.getHoracomida())+
+					"' WHERE nombrePecera='"+p.getNombre()+"'";
+			System.out.println(strSQL);
 			return (stmt.executeUpdate(strSQL)>0);
 		}
 		catch(SQLException e)
