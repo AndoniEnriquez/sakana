@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class ClienteMicro {
 	String servidor;
 	int puerto;
+	public static boolean DISPONIBLE = true;
 
 	public ClienteMicro(String servidor, int puerto){
 		this.servidor = servidor;
@@ -21,6 +22,7 @@ public class ClienteMicro {
 		Socket client = null;
 		if(!comando.endsWith(";")) comando = comando + ";";
 		try {
+			DISPONIBLE = false;
 			client =  new Socket(servidor, puerto);
 			OutputStream outToServer = client.getOutputStream();
 			DataOutputStream out = new DataOutputStream(outToServer);
@@ -45,6 +47,7 @@ public class ClienteMicro {
 			} catch (Exception e1 ) {
 			}
 		}	
+		DISPONIBLE = false;
 		return respuesta;
 
 	}

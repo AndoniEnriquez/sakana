@@ -26,6 +26,10 @@ public class InterfazMicro {
 		cliente = new ClienteMicro(p.getIP(), PORT);
 	}
 	
+	public boolean isDisponible(){
+		return ClienteMicro.DISPONIBLE;
+	}
+	
 	@SuppressWarnings("deprecation")
 	public int setDateTime(final Calendar c) {
 		

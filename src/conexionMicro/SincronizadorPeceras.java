@@ -53,7 +53,9 @@ public class SincronizadorPeceras extends Thread {
 		RegComida regComida;
 		Float ph, temp;
 		Medicion medicionPh, medicionTemp;
+		while(!interfaz.isDisponible()){}
 		ph = interfaz.getPh();
+		while(!interfaz.isDisponible()){}
 		temp = interfaz.getTemp();
 		if(ph >= 0){
 			medicionPh = new Medicion(	ph, 
@@ -69,6 +71,7 @@ public class SincronizadorPeceras extends Thread {
 											p.getID());
 			DAOMedicion.addMedicion(medicionTemp);
 		}
+		while(!interfaz.isDisponible()){}
 		while((regComida = interfaz.getFeedLogEntry()) != null){
 			DAORegComida.addRegistro(regComida);
 		}
