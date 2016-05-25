@@ -116,5 +116,6 @@ insert into medicion values (2,8,"2016/05/20 11:00", 1,2);
 insert into medicion values (3,23,"2016/05/20 11:00", 2,1);
 insert into medicion values (4,25,"2016/05/20 11:00", 2,2);
 insert into medicion values (5,21,"2016/05/21 11:00", 2,1);
-
+insert into medicion values (6,7.2,"2016/05/21 11:00", 1,3);
+insert into medicion values (7,24,"2016/05/21 11:00", 2,3);
 
