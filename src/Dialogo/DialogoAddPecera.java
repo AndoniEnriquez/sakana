@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.BorderFactory;
@@ -23,6 +24,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import ConexionDB.DAOComida;
 import ConexionDB.DAOPecera;
 import Fabrica.FabricaAcciones;
 import VarTypes.Pecera;
@@ -34,6 +36,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 	JComboBox<String> comboResponsable;
 	JTextField txNombrePecera, txIP, txtCapacidad, txMin;
 	JFormattedTextField txHora;
+	JComboBox cbComida;
 
 	SimpleDateFormat simpleDateFormat;
 	FabricaAcciones fabrica;
@@ -62,6 +65,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		txIP.setText(pecera.getIP());
 		txtCapacidad.setText(String.valueOf(pecera.getCapacidad()));
 		txHora.setText(simpleDateFormat.format(pecera.getHoracomida()));
+		cbComida.setSelectedIndex(pecera.getComida_id());
 	}
 
 	private void crearVentana() {
@@ -100,10 +104,21 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 		panel.add(txNombrePecera = crearCampo("Nombre de la Pecera"));
 		panel.add(txIP = crearCampo("IP"));
 		panel.add(txtCapacidad = crearCampo("Capacidad"));
-		panel.add(txHora = crearCampoFecha("Hora comida"));		
+		panel.add(txHora = crearCampoFecha("Hora comida"));	
+		panel.add(crearJComboBoxComida());
 		return panel;
 	}
 
+
+	private Component crearJComboBoxComida() {
+		ArrayList<String> comidas = new ArrayList<>();
+		cbComida = new JComboBox<>();
+		cbComida.addItem("Ninguno");
+		comidas = DAOComida.getComidasParaComboBox();
+		for(int i = 0; i < comidas.size(); i++)cbComida.addItem(comidas.get(i));
+		
+		return cbComida;
+	}
 
 	private JFormattedTextField crearCampoFecha(String titulo) {
 
@@ -145,6 +160,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 				try{
 					Pecera p = new Pecera(txIP.getText(), txNombrePecera.getText(), Integer.parseInt(txtCapacidad.getText()),-1);
 					this.parsearHora(p);
+					p.setComida_id(cbComida.getSelectedIndex());
 					anadir = DAOPecera.addPecera(p);
 					if(anadir){
 
@@ -172,6 +188,7 @@ public class DialogoAddPecera  extends JDialog implements ActionListener{
 					pecera.setIP(txIP.getText());
 					pecera.setCapacidad(Integer.parseInt(txtCapacidad.getText()));
 					this.parsearHora(pecera);
+					pecera.setComida_id(cbComida.getSelectedIndex());
 					anadir = DAOPecera.updatePecera(pecera);
 					if(anadir){
 

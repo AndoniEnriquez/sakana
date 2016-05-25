@@ -86,4 +86,9 @@ public class Pecera {
 	public void setID(int iD) {
 		ID = iD;
 	}
+
+	public String setComida_idForUpdate() {
+		return (this.comida_id == 0) ? null: String.valueOf(comida_id);
+		
+	}
 }

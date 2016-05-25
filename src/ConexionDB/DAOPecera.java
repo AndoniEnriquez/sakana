@@ -274,10 +274,9 @@ public class DAOPecera {
 					" SET IP = '"+p.getIP()+
 					"', Capacidad   = '"+p.getCapacidad()+
 					"', nombrePecera   = '"+p.getNombre()+
-					"', comida_id   = "+null+
+					"', comida_id   = "+p.setComida_idForUpdate()+
 					", horacomida   = '"+ formatter.format(p.getHoracomida())+
 					"' WHERE nombrePecera='"+p.getNombre()+"'";
-			System.out.println(strSQL);
 			return (stmt.executeUpdate(strSQL)>0);
 		}
 		catch(SQLException e)

@@ -37,6 +37,32 @@ public class DAOComida {
 		}
 		return lista;
 	}
+	
+	static public ArrayList<String> getComidasParaComboBox(){
+		Statement stmt;
+		ResultSet result;
+		String strSQL;
+		ArrayList<String> lista = null;
+
+		try
+		{
+
+			lista = new ArrayList<>();
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="SELECT nombreComida"+
+					" FROM Comida";
+			result = stmt.executeQuery(strSQL);
+			while (result.next()){
+
+				
+				lista.add(result.getString("nombreComida"));
+			}
+			result.close();
+		} catch (Exception e ){
+			e.printStackTrace();
+		}
+		return lista;
+	}
 
 
 	static public Comida buscarPorID(int idComida){
