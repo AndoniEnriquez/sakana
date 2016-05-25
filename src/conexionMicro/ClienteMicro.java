@@ -42,11 +42,12 @@ public class ClienteMicro {
 			 client.close();
 		} catch (Exception e) {
 			respuesta = null;
+		} finally {
 			try {
 				client.close();
 			} catch (Exception e1 ) {
 			}
-		}	
+		}
 		DISPONIBLE = false;
 		return respuesta;
 
