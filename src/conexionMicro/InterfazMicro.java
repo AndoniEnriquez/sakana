@@ -1,12 +1,9 @@
 package conexionMicro;
 
-import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Scanner;
 
 import ConexionDB.DAOPecera;
-import VarTypes.Comida;
 import VarTypes.Pecera;
 import VarTypes.RegComida;
 
