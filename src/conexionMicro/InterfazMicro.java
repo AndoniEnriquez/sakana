@@ -609,5 +609,59 @@ public class InterfazMicro {
 		}
 		return null;
 	}
+	
+	public int feed(final int times){
+
+		respuesta = null;
+		
+		Thread t = new Thread( new Runnable() {
+			@Override
+			public void run() {
+				respuesta = cliente.enviarComando("feed " + times +";");				
+			}
+		});
+		
+		t.start();
+		long start = Calendar.getInstance().getTimeInMillis();
+		while(t.isAlive() && Calendar.getInstance().getTimeInMillis() - start < 2000 ){}
+		
+		if(t.isAlive()){
+			t.stop();
+			return NO_RESPUESTA;
+		}
+		if (respuesta == null) return NO_CONEXION;
+		if(respuesta.startsWith("fed")) {
+			return OK;
+		}
+		return ERROR_DESCONOCIDO;
+	}
+	
+	public int reset(){
+
+		respuesta = null;
+		
+		Thread t = new Thread( new Runnable() {
+			@Override
+			public void run() {
+				respuesta = cliente.enviarComando("reset;");				
+			}
+		});
+		
+		t.start();
+		long start = Calendar.getInstance().getTimeInMillis();
+		while(t.isAlive() && Calendar.getInstance().getTimeInMillis() - start < 2000 ){}
+		
+		if(t.isAlive()){
+			t.stop();
+			return NO_RESPUESTA;
+		}
+		if (respuesta == null) return NO_CONEXION;
+		if(respuesta.startsWith("reset")) {
+			return OK;
+		}
+		return ERROR_DESCONOCIDO;
+	}
+	
+	
 }
 
