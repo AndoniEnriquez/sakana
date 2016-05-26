@@ -1,6 +1,5 @@
 package Panel;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -23,9 +22,8 @@ import Fabrica.FabricaAcciones;
 import VarTypes.Pez;
 import VarTypes.TipoPez;
 
-
-
-public class PanelEditPez extends JPanel implements ActionListener{
+@SuppressWarnings("serial")
+public class PanelEditPez extends JPanel implements ActionListener {
 
 	JComboBox<String> comboResponsable;
 	JTextField txNom;
@@ -33,7 +31,9 @@ public class PanelEditPez extends JPanel implements ActionListener{
 	ArrayList<TipoPez> tipoPez;
 	FabricaAcciones fabrica;
 
-	public PanelEditPez (FabricaAcciones fabrica){
+	@SuppressWarnings("static-access")
+	public PanelEditPez(FabricaAcciones fabrica) {
+		
 		this.fabrica = fabrica;
 		crearVentana();
 		this.setVisible(true);
@@ -41,70 +41,74 @@ public class PanelEditPez extends JPanel implements ActionListener{
 	}
 
 	private void crearVentana() {
-		this.setLocation(280,200);
+		
+		this.setLocation(280, 200);
 		this.setSize(300, 380);
 		this.add(crearPanel());
 		this.setOpaque(false);
 	}
 
 	private Container crearPanel() {
-		JPanel panel = new JPanel (new BorderLayout(0,20));
-		panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+		
+		JPanel panel = new JPanel(new BorderLayout(0, 20));
+		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		panel.setOpaque(false);
-		panel.add(crearPanelCampos (), BorderLayout.CENTER);
+		panel.add(crearPanelCampos(), BorderLayout.CENTER);
 		panel.add(crearPanelBotones(), BorderLayout.SOUTH);
+		
 		return panel;
 	}
 
 	private Component crearPanelBotones() {
-		JPanel panel = new JPanel (new FlowLayout(FlowLayout.CENTER,30,0));
+	
+		JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 0));
 		panel.setOpaque(false);
-		JButton bEdit = new JButton ("Editar");
+		
+		JButton bEdit = new JButton("Editar");
 		bEdit.setActionCommand("Editar");
 		bEdit.addActionListener(this);
-		JButton bBorrar = new JButton ("Borrar");
+		
+		JButton bBorrar = new JButton("Borrar");
 		bBorrar.setActionCommand("Borrar");
 		bBorrar.addActionListener(this);
 
 		panel.add(bEdit);
 		panel.add(bBorrar);
+		
 		return panel;
 	}
 
 	private Component crearPanelCampos() {
-		JPanel panel = new JPanel (new GridLayout(5,1,0,20));
+		
+		JPanel panel = new JPanel(new GridLayout(5, 1, 0, 20));
 
-		String nombres [];
 		panel.setOpaque(false);
 
 		panel.add(txNom = crearCampo("Nombre de Pez"));
 
-		String genero [];
-		genero = new String [3];
+		String genero[];
+		genero = new String[3];
 		genero[0] = "Hembra";
 		genero[1] = "Macho";
 		genero[2] = "Desconocido";
 
-
 		comboGenero = new JComboBox<>(genero);
-		comboGenero.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createLineBorder(Color.PINK),"Genero del Pez"));
+		comboGenero.setBorder(
+				BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.PINK), "Genero del Pez"));
 
 		panel.add(comboGenero);
 
-
-
-
 		try {
+		
 			tipoPez = DAOTipoPez.getTiposPez();
+		
 		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
 
 		comboTipo = new JComboBox<>(getTipoPez(tipoPez));
-		comboTipo.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createLineBorder(Color.PINK),"Tipo de Pez"));
+		comboTipo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.PINK), "Tipo de Pez"));
 
 		panel.add(comboTipo);
 
@@ -113,24 +117,24 @@ public class PanelEditPez extends JPanel implements ActionListener{
 		return panel;
 	}
 
-	public int seleccionarGenero(Pez p){
+	public int seleccionarGenero(Pez p) {
 
-		if(p.getGenero().toLowerCase().contains("macho")){
+		if (p.getGenero().toLowerCase().contains("macho")) {
 
 			return 1;
 
-		}else if(p.getGenero().toLowerCase().contains("hembra")) {
+		} else if (p.getGenero().toLowerCase().contains("hembra")) {
 
 			return 0;
 
-		}else{
+		} else {
 
 			return 2;
 		}
 
 	}
 
-	public String conseguirGenero(int index){
+	public String conseguirGenero(int index) {
 
 		String genero = null;
 
@@ -138,10 +142,10 @@ public class PanelEditPez extends JPanel implements ActionListener{
 
 		case 0:
 
-			genero =  "hembra";
+			genero = "hembra";
 			break;
 
-		case 1: 
+		case 1:
 
 			genero = "macho";
 			break;
@@ -159,24 +163,27 @@ public class PanelEditPez extends JPanel implements ActionListener{
 
 	}
 
-	public void setTextPez(){
-		try{
+	public void setTextPez() {
+		
+		try {
+		
 			txNom.setText(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex()).getNombrePez());
 			comboGenero.setSelectedIndex(this.seleccionarGenero(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex())));
-			comboTipo.setSelectedIndex(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex()).getTipoPez_id()-1);
-		}catch (ArrayIndexOutOfBoundsException e) {
+			comboTipo.setSelectedIndex(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex()).getTipoPez_id() - 1);
+	
+		} catch (ArrayIndexOutOfBoundsException e) {
 		}
 	}
 
-
 	private JTextField crearCampo(String titulo) {
+
 		JTextField campo = new JTextField();
-		campo.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createLineBorder(Color.PINK),titulo));
+		campo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.PINK), titulo));
 
 		return campo;
 	}
 
+	@SuppressWarnings({ "unused", "static-access" })
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -184,26 +191,25 @@ public class PanelEditPez extends JPanel implements ActionListener{
 		Pez p;
 		String nombreAnterior;
 
-		switch (e.getActionCommand()){
+		switch (e.getActionCommand()) {
 
 		case "Editar":
 
 			try {
-				if(fabrica.getListaPez().getSelectedIndex()>=-1){
-				p = fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex());
-				nombreAnterior = p.getNombrePez();
-				p.setNombrePez(txNom.getText());
-				p.setGenero(this.conseguirGenero(comboGenero.getSelectedIndex()));
-				p.setTipoPez_id(comboTipo.getSelectedIndex()+1);
+			
+				if (fabrica.getListaPez().getSelectedIndex() >= -1) {
+					p = fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex());
+					nombreAnterior = p.getNombrePez();
+					p.setNombrePez(txNom.getText());
+					p.setGenero(this.conseguirGenero(comboGenero.getSelectedIndex()));
+					p.setTipoPez_id(comboTipo.getSelectedIndex() + 1);
 
-				editar = DAOPez.updatePez(p, nombreAnterior);
-				System.out.println("shit");
-				fabrica.getPanelPeces().controlLista();
+					editar = DAOPez.updatePez(p, nombreAnterior);
+					fabrica.getPanelPeces().controlLista();
 				}
+				
 			} catch (Exception e3) {
-				//Array index out of bounds errorea saltetan badau 0 hartu
 
-				//e3.printStackTrace();
 			}
 
 			break;
@@ -215,25 +221,24 @@ public class PanelEditPez extends JPanel implements ActionListener{
 				DAOPez.eliminarPez(fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex()).getNombrePez());
 				fabrica.getPanelPeces().controlLista();
 
-
-			} catch (Exception e2){
+			} catch (Exception e2) {
 
 			}
 
 			break;
 
-		default: 
+		default:
 			break;
 
 		}
 
 	}
 
-	public String[] getTipoPez(ArrayList<TipoPez> tipo){
+	public String[] getTipoPez(ArrayList<TipoPez> tipo) {
 
 		String tipoPez[] = new String[tipo.size()];
 
-		for(int i = 0; i < tipo.size(); i++){
+		for (int i = 0; i < tipo.size(); i++) {
 
 			tipoPez[i] = tipo.get(i).getDescripcion();
 
@@ -241,14 +246,4 @@ public class PanelEditPez extends JPanel implements ActionListener{
 
 		return tipoPez;
 	}
-
-	private int seleccionarTipo() {
-		return comboResponsable.getSelectedIndex() + 1;
-	}
-
-	private boolean camposIncompletos() {
-
-		return false;//txNombre.getText().length()==0 ||txUbicaci�n.getText().length()==0 || txDescripci�n.getText().length()==0;
-	}
 }
-
