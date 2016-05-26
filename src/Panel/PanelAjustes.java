@@ -75,7 +75,7 @@ public class PanelAjustes implements ActionListener{
 		bSalir.add(Box.createRigidArea(new Dimension(35,35)));
 		bSalir.setBorder(BorderFactory.createEmptyBorder(10,2,2,2));
 		
-		bAdd = new JButton(new ImageIcon("Iconos/ajustes/plus.png"));
+		bAdd = new JButton(new ImageIcon("Iconos/ajustes/settings.png"));
 		bAdd.setActionCommand("Add");
 		bAdd.addActionListener(this);
 		bAdd.setEnabled(false);
