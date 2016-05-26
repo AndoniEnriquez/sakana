@@ -191,10 +191,10 @@ public class DialogoConect extends JDialog implements ActionListener{
 		txFischN.setText(String.valueOf(fishN));
 		
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
-		String feedT = simpleDateFormat.format(feedTime);
+		String feedT = simpleDateFormat.format(feedTime.getTime());
 		
 		simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm");
-		String dateT = simpleDateFormat.format(dateTime);
+		String dateT = simpleDateFormat.format(dateTime.getTime());
 		
 		txFedTime.setText(feedT);
 		txCurTime.setText(dateT);
