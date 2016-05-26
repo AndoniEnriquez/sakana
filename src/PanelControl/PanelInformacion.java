@@ -13,12 +13,14 @@ import java.text.SimpleDateFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import ConexionDB.DAOPecera;
 import Dialogo.DialogoAddPecera;
 import Dialogo.DialogoAddPez;
+import Dialogo.DialogoConect;
 import Dialogo.DialogoRegistroComida;
 import Fabrica.FabricaAcciones;
 import Panel.MiPanel;
@@ -32,7 +34,7 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 	static int tamY = 0;
 
 	JLabel txNom,txIP,txCapacidad, txHoraComida, txPH, txTemp;
-	JButton bEdit, bAdd, bRegComida;
+	JButton bEdit, bAdd, bRegComida, bConect;
 
 
 	JPanel panel;
@@ -58,9 +60,6 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 		return panel;
 	}
 
-
-
-
 	private Container crearPanel() {
 		JPanel panel = new JPanel (new BorderLayout(0,20));
 		panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
@@ -82,10 +81,14 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 		bRegComida = new JButton ("Registro Comida");
 		bRegComida.setActionCommand("Reg");
 		bRegComida.addActionListener(this);
+		bConect = new JButton ("Conectarse");
+		bConect.setActionCommand("Conect");
+		bConect.addActionListener(this);
 
 		panel.add(bAdd);
 		panel.add(bEdit);
 		panel.add(bRegComida);
+		panel.add(bConect);
 
 
 		return panel;
@@ -160,9 +163,17 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 			
 		case "Reg":
 
-			if(pecera!=null){
-				new DialogoRegistroComida(fabrica.getMenuPrincipal(),pecera);
+			
+			break;
+			
+		case "Conect":
+
+			if(pecera != null){
+
+				new DialogoConect(fabrica.getMenuPrincipal(), fabrica, pecera, false);
+				
 			}
+			
 			break;
 
 		default:
