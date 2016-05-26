@@ -13,32 +13,37 @@ public class Pecera {
 	Date horacomida;
 	int meals;
 
-
-
-	public Pecera(String IP, String nombre, int capacidad, int comida_id){
+	public Pecera(String IP, String nombre, int capacidad, int comida_id) {
+		
 		this.IP = IP;
 		this.nombre = nombre;
 		this.capacidad = capacidad;
 		this.comida_id = comida_id;
-		this.meals = 0;
 		
-	}	
+		this.meals = 0;
+	}
+
+	public Pecera(int id, String IP, String nombre, int capacidad, int comida_id) {
+		
+		this.ID = id;
+		this.IP = IP;
+		this.nombre = nombre;
+		this.capacidad = capacidad;
+		this.comida_id = comida_id;
+		
+		this.meals = 0;
+	}
 	
+	public String setComida_idForUpdate() {
+		return (this.comida_id == 0) ? null : String.valueOf(comida_id);
+	}
+
 	public int getComida_id() {
 		return comida_id;
 	}
 
 	public void setComida_id(int comida_id) {
 		this.comida_id = comida_id;
-	}
-
-	public Pecera(int id, String IP, String nombre, int capacidad,  int comida_id){
-		this.ID = id;
-		this.IP = IP;
-		this.nombre = nombre;
-		this.capacidad = capacidad;
-		this.comida_id = comida_id;
-		this.meals = 0;
 	}
 
 	public int getMeals() {
@@ -53,39 +58,29 @@ public class Pecera {
 		return nombre;
 	}
 
-
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-
 
 	public Date getHoracomida() {
 		return horacomida;
 	}
 
-
-
 	public void setHoracomida(Date horacomida) {
 		this.horacomida = horacomida;
 	}
-
 
 	public String getIP() {
 		return IP;
 	}
 
-
 	public void setIP(String iP) {
 		IP = iP;
 	}
 
-
 	public int getCapacidad() {
 		return capacidad;
 	}
-
 
 	public void setCapacidad(int capacidad) {
 		this.capacidad = capacidad;
@@ -99,8 +94,4 @@ public class Pecera {
 		ID = iD;
 	}
 
-	public String setComida_idForUpdate() {
-		return (this.comida_id == 0) ? null: String.valueOf(comida_id);
-		
-	}
 }

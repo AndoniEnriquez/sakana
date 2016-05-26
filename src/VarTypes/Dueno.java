@@ -5,18 +5,18 @@ public class Dueno {
 	int id;
 	String nombreDueno, password;
 
-	public Dueno(String nombreDueno, String password){
+	public Dueno(String nombreDueno, String password) {
 
 		this.nombreDueno = nombreDueno;
 		this.password = password;
 	}
-	
-	public Dueno(int id, String nombreDueno, String password){
+
+	public Dueno(int id, String nombreDueno, String password) {
+
 		this.id = id;
 		this.nombreDueno = nombreDueno;
 		this.password = password;
 	}
-
 
 	public int getId() {
 		return id;
