@@ -145,6 +145,7 @@ public class DialogoConect extends JDialog implements ActionListener{
 			
 		case "Feed":
 		
+			System.out.println(DAOPecera.getCantidadPeces(p));
 			interfaz.feed(DAOPecera.getCantidadPeces(p));
 			JOptionPane.showMessageDialog(this, "Dando de comer", "Accion realizada", JOptionPane.INFORMATION_MESSAGE);
 			
