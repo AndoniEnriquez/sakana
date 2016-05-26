@@ -2,18 +2,12 @@ DROP database if exists pecera;
 CREATE database pecera;
 use pecera;
 
-CREATE TABLE TIPOCOMIDA (
-tipocomida_id 			INT(3) AUTO_INCREMENT,
-descripcionTipoComida 	VARCHAR(30),
-CONSTRAINT TIPOCOMIDA_PRIMARY_KEY PRIMARY KEY (tipocomida_id));
 
 CREATE TABLE COMIDA (
 comida_id	 		INT(3) AUTO_INCREMENT,
 nombreComida 		VARCHAR(20),
 descripcionComida 	VARCHAR(70),
-tipocomida_id	 	INT(3) NOT NULL,
-CONSTRAINT COMIDA_PRIMARY_KEY PRIMARY KEY (comida_id),
-CONSTRAINT COMIDA_TIPOCOMIDA_FK FOREIGN KEY (tipocomida_id) REFERENCES TIPOCOMIDA (tipocomida_id));
+CONSTRAINT COMIDA_PRIMARY_KEY PRIMARY KEY (comida_id));
 
 CREATE TABLE PECERA (
 pecera_id		 	INT(3) AUTO_INCREMENT,
@@ -75,13 +69,9 @@ CONSTRAINT MEDICION_PRIMARY_KEY PRIMARY KEY (medicion_id),
 CONSTRAINT MEDICION_TIPOMEDICION FOREIGN KEY (tipomedicion_id) REFERENCES TIPOMEDICION (tipomedicion_id),
 CONSTRAINT MEDICION_PECERA_FK FOREIGN KEY (pecera_id) REFERENCES PECERA (pecera_id));
 
-INSERT INTO tipocomida VALUES (1, "Normal");
-INSERT INTO tipocomida VALUES (2, "Caro");
-INSERT INTO tipocomida VALUES (3, "Personas");
-
-INSERT INTO comida VALUES (1, "Primera Comida", "Okinawa no ha comido nada", 3);
-INSERT INTO comida VALUES (2, "Segunda Comida", "Okinawa tampoco ha comido nada", 3);
-INSERT INTO comida VALUES (3, "Tercera Comida", "Okinawa se ha comido al resto de los peces. Sige sin comer personas", 3);
+INSERT INTO comida VALUES (1, "Primera Comida", "Okinawa no ha comido nada");
+INSERT INTO comida VALUES (2, "Segunda Comida", "Okinawa tampoco ha comido nada");
+INSERT INTO comida VALUES (3, "Tercera Comida", "Okinawa se ha comido al resto de los peces. Sige sin comer personas");
 
 
 INSERT INTO pecera(nombrePecera,horacomida,IP,capacidad) VALUES ("Pecera de Iripollen", "03:00", "69.69.69.69", 5);

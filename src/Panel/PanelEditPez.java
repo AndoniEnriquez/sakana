@@ -189,7 +189,7 @@ public class PanelEditPez extends JPanel implements ActionListener{
 		case "Editar":
 
 			try {
-
+				if(fabrica.getListaPez().getSelectedIndex()>=-1){
 				p = fabrica.getModeloPez().getElementAt(fabrica.getListaPez().getSelectedIndex());
 				nombreAnterior = p.getNombrePez();
 				p.setNombrePez(txNom.getText());
@@ -197,12 +197,13 @@ public class PanelEditPez extends JPanel implements ActionListener{
 				p.setTipoPez_id(comboTipo.getSelectedIndex()+1);
 
 				editar = DAOPez.updatePez(p, nombreAnterior);
+				System.out.println("shit");
 				fabrica.getPanelPeces().controlLista();
-
+				}
 			} catch (Exception e3) {
 				//Array index out of bounds errorea saltetan badau 0 hartu
 
-				e3.printStackTrace();
+				//e3.printStackTrace();
 			}
 
 			break;
