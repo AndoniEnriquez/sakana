@@ -17,7 +17,6 @@ import sakana.MenuPrincipal;
 
 public class FabricaAcciones {
 
-
 	int tamX, tamY;
 
 	public static PanelListaPecera panelListaPecera;
@@ -27,47 +26,47 @@ public class FabricaAcciones {
 	public static MenuPrincipal menuPrincipal;
 	public static PanelPeces panelPeces;
 	public static PanelEditPez panelEditPez;
-	
+
 	DefaultListModel<Pecera> modeloPecera;
 	JList<Pecera> listaPecera;
-	
+
 	DefaultListModel<Pez> modeloPez;
 	JList<Pez> listaPez;
 
-	public LoginIzquierda accionamientoLoginIzquierda(){
-		
+	public LoginIzquierda accionamientoLoginIzquierda() {
+
 		this.tamX = 400;
 		this.tamY = 650;
-		
+
 		LoginIzquierda ventana = new LoginIzquierda(tamX, tamY);
 		ventana.setVisible(true);
-		return ventana;	
+		return ventana;
 	}
-	
-	public LoginDerecha accionamientoLoginDerecha(){
-		
+
+	public LoginDerecha accionamientoLoginDerecha() {
+
 		this.tamX = 820;
 		this.tamY = 650;
-		
+
 		LoginDerecha ventana = new LoginDerecha(tamX, tamY);
 		ventana.setVisible(true);
 		return ventana;
 	}
-	
-	public PanelListaPecera accionamientoListaPecera(){
-		
+
+	public PanelListaPecera accionamientoListaPecera() {
+
 		panelListaPecera = new PanelListaPecera(this);
 		panelListaPecera.setVisible(true);
 		return panelListaPecera;
 	}
-		
-	public PanelControlPecera accionamientoControlPecera(){
-		
+
+	public PanelControlPecera accionamientoControlPecera() {
+
 		panelControlPecera = new PanelControlPecera(this);
 		panelControlPecera.setVisible(true);
 		return panelControlPecera;
 	}
-	
+
 	public int getTamY() {
 		return tamY;
 	}
@@ -91,7 +90,7 @@ public class FabricaAcciones {
 	public void setModeloPez(DefaultListModel<Pez> modeloPez) {
 		this.modeloPez = modeloPez;
 	}
-	
+
 	public JList<Pez> getListaPez() {
 		return listaPez;
 	}
@@ -131,7 +130,7 @@ public class FabricaAcciones {
 	public void setListaPecera(JList<Pecera> listaPecera) {
 		this.listaPecera = listaPecera;
 	}
-	
+
 	public DefaultListModel<Pecera> getModeloPecera() {
 		return modeloPecera;
 	}
@@ -147,7 +146,7 @@ public class FabricaAcciones {
 	public static void setPanelAjustes(PanelAjustes panelAjustes) {
 		FabricaAcciones.panelAjustes = panelAjustes;
 	}
-	
+
 	public static PanelEditPez getPanelEditPez() {
 		return panelEditPez;
 	}
@@ -155,6 +154,5 @@ public class FabricaAcciones {
 	public static void setPanelEditPez(PanelEditPez panelEditPez) {
 		FabricaAcciones.panelEditPez = panelEditPez;
 	}
-
 
 }
