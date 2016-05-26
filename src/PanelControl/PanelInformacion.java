@@ -173,6 +173,8 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 		case "Conect":
 
 			if(pecera != null){
+				
+				System.out.println(DAOPecera.getCantidadPeces(pecera));
 
 					new DialogoConect(fabrica.getMenuPrincipal(), fabrica, pecera, false);
 			}
