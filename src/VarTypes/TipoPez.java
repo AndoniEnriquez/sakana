@@ -2,12 +2,12 @@ package VarTypes;
 
 public class TipoPez {
 
-
 	int tipopez_id;
 	String descripcion;
 	float phMin, phMax, temMin, temMax;
 
-	public TipoPez(int tipopez_id, String descripcion, float phMin, float phMax, float temMin, float temMax){
+	public TipoPez(int tipopez_id, String descripcion, float phMin, float phMax, float temMin, float temMax) {
+
 		this.tipopez_id = tipopez_id;
 		this.descripcion = descripcion;
 		this.phMin = phMin;
@@ -15,8 +15,9 @@ public class TipoPez {
 		this.temMin = temMin;
 		this.temMax = temMax;
 	}
-	
-	public TipoPez(String descripcion, float phMin, float phMax, float temMin, float temMax){
+
+	public TipoPez(String descripcion, float phMin, float phMax, float temMin, float temMax) {
+		
 		this.descripcion = descripcion;
 		this.phMin = phMin;
 		this.phMax = phMax;

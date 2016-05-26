@@ -7,13 +7,14 @@ public class Pez {
 
 
 	public Pez(String nombrePez, String genero, int tipoPez_id, int dueno_id, int pecera_id){
+
 		this.nombrePez = nombrePez;
 		this.genero = genero;
 		this.tipoPez_id = tipoPez_id;
 		this.dueno_id = dueno_id;
 		this.pecera_id = pecera_id;
-	}
 
+	}
 
 	public int getPez_id() {
 		return pez_id;
