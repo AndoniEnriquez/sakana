@@ -76,5 +76,4 @@ public class SincronizadorPeceras extends Thread {
 			DAORegComida.addRegistro(regComida);
 		}
 	}
-
 }

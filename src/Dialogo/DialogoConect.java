@@ -8,35 +8,47 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import Fabrica.FabricaAcciones;
 import VarTypes.Pecera;
+import conexionMicro.InterfazMicro;
 
 @SuppressWarnings("serial")
 public class DialogoConect extends JDialog implements ActionListener{
 
 	final static String  TITULO = "Gestion Micro";
 	
-	JTextField txPH, txTemp, txFedTime, txCurTime, txPHOff, txFischN, txMeals;
+	JLabel txPH, txTemp, txFedTime, txCurTime, txPHOff, txFischN, txMeals;
 	
 	Pecera p; 
 	FabricaAcciones fabrica;
+	InterfazMicro interfaz;
+	
+	Float ph, phOff, temp;
+	int meal, fishN;
+	Calendar dateTime, feedTime;
 	
 	public DialogoConect(JFrame frame, FabricaAcciones fabrica, Pecera p, boolean modo){
 		
 		super ( frame, TITULO, modo );
 		this.p = p;
 		this.fabrica = fabrica;
-		crearVentana();
+		interfaz = new InterfazMicro(p);
+		if(sincronizarDatos() == true){
+			crearVentana();
+		}	
 		this.setVisible(true);
-		
 	}
 
 	private void crearVentana() {
@@ -45,7 +57,6 @@ public class DialogoConect extends JDialog implements ActionListener{
 		this.setSize(500, 350);
 		this.setContentPane(crearPanelDialogo());
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		
 	}
 
 	private Container crearPanelDialogo() {
@@ -55,7 +66,6 @@ public class DialogoConect extends JDialog implements ActionListener{
 		panel.add(crearPanelCampos (), BorderLayout.CENTER);
 		panel.add(crearPanelBotones(), BorderLayout.SOUTH);
 		return panel;
-		
 	}
 
 	private Component crearPanelBotones() {
@@ -77,6 +87,7 @@ public class DialogoConect extends JDialog implements ActionListener{
 		panel.add(bSinc);
 		panel.add(bActu);
 		panel.add(bCancel);
+		
 		return panel;
 	}
 
@@ -94,22 +105,61 @@ public class DialogoConect extends JDialog implements ActionListener{
 		
 		panel.add(txFischN = crearCampo("Numero de peces"));
 		
+		colocarDatos();
+		
 		return panel;
 	}
 
-	private JTextField crearCampo(String titulo) {
+	private JLabel crearCampo(String titulo) {
 		
-		JTextField campo = new JTextField();
+		JLabel campo = new JLabel();
 		campo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.PINK),titulo));
 		return campo;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
+		
 		
 	}
 	
+	public boolean sincronizarDatos(){
+				
+		if(		(ph = interfaz.getPh()) != -1 
+				&& (phOff = interfaz.getPhOffset()) != -1
+				&& (temp = interfaz.getTemp()) != -1 
+				&& (meal = interfaz.getMeals()) != -1 
+				&& (fishN = interfaz.getFishNo()) != -1 
+				&& (dateTime = interfaz.getDateTime()) != null 
+				&& (feedTime = interfaz.getFeedTime()) != null ){
+			
+			return true;
+			
+		}else {
+			
+			JOptionPane.showMessageDialog(this, "Conexion Fallida", "Accion no realizada", JOptionPane.ERROR_MESSAGE);
+			
+			return false;
+		}
+	}
 	
-	
+	public void colocarDatos(){
+		
+		txPH.setText(String.valueOf(ph));
+		txPHOff.setText(String.valueOf(phOff));
+		txTemp.setText(String.valueOf(temp));
+		txMeals.setText(String.valueOf(meal));
+		txFischN.setText(String.valueOf(fishN));
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
+		String feedT = simpleDateFormat.format(feedTime);
+		
+		simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm");
+		String dateT = simpleDateFormat.format(dateTime);
+		
+		txFedTime.setText(feedT);
+		txCurTime.setText(dateT);
+		
+	}
 }

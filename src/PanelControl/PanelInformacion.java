@@ -26,6 +26,7 @@ import Fabrica.FabricaAcciones;
 import Panel.MiPanel;
 import Panel.PanelExample;
 import VarTypes.Pecera;
+import conexionMicro.InterfazMicro;
 
 @SuppressWarnings("serial")
 public class PanelInformacion extends PanelExample implements ActionListener{
@@ -168,10 +169,11 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 			
 		case "Conect":
 
+			
+			
 			if(pecera != null){
 
-				new DialogoConect(fabrica.getMenuPrincipal(), fabrica, pecera, false);
-				
+					new DialogoConect(fabrica.getMenuPrincipal(), fabrica, pecera, false);
 			}
 			
 			break;
@@ -179,6 +181,5 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 		default:
 			break;
 		}
-
 	}
 }
