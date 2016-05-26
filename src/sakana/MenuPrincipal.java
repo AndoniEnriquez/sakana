@@ -8,8 +8,8 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 
-import Fabrica.FabricaAcciones;
-import Panel.PanelAjustes;
+import fabrica.FabricaAcciones;
+import panel.PanelAjustes;
 
 
 @SuppressWarnings("serial")

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-import ConexionDB.DAOComida;
-import ConexionDB.DAORegComida;
-import VarTypes.Comida;
-import VarTypes.Pecera;
-import VarTypes.RegComida;
+import conexionDB.DAOComida;
+import conexionDB.DAORegComida;
+import varTypes.Comida;
+import varTypes.Pecera;
+import varTypes.RegComida;
 
 @SuppressWarnings("serial")
 public class ModeloTablaRegistroComida extends AbstractTableModel {

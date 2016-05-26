@@ -3,9 +3,9 @@ package conexionMicro;
 import java.util.Calendar;
 import java.util.Date;
 
-import ConexionDB.DAOPecera;
-import VarTypes.Pecera;
-import VarTypes.RegComida;
+import conexionDB.DAOPecera;
+import varTypes.Pecera;
+import varTypes.RegComida;
 
 public class InterfazMicro {
 

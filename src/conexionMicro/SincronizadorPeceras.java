@@ -3,13 +3,13 @@ package conexionMicro;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import ConexionDB.DAOMedicion;
-import ConexionDB.DAOPecera;
-import ConexionDB.DAORegComida;
-import ConexionDB.DAOTipoMedicion;
-import VarTypes.Medicion;
-import VarTypes.Pecera;
-import VarTypes.RegComida;
+import conexionDB.DAOMedicion;
+import conexionDB.DAOPecera;
+import conexionDB.DAORegComida;
+import conexionDB.DAOTipoMedicion;
+import varTypes.Medicion;
+import varTypes.Pecera;
+import varTypes.RegComida;
 
 public class SincronizadorPeceras extends Thread {
 
