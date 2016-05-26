@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -30,7 +29,7 @@ public class DialogoConect extends JDialog implements ActionListener{
 
 	final static String  TITULO = "Gestion Micro";
 	
-	JLabel txPH, txTemp, txFedTime, txCurTime, txPHOff, txFischN, txMeals;
+	JLabel txPH, txTemp, txFedTime, txCurTime, txFischN, txMeals;
 	
 	Pecera p; 
 	FabricaAcciones fabrica;
@@ -89,26 +88,29 @@ public class DialogoConect extends JDialog implements ActionListener{
 		bFeed.setActionCommand("Feed");
 		bFeed.addActionListener(this);
 		
+		JButton bCalibrar = new JButton ("Calibrar");
+		bCalibrar.setActionCommand("Calibrar");
+		bCalibrar.addActionListener(this);
+		
 		panel.add(bActu);
 		panel.add(bSinc);
 		panel.add(bFeed);
+		panel.add(bCalibrar);
 		panel.add(bCancel);
 		
 		return panel;
 	}
 
 	private Component crearPanelCampos() {
-		JPanel panel = new JPanel (new GridLayout(4,2,0,20));
+		JPanel panel = new JPanel (new GridLayout(3,2,0,20));
 		
 		panel.add(txPH = crearCampo("PH"));
-		panel.add(txPHOff = crearCampo("Calibrar PH"));
-		
 		panel.add(txTemp = crearCampo("Temperatura"));
+		
 		panel.add(txCurTime = crearCampo("Time"));
-		
 		panel.add(txFedTime = crearCampo("Hora de comer"));
-		panel.add(txMeals = crearCampo("Comidas restantes"));
 		
+		panel.add(txMeals = crearCampo("Comidas restantes"));
 		panel.add(txFischN = crearCampo("Numero de peces"));
 		
 		colocarDatos();
@@ -144,10 +146,17 @@ public class DialogoConect extends JDialog implements ActionListener{
 			break;
 			
 		case "Feed":
-		
-			System.out.println(DAOPecera.getCantidadPeces(p));
+
 			interfaz.feed(DAOPecera.getCantidadPeces(p));
 			JOptionPane.showMessageDialog(this, "Dando de comer", "Accion realizada", JOptionPane.INFORMATION_MESSAGE);
+			
+			break;
+			
+		case "Calibrar":
+			
+			String a = JOptionPane.showInputDialog(this, "Nivel del ph del liquido");
+			float phOff = Float.parseFloat(a);
+			interfaz.setPhOffset(phOff);
 			
 			break;
 			
@@ -166,7 +175,6 @@ public class DialogoConect extends JDialog implements ActionListener{
 	public boolean sincronizarDatos(){
 				
 		if(		(ph = interfaz.getPh()) != -1 
-				&& (phOff = interfaz.getPhOffset()) != -1
 				&& (temp = interfaz.getTemp()) != -1 
 				&& (meal = interfaz.getMeals()) != -1 
 				&& (fishN = interfaz.getFishNo()) != -1 
@@ -186,7 +194,6 @@ public class DialogoConect extends JDialog implements ActionListener{
 	public void colocarDatos(){
 		
 		txPH.setText(String.valueOf(ph));
-		txPHOff.setText(String.valueOf(phOff));
 		txTemp.setText(String.valueOf(temp));
 		txMeals.setText(String.valueOf(meal));
 		txFischN.setText(String.valueOf(fishN));
