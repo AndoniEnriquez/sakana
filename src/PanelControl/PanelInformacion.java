@@ -134,7 +134,7 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 		valor = DAOPecera.getValorPHPecera(pecera);
 		return valor;
 	}
-	
+
 
 	private JLabel crearCampo(String titulo) {
 		JLabel campo = new JLabel();
@@ -161,24 +161,21 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 				new DialogoAddPecera(fabrica.getMenuPrincipal(),false,fabrica,pecera);
 			}
 			break;
-			
+
 		case "Reg":
-			
+
 			if(pecera!=null){
 				new DialogoRegistroComida(fabrica.getMenuPrincipal(), pecera);
 			}
-			
+
 			break;
-			
+
 		case "Conect":
 
 			if(pecera != null){
-				
-				System.out.println(DAOPecera.getCantidadPeces(pecera));
-
-					new DialogoConect(fabrica.getMenuPrincipal(), fabrica, pecera, false);
+				new DialogoConect(fabrica.getMenuPrincipal(), fabrica, pecera, false);
 			}
-			
+
 			break;
 
 		default:

@@ -85,7 +85,6 @@ public class DAOPecera {
 			strSQL="select count(p.pez_id)" +
 					" from pecera pe JOIN pez p ON pe.pecera_id = p.pecera_id"+
 					" where pe.pecera_id = " + p.getID();
-			System.out.println(strSQL);
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				cntPeces = result.getInt("count(p.pez_id)");
