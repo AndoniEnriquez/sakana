@@ -29,7 +29,7 @@ public class DialogoConect extends JDialog implements ActionListener {
 
 	final static String TITULO = "Gestion Micro";
 
-	JLabel txPH, txTemp, txFedTime, txCurTime, txPHOff, txFischN, txMeals;
+	JLabel txPH, txPHMin, txPHMax, txTemp, txTempMin, txTempMax, txFedTime, txCurTime, txPHOff, txFischN, txMeals;
 
 	Pecera p;
 	FabricaAcciones fabrica;
@@ -105,12 +105,20 @@ public class DialogoConect extends JDialog implements ActionListener {
 
 	private Component crearPanelCampos() {
 		
-		JPanel panel = new JPanel(new GridLayout(4, 2, 0, 20));
+		JPanel panel = new JPanel(new GridLayout(6, 2, 0, 20));
 
 		panel.add(txPH = crearCampo("PH"));
 		panel.add(txPHOff = crearCampo("Sensor calibrado a:"));
+		
+		panel.add(txPH = crearCampo("PH"));
+		panel.add(txPH = crearCampo("PH"));
 
+
+		panel.add(txTemp = crearCampo("Temperatura"));		
+		
 		panel.add(txTemp = crearCampo("Temperatura"));
+		panel.add(txTemp = crearCampo("Temperatura"));
+
 
 		panel.add(txCurTime = crearCampo("Time"));
 		panel.add(txFedTime = crearCampo("Hora de comer"));
