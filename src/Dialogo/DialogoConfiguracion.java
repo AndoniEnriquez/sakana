@@ -20,7 +20,8 @@ import ConexionDB.DAOTipoPez;
 import Fabrica.FabricaAcciones;
 import VarTypes.TipoPez;
 
-public class DialogoConfiguracion extends JDialog implements ActionListener{
+@SuppressWarnings("serial")
+public class DialogoConfiguracion extends JDialog implements ActionListener {
 
 	JButton bAddUsuario, bAddTipoPez, bEditTipoPez;
 
@@ -30,78 +31,97 @@ public class DialogoConfiguracion extends JDialog implements ActionListener{
 
 	FabricaAcciones fabrica;
 
-	public DialogoConfiguracion (JFrame ventana, FabricaAcciones fabrica){
-		super (ventana,"Configuracion",false);
+	public DialogoConfiguracion(JFrame ventana, FabricaAcciones fabrica) {
+		super(ventana, "Configuracion", false);
+		
 		this.fabrica = fabrica;
-		this.setLocation(200,100);
+		
+		this.setLocation(200, 100);
 		this.setSize(250, 320);
 		this.setContentPane(crearPanelVentana());
-
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 	}
 
 	private Container crearPanelVentana() {
+		
 		JPanel panel = new JPanel(new FlowLayout());
+		
 		panel.add(crearBotonUsuario());
 		panel.add(crearBotonTipoPez());
 		panel.add(crearEditBoton());
-		panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+		
+		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		
 		return panel;
 	}
 
 	private Component crearEditBoton() {
-		JPanel panel = new JPanel ();
+		
+		JPanel panel = new JPanel();
 
-		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN),"Editar Tipo de Pez"));
-		bEditTipoPez = new JButton ("Edit");
+		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN), "Editar Tipo de Pez"));
+		
+		bEditTipoPez = new JButton("Edit");
 		bEditTipoPez.setActionCommand("EditTipoPez");
 		bEditTipoPez.addActionListener(this);
 
 		try {
+			
 			tipoPez = DAOTipoPez.getTiposPez();
+			
 		} catch (Exception e) {
 
 			e.printStackTrace();
+			
 		}
 
 		cTipoPez = new JComboBox<>(getTipoPez(tipoPez));
-		cTipoPez.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createLineBorder(Color.PINK),"Tipo de Pez"));
+		cTipoPez.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.PINK), "Tipo de Pez"));
 
 		panel.add(cTipoPez);
 		panel.add(bEditTipoPez);
+		
 		return panel;
 	}
 
 	private Component crearBotonTipoPez() {
-		JPanel panel = new JPanel ();
+		
+		JPanel panel = new JPanel();
+		
 		panel.setPreferredSize(new Dimension(200, 70));
-		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN),"Añadir Nuevo Tipo de Pez"));
-		bAddTipoPez = new JButton ("Add");
+		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN), "Añadir Nuevo Tipo de Pez"));
+		
+		bAddTipoPez = new JButton("Add");
 		bAddTipoPez.setActionCommand("AddTipoPez");
 		bAddTipoPez.addActionListener(this);
+		
 		panel.add(bAddTipoPez);
+		
 		return panel;
 	}
 
 	private Component crearBotonUsuario() {
-		JPanel panel = new JPanel ();
+		
+		JPanel panel = new JPanel();
+		
 		panel.setPreferredSize(new Dimension(200, 70));
-		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN),"Añadir Nuevo Usuario"));
-		bAddUsuario = new JButton ("Add");
+		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN), "Añadir Nuevo Usuario"));
+		
+		bAddUsuario = new JButton("Add");
 		bAddUsuario.setActionCommand("AddUsuario");
 		bAddUsuario.addActionListener(this);
+		
 		panel.add(bAddUsuario);
+		
 		return panel;
 	}
 
-
-	public String[] getTipoPez(ArrayList<TipoPez> tipo){
+	public String[] getTipoPez(ArrayList<TipoPez> tipo) {
 
 		String tipoPez[] = new String[tipo.size()];
 
-		for(int i = 0; i < tipo.size(); i++){
+		for (int i = 0; i < tipo.size(); i++) {
 
 			tipoPez[i] = tipo.get(i).getDescripcion();
 
@@ -113,18 +133,25 @@ public class DialogoConfiguracion extends JDialog implements ActionListener{
 	@SuppressWarnings("static-access")
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		switch (e.getActionCommand()){
+		
+		switch (e.getActionCommand()) {
 
 		case "AddUsuario":
 
 			new DialogoAddDueno(fabrica.getMenuPrincipal(), false, fabrica);
+			
 			break;
+			
 		case "AddTipoPez":
+			
 			new DialogoAddTipoPez(fabrica.getMenuPrincipal(), fabrica);
+			
 			break;
-		
+
 		case "EditTipoPez":
+			
 			new DialogoAddTipoPez(fabrica.getMenuPrincipal(), fabrica, tipoPez.get(cTipoPez.getSelectedIndex()));
+			
 			break;
 		}
 	}
