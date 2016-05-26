@@ -54,7 +54,7 @@ public class DialogoConect extends JDialog implements ActionListener{
 	private void crearVentana() {
 		
 		this.setLocation(600,300);
-		this.setSize(500, 350);
+		this.setSize(550, 400);
 		this.setContentPane(crearPanelDialogo());
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	}
@@ -70,7 +70,7 @@ public class DialogoConect extends JDialog implements ActionListener{
 
 	private Component crearPanelBotones() {
 		
-		JPanel panel = new JPanel (new FlowLayout(FlowLayout.CENTER,30,0));
+		JPanel panel = new JPanel (new FlowLayout(FlowLayout.CENTER,20,0));
 		
 		JButton bSinc = new JButton ("Sincronizar");
 		bSinc.setActionCommand("Sinc");
