@@ -1,6 +1,5 @@
 package PanelControl;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -13,7 +12,6 @@ import java.text.SimpleDateFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -26,17 +24,15 @@ import Fabrica.FabricaAcciones;
 import Panel.MiPanel;
 import Panel.PanelExample;
 import VarTypes.Pecera;
-import conexionMicro.InterfazMicro;
 
 @SuppressWarnings("serial")
-public class PanelInformacion extends PanelExample implements ActionListener{
+public class PanelInformacion extends PanelExample implements ActionListener {
 
 	static int tamX = 0;
 	static int tamY = 0;
 
-	JLabel txNom,txIP,txCapacidad, txHoraComida, txPH, txTemp;
+	JLabel txNom, txIP, txCapacidad, txHoraComida, txPH, txTemp;
 	JButton bEdit, bAdd, bRegComida, bConect;
-
 
 	JPanel panel;
 	MiPanel miPanel;
@@ -45,6 +41,7 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 	FabricaAcciones fabrica;
 
 	public PanelInformacion(FabricaAcciones fabrica) {
+		
 		super(tamX, tamY);
 		this.setLocation(0, -30);
 		this.fabrica = fabrica;
@@ -54,7 +51,6 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 	private Container crearPanelVentana() {
 
 		panel = new JPanel();
-
 		this.setBorder(null);
 		panel.add(crearPanel());
 
@@ -62,28 +58,35 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 	}
 
 	private Container crearPanel() {
-		JPanel panel = new JPanel (new BorderLayout(0,20));
-		panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+		
+		JPanel panel = new JPanel(new BorderLayout(0, 20));
+		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		panel.setOpaque(false);
-		panel.add(crearPanelCampos (), BorderLayout.CENTER);
+		panel.add(crearPanelCampos(), BorderLayout.CENTER);
 		panel.add(crearPanelBotones(), BorderLayout.SOUTH);
+		
 		return panel;
 	}
 
 	private Component crearPanelBotones() {
-		JPanel panel = new JPanel (new FlowLayout(FlowLayout.CENTER,30,0));
+		
+		JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 0));
 		panel.setOpaque(false);
-		bEdit = new JButton ("Editar Pecera");
+		
+		bEdit = new JButton("Editar Pecera");
 		bEdit.setActionCommand("Editar");
 		bEdit.addActionListener(this);
-		bAdd = new JButton ("Add Pez");
+		
+		bAdd = new JButton("Add Pez");
 		bAdd.setActionCommand("Add");
 		bAdd.addActionListener(this);
-		bRegComida = new JButton ("Registro Comida");
+		
+		bRegComida = new JButton("Registro Comida");
 		bRegComida.setActionCommand("Reg");
 		bRegComida.addActionListener(this);
-		bConect = new JButton ("Conectarse");
-		bConect.setActionCommand("Conect");
+		
+		bConect = new JButton("Conectarse");
+		bConect.setActionCommand("Connect");
 		bConect.addActionListener(this);
 
 		panel.add(bAdd);
@@ -91,12 +94,12 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 		panel.add(bRegComida);
 		panel.add(bConect);
 
-
 		return panel;
 	}
 
 	private Component crearPanelCampos() {
-		JPanel panel = new JPanel (new GridLayout(6,1,0,20));
+		
+		JPanel panel = new JPanel(new GridLayout(6, 1, 0, 20));
 
 		panel.setOpaque(false);
 		panel.add(txNom = crearCampo("Nombre"));
@@ -106,12 +109,11 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 		panel.add(txPH = crearCampo("PH Actual"));
 		panel.add(txTemp = crearCampo("Temperatura Actual"));
 
-
-
 		return panel;
 	}
 
-	public void setText(Pecera pecera){
+	public void setText(Pecera pecera) {
+		
 		this.pecera = pecera;
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
 
@@ -124,22 +126,23 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 	}
 
 	private String recuperarValorTemp() {
+		
 		String valor;
 		valor = DAOPecera.getValorTempPecera(pecera);
 		return valor;
 	}
 
 	private String recuperarValorPH() {
+	
 		String valor;
 		valor = DAOPecera.getValorPHPecera(pecera);
 		return valor;
 	}
 
-
 	private JLabel crearCampo(String titulo) {
+	
 		JLabel campo = new JLabel();
-		campo.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createLineBorder(Color.PINK),titulo));
+		campo.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.PINK), titulo));
 
 		return campo;
 	}
@@ -149,6 +152,7 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 
 		switch (e.getActionCommand()) {
+		
 		case "Add":
 
 			new DialogoAddPez(fabrica.getMenuPrincipal(), false, fabrica);
@@ -157,22 +161,26 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 
 		case "Editar":
 
-			if(pecera!=null){
-				new DialogoAddPecera(fabrica.getMenuPrincipal(),false,fabrica,pecera);
+			if (pecera != null) {
+			
+				new DialogoAddPecera(fabrica.getMenuPrincipal(), false, fabrica, pecera);
 			}
+			
 			break;
 
 		case "Reg":
 
-			if(pecera!=null){
+			if (pecera != null) {
+				
 				new DialogoRegistroComida(fabrica.getMenuPrincipal(), pecera);
 			}
 
 			break;
 
-		case "Conect":
+		case "Connect":
 
-			if(pecera != null){
+			if (pecera != null) {
+				
 				new DialogoConect(fabrica.getMenuPrincipal(), fabrica, pecera, false);
 			}
 

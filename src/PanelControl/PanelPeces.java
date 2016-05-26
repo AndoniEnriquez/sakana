@@ -27,7 +27,7 @@ import VarTypes.Pecera;
 import VarTypes.Pez;
 
 @SuppressWarnings("serial")
-public class PanelPeces extends PanelExample implements ActionListener, ListSelectionListener{
+public class PanelPeces extends PanelExample implements ActionListener, ListSelectionListener {
 
 	static int tamX = 0;
 	static int tamY = 0;
@@ -43,6 +43,7 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 
 	@SuppressWarnings("static-access")
 	public PanelPeces(FabricaAcciones fabrica) {
+		
 		super(tamX, tamY);
 		this.fabrica = fabrica;
 		modelo = new DefaultListModel<>();
@@ -57,34 +58,28 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 		scrollPane = new JScrollPane();
 		this.setBorder(null);
 		this.controlLista();
-
-		//scrollPane.getViewport().add(list);
 		panel.add(scrollPane);
 		panel.add(crearPanelSecundario());
 
 		return panel;
 	}
 
-	private Component crearPanelSecundario(){
+	private Component crearPanelSecundario() {
+		
 		panelSecundario = new JPanel();
-
 		panelSecundario.setBackground(Color.WHITE);
-
-		return panelSecundario;		
+		
+		return panelSecundario;
 	}
 
-	private Component crearPanelAdd(){
+	private Component crearPanelAdd() {
 
 		PanelEditPez panelAdd = new PanelEditPez(fabrica);
 
 		return panelAdd;
 	}
 
-
-
-
-	@SuppressWarnings("unchecked")
-	public void controlLista(){
+	public void controlLista() {
 
 		list = new JList<Pez>(modelo);
 		this.cargarPeces();
@@ -98,27 +93,32 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 
 	}
 
-	public void cargarPeces(){
+	public void cargarPeces() {
+	
 		Pecera p;
 		ArrayList<Pez> listaPecera = new ArrayList<>();
 		modelo.removeAllElements();
 		Dueno d = Sesion.getInstance().getUsuario();
-		try{
+		
+		try {
 
 			p = fabrica.getModeloPecera().getElementAt(fabrica.getListaPecera().getSelectedIndex());
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 
 			p = fabrica.getModeloPecera().getElementAt(0);
 		}
+		
 		try {
+		
 			listaPecera = DAOPez.getPecesPeceraDueno(p, d);
+	
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
-		for(int i = 0; i < listaPecera.size(); i++){
+		for (int i = 0; i < listaPecera.size(); i++) {
 
 			modelo.addElement(listaPecera.get(i));
 
@@ -129,21 +129,19 @@ public class PanelPeces extends PanelExample implements ActionListener, ListSele
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-
-
-
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-
-		int index = list.getSelectedIndex();
-		try{
+		
+		try {
+		
 			fabrica.getPanelEditPez().setTextPez();
-		}catch (Exception e1){
+		} catch (Exception e1) {
 
 		}
-		
+
 		panelSecundario.removeAll();
 		panelSecundario.add(crearPanelAdd());
 
