@@ -64,7 +64,7 @@ public class DAOPecera {
 			result = stmt.executeQuery(strSQL);
 			while (result.next()){
 				ph[0] = result.getFloat("MAX(phmin)");
-				ph[1] = result.getFloat("MAX(phMax)");
+				ph[1] = result.getFloat("MIN(phMax)");
 			}
 			result.close();
 		} catch (Exception e ){
