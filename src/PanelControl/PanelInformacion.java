@@ -163,14 +163,15 @@ public class PanelInformacion extends PanelExample implements ActionListener{
 			break;
 			
 		case "Reg":
-
+			
+			if(pecera!=null){
+				new DialogoRegistroComida(fabrica.getMenuPrincipal(), pecera);
+			}
 			
 			break;
 			
 		case "Conect":
 
-			
-			
 			if(pecera != null){
 
 					new DialogoConect(fabrica.getMenuPrincipal(), fabrica, pecera, false);

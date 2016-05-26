@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import ConexionDB.DAOPecera;
 import Fabrica.FabricaAcciones;
 import VarTypes.Pecera;
 import conexionMicro.InterfazMicro;
@@ -76,16 +77,21 @@ public class DialogoConect extends JDialog implements ActionListener{
 		bSinc.setActionCommand("Sinc");
 		bSinc.addActionListener(this);
 		
-		JButton bActu = new JButton ("Actualizar");
-		bActu.setActionCommand("Actu");
+		JButton bActu = new JButton ("Refresh");
+		bActu.setActionCommand("Refresh");
 		bActu.addActionListener(this);
 		
 		JButton bCancel = new JButton ("Cancelar");
 		bCancel.setActionCommand("Cancelar");
 		bCancel.addActionListener(this);
 		
-		panel.add(bSinc);
+		JButton bFeed = new JButton ("Feed");
+		bFeed.setActionCommand("Feed");
+		bFeed.addActionListener(this);
+		
 		panel.add(bActu);
+		panel.add(bSinc);
+		panel.add(bFeed);
 		panel.add(bCancel);
 		
 		return panel;
@@ -120,7 +126,37 @@ public class DialogoConect extends JDialog implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		switch (e.getActionCommand()) {
 		
+		case "Refresh":
+			
+			if(sincronizarDatos() == true){
+				
+				colocarDatos();		
+			}
+			
+			break;
+			
+		case "Sinc":
+			
+			break;
+			
+		case "Feed":
+		
+			interfaz.feed(DAOPecera.getCantidadPeces(p));
+			JOptionPane.showMessageDialog(this, "Dando de comer", "Accion realizada", JOptionPane.INFORMATION_MESSAGE);
+			
+			break;
+			
+		case "Cancelar":
+			
+			this.dispose();
+			
+			break;
+
+		default:
+			break;
+		}
 		
 	}
 	
