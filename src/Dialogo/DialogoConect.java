@@ -216,7 +216,8 @@ public class DialogoConect extends JDialog implements ActionListener{
 		interfaz.setFishNo(DAOPecera.getCantidadPeces(p));
 		interfaz.setDateTime(Calendar.getInstance());
 		
-		//interfaz.setMeals(p.getMeals());
-		JOptionPane.showInputDialog(this, "Introduce la cantidad de comidas que quedan disponibles");
+		String a = JOptionPane.showInputDialog(this, "Introduce la cantidad de comidas que quedan disponibles");
+		int meals = Integer.parseInt(a);
+		interfaz.setMeals(meals);
 	}
 }
