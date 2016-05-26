@@ -29,7 +29,7 @@ public class DialogoConect extends JDialog implements ActionListener{
 
 	final static String  TITULO = "Gestion Micro";
 	
-	JLabel txPH, txTemp, txFedTime, txCurTime, txFischN, txMeals;
+	JLabel txPH, txTemp, txFedTime, txCurTime, txPHOff, txFischN, txMeals;
 	
 	Pecera p; 
 	FabricaAcciones fabrica;
@@ -102,9 +102,11 @@ public class DialogoConect extends JDialog implements ActionListener{
 	}
 
 	private Component crearPanelCampos() {
-		JPanel panel = new JPanel (new GridLayout(3,2,0,20));
+		JPanel panel = new JPanel (new GridLayout(4,2,0,20));
 		
 		panel.add(txPH = crearCampo("PH"));
+		panel.add(txPHOff = crearCampo("Sensor calibrado a:"));
+
 		panel.add(txTemp = crearCampo("Temperatura"));
 		
 		panel.add(txCurTime = crearCampo("Time"));
@@ -142,21 +144,33 @@ public class DialogoConect extends JDialog implements ActionListener{
 		case "Sinc":
 			
 			sincronizarMicro();
-			
+			if(sincronizarDatos() == true){
+				colocarDatos();
+			}			
 			break;
 			
 		case "Feed":
 
 			interfaz.feed(DAOPecera.getCantidadPeces(p));
 			JOptionPane.showMessageDialog(this, "Dando de comer", "Accion realizada", JOptionPane.INFORMATION_MESSAGE);
+			if(sincronizarDatos() == true){
+				colocarDatos();
+			}
 			
 			break;
 			
 		case "Calibrar":
 			
+			try{
 			String a = JOptionPane.showInputDialog(this, "Nivel del ph del liquido");
 			float phOff = Float.parseFloat(a);
 			interfaz.setPhOffset(phOff);
+			if(sincronizarDatos() == true){
+				colocarDatos();
+			}
+			}catch (NumberFormatException e2) {
+				// TODO: handle exception
+			}
 			
 			break;
 			
@@ -174,7 +188,8 @@ public class DialogoConect extends JDialog implements ActionListener{
 	
 	public boolean sincronizarDatos(){
 				
-		if(		(ph = interfaz.getPh()) != -1 
+		if(		(ph = interfaz.getPh()) != -1
+				&& (phOff = interfaz.getPhOffset()) != -1 
 				&& (temp = interfaz.getTemp()) != -1 
 				&& (meal = interfaz.getMeals()) != -1 
 				&& (fishN = interfaz.getFishNo()) != -1 
@@ -194,6 +209,7 @@ public class DialogoConect extends JDialog implements ActionListener{
 	public void colocarDatos(){
 		
 		txPH.setText(String.valueOf(ph));
+		txPHOff.setText(String.valueOf(phOff));
 		txTemp.setText(String.valueOf(temp));
 		txMeals.setText(String.valueOf(meal));
 		txFischN.setText(String.valueOf(fishN));
@@ -226,8 +242,10 @@ public class DialogoConect extends JDialog implements ActionListener{
 		interfaz.setDateTime(Calendar.getInstance());
 		
 		String a = JOptionPane.showInputDialog(this, "Introduce la cantidad de comidas que quedan disponibles");
+		try{
 		int meals = Integer.parseInt(a);
-		System.out.println(meals);
 		interfaz.setMeals(meals);
+		}catch (NumberFormatException e) {
+		}
 	}
 }
