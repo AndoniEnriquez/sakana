@@ -1,4 +1,4 @@
-package panel;
+package render;
 
 import java.awt.Graphics;
 import java.awt.Image;

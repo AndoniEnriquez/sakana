@@ -23,6 +23,7 @@ import javax.swing.event.ListSelectionListener;
 import conexionDB.DAOPecera;
 import dialogo.DialogoAddPecera;
 import fabrica.FabricaAcciones;
+import render.RenderListaPecera;
 import sakana.MenuPrincipal;
 import varTypes.Pecera;
 

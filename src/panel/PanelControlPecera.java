@@ -9,8 +9,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import fabrica.FabricaAcciones;
-import panelControl.PanelInformacion;
-import panelControl.PanelPeces;
 
 @SuppressWarnings("serial")
 public class PanelControlPecera extends PanelExample implements ChangeListener {

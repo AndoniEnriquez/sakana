@@ -1,4 +1,4 @@
-package panelControl;
+package render;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -13,33 +13,20 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 
-import varTypes.Pez;
+import varTypes.Pecera;
 
-@SuppressWarnings("serial")
-public class RenderLista extends JLabel implements ListCellRenderer<Pez> {
+@SuppressWarnings({ "serial" })
+public class RenderListaPecera extends JLabel implements ListCellRenderer<Pecera> {
 
-	public Component getListCellRendererComponent(JList<? extends Pez> list, Pez pez, int index, boolean isSelected,
-			boolean cellHasFocus) {
+	@Override
+	public Component getListCellRendererComponent(JList<? extends Pecera> list, Pecera pecera, int index,
+			boolean isSelected, boolean cellHasFocus) {
 
 		JPanel panel = new JPanel(new BorderLayout());
-	
-		if (pez.getGenero().toLowerCase().contains("macho")) {
-		
-			panel.add(new JLabel(new ImageIcon("Iconos/pez/Blinky.png")), BorderLayout.WEST);
-		
-		} else if (pez.getGenero().toLowerCase().contains("hembra")) {
-			
-			panel.add(new JLabel(new ImageIcon("Iconos/pez/Pez_Linterna.png")), BorderLayout.WEST);
-
-		} else {
-			
-			panel.add(new JLabel(new ImageIcon("Iconos/pez/magikarp.png")), BorderLayout.WEST);
-
-		}
-
+		panel.add(new JLabel(new ImageIcon("Imagenes/peceras.png")), BorderLayout.WEST);
 		JPanel panelDer = new JPanel(new GridLayout(1, 1));
 
-		JLabel nombre = new JLabel(pez.getNombrePez());
+		JLabel nombre = new JLabel(pecera.getNombre());
 		nombre.setForeground(Color.MAGENTA);
 		nombre.setFont(new Font("Arial", Font.ITALIC, 16));
 		panelDer.add(nombre);
@@ -48,7 +35,6 @@ public class RenderLista extends JLabel implements ListCellRenderer<Pez> {
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		
 		if (isSelected)
-		
 			panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
 
 		return panel;

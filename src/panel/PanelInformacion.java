@@ -1,4 +1,4 @@
-package panelControl;
+package panel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,8 +21,7 @@ import dialogo.DialogoAddPez;
 import dialogo.DialogoConect;
 import dialogo.DialogoRegistroComida;
 import fabrica.FabricaAcciones;
-import panel.MiPanel;
-import panel.PanelExample;
+import render.MiPanel;
 import varTypes.Pecera;
 
 @SuppressWarnings("serial")

@@ -7,7 +7,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
-import panel.MiPanel;
+import render.MiPanel;
 
 @SuppressWarnings("serial")
 public class LoginDerecha extends LoginExample {

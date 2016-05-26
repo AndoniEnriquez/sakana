@@ -1,4 +1,4 @@
-package panelControl;
+package panel;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -19,9 +19,8 @@ import javax.swing.event.ListSelectionListener;
 import conexionDB.DAOPez;
 import fabrica.FabricaAcciones;
 import login.Sesion;
-import panel.MiPanel;
-import panel.PanelEditPez;
-import panel.PanelExample;
+import render.MiPanel;
+import render.RenderLista;
 import varTypes.Dueno;
 import varTypes.Pecera;
 import varTypes.Pez;
