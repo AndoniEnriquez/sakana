@@ -205,7 +205,7 @@ public class InterfazMicro {
 		Thread t = new Thread( new Runnable() {
 			@Override
 			public void run() {
-				respuesta = cliente.enviarComando("set meals " + fishNo +";");				
+				respuesta = cliente.enviarComando("set fishNo " + fishNo +";");				
 			}
 		});
 		

@@ -213,6 +213,7 @@ public class DialogoConect extends JDialog implements ActionListener{
 		interfaz.setPhMax(ph[1]);
 		interfaz.setTempMin(temp[0]);
 		interfaz.setTempMax(temp[1]);
+		System.out.println("Cantidad de peces" + DAOPecera.getCantidadPeces(p));
 		interfaz.setFishNo(DAOPecera.getCantidadPeces(p));
 		interfaz.setDateTime(Calendar.getInstance());
 		
