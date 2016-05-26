@@ -73,6 +73,29 @@ public class DAOPecera {
 		return ph;
 	}
 	
+	static public int getCantidadPeces(Pecera p){
+		Statement stmt;
+		ResultSet result;
+		String strSQL;
+		int cntPeces = 0;
+		try
+		{
+
+			stmt=PoolConexiones.getConexion().createStatement();
+			strSQL="select count(p.pez_id)" +
+					" from pecera pe JOIN pez p ON pecera_id = pez_id"+
+					" where pecera_id = '" + p.getID() + "'";
+			result = stmt.executeQuery(strSQL);
+			while (result.next()){
+				cntPeces = result.getInt("count(p.pez_id");
+			}
+			result.close();
+		} catch (Exception e ){
+			e.printStackTrace();
+		}
+		return cntPeces;
+	}
+	
 	static public float[] getTempporPecera(Pecera p){
 		Statement stmt;
 		ResultSet result;
