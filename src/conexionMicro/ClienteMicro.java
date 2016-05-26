@@ -8,63 +8,73 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class ClienteMicro {
+	
 	String servidor;
 	int puerto;
 	public static boolean DISPONIBLE = true;
 
-	public ClienteMicro(String servidor, int puerto){
+	public ClienteMicro(String servidor, int puerto) {
+	
 		this.servidor = servidor;
 		this.puerto = puerto;
 	}
 
-	public String enviarComando(String comando){
+	public String enviarComando(String comando) {
+	
 		String respuesta = "";
 		Socket client = null;
-		if(!comando.endsWith(";")) comando = comando + ";";
+		if (!comando.endsWith(";")) comando = comando + ";";
+	
 		try {
+		
 			DISPONIBLE = false;
-			client =  new Socket(servidor, puerto);
+			client = new Socket(servidor, puerto);
 			OutputStream outToServer = client.getOutputStream();
 			DataOutputStream out = new DataOutputStream(outToServer);
 			InputStream inFromServer = client.getInputStream();
 			DataInputStream in = new DataInputStream(inFromServer);
-			
+
 			byte[] b = comando.getBytes();
-			for(byte by : b){
-				out.write(by);		
-			}
-						
+			
+			for (byte by : b) {	out.write(by); }
+
 			char c;
+			
 			do {
-				 c = (char) in.read();
-				 respuesta = "" + respuesta + c;
-			 }while(c != ';');
+				
+				c = (char) in.read();
+				respuesta = "" + respuesta + c;
+			} while (c != ';');
+			
 		} catch (Exception e) {
+			
 			respuesta = null;
+			
 		} finally {
+			
 			try {
+			
 				client.close();
-			} catch (Exception e1 ) {
-			}
+			
+			} catch (Exception e1) {}
 		}
+		
 		DISPONIBLE = false;
 		return respuesta;
 
 	}
 
-
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
-		while(true){
+		
+		while (true) {
+		
 			ClienteMicro c = new ClienteMicro("192.168.1.15", 4444);
 			Scanner s = new Scanner(System.in);
-			while(true){
+			while (true) {
 				System.out.println(c.enviarComando(s.nextLine()));
 			}
 		}
 	}
-
-
-
-
 
 }

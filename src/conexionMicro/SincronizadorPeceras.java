@@ -13,15 +13,13 @@ import VarTypes.RegComida;
 
 public class SincronizadorPeceras extends Thread {
 
-	
-
 	public static void main(String[] args) {
-		
+
 	}
-	
+
 	@Override
 	public void run() {
-		while(true){
+		while (true) {
 			sincronizarPeceras();
 			try {
 				sleep(3000000);
@@ -30,49 +28,56 @@ public class SincronizadorPeceras extends Thread {
 				e.printStackTrace();
 			}
 		}
-		
-		
+
 	}
-	
+
 	private void sincronizarPeceras() {
+		
 		ArrayList<Pecera> peceras = null;
 		try {
+		
 			peceras = DAOPecera.getPeceras();
+		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		for(Pecera p : peceras) {
+
+		for (Pecera p : peceras) {
 			sincronizarPecera(p);
 		}
 	}
 
 	private void sincronizarPecera(Pecera p) {
+	
 		InterfazMicro interfaz = new InterfazMicro(p);
 		RegComida regComida;
 		Float ph, temp;
 		Medicion medicionPh, medicionTemp;
-		while(!interfaz.isDisponible()){}
+		
+		while (!interfaz.isDisponible()) {}
+	
 		ph = interfaz.getPh();
-		while(!interfaz.isDisponible()){}
+		
+		while (!interfaz.isDisponible()) {}
+		
 		temp = interfaz.getTemp();
-		if(ph >= 0){
-			medicionPh = new Medicion(	ph, 
-										Calendar.getInstance(), 
-										(DAOTipoMedicion.buscarPorNombre("Nivel PH")).getTipoMedicion_id(),
-										p.getID());
+		
+		if (ph >= 0) {
+			medicionPh = new Medicion(ph, Calendar.getInstance(),
+					(DAOTipoMedicion.buscarPorNombre("Nivel PH")).getTipoMedicion_id(), p.getID());
 			DAOMedicion.addMedicion(medicionPh);
 		}
-		if(temp >= 0){
-			medicionTemp = new Medicion(	temp, 
-											Calendar.getInstance(), 
-											(DAOTipoMedicion.buscarPorNombre("Temperatura")).getTipoMedicion_id(),
-											p.getID());
+		
+		if (temp >= 0) {
+			medicionTemp = new Medicion(temp, Calendar.getInstance(),
+					(DAOTipoMedicion.buscarPorNombre("Temperatura")).getTipoMedicion_id(), p.getID());
 			DAOMedicion.addMedicion(medicionTemp);
 		}
-		while(!interfaz.isDisponible()){}
-		while((regComida = interfaz.getFeedLogEntry()) != null){
+		
+		while (!interfaz.isDisponible()) {}
+		
+		while ((regComida = interfaz.getFeedLogEntry()) != null) {
 			DAORegComida.addRegistro(regComida);
 		}
 	}
