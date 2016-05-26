@@ -218,6 +218,7 @@ public class DialogoConect extends JDialog implements ActionListener{
 		
 		String a = JOptionPane.showInputDialog(this, "Introduce la cantidad de comidas que quedan disponibles");
 		int meals = Integer.parseInt(a);
+		System.out.println(meals);
 		interfaz.setMeals(meals);
 	}
 }
