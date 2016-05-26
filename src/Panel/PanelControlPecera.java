@@ -13,59 +13,53 @@ import PanelControl.PanelInformacion;
 import PanelControl.PanelPeces;
 
 @SuppressWarnings("serial")
-public class PanelControlPecera extends PanelExample implements ChangeListener{
+public class PanelControlPecera extends PanelExample implements ChangeListener {
 
 	static int tamX = 820;
 	static int tamY = 670;
-	
+
 	public JTabbedPane tab;
-	
+
 	PanelInformacion panelInformacion;
 	PanelPeces panelPeces;
-	
+
 	FabricaAcciones fabrica;
-	
-	@SuppressWarnings("static-access")
+
 	public PanelControlPecera(FabricaAcciones fabrica) {
 		super(tamX, tamY);
-	
+
 		this.fabrica = fabrica;
 		this.xOffset = 0;
 		this.yOffset = -16;
 		setLocation(xOffset, yOffset);
-		
+
 		this.setContentPane(crearPanelVentana());
-		
-		//fabrica.setPanelControlPecera(this);
 	}
 
 	@SuppressWarnings("static-access")
 	private Container crearPanelVentana() {
-		
+
 		tab = new JTabbedPane();
 
 		tab.setBackground(Color.GRAY);
 		tab.addChangeListener(this);
-		
+
 		panelInformacion = new PanelInformacion(fabrica);
 		fabrica.setPanelInformacion(panelInformacion);
 
 		panelPeces = new PanelPeces(fabrica);
-		
+
 		tab.addTab("", new ImageIcon("iconos/pestañas/information.png"), panelInformacion);
 		tab.addTab("", new ImageIcon("iconos/pestañas/fish.png"), panelPeces);
-		
+
 		return tab;
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		
+
 		fabrica.getPanelPeces().controlLista();
-	
-		
+
 	}
-
 }
-
-//PECES INFO HISTORIAL CONFIGURACION DAR DE COMER (CONSOLA)

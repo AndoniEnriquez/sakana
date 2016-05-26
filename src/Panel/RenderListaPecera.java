@@ -15,29 +15,29 @@ import javax.swing.ListCellRenderer;
 
 import VarTypes.Pecera;
 
-@SuppressWarnings({"serial"})
-public class RenderListaPecera extends JLabel implements ListCellRenderer<Pecera>{
+@SuppressWarnings({ "serial" })
+public class RenderListaPecera extends JLabel implements ListCellRenderer<Pecera> {
 
 	@Override
-	public Component getListCellRendererComponent(JList<? extends Pecera> list, Pecera pecera, int index,boolean isSelected, boolean cellHasFocus) {
-		
+	public Component getListCellRendererComponent(JList<? extends Pecera> list, Pecera pecera, int index,
+			boolean isSelected, boolean cellHasFocus) {
+
 		JPanel panel = new JPanel(new BorderLayout());
 		panel.add(new JLabel(new ImageIcon("Imagenes/peceras.png")), BorderLayout.WEST);
 		JPanel panelDer = new JPanel(new GridLayout(1, 1));
-		
+
 		JLabel nombre = new JLabel(pecera.getNombre());
 		nombre.setForeground(Color.MAGENTA);
-		nombre.setFont(new Font("Arial",Font.ITALIC,16));
+		nombre.setFont(new Font("Arial", Font.ITALIC, 16));
 		panelDer.add(nombre);
-		
+
 		panel.add(panelDer, BorderLayout.CENTER);
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		if(isSelected) panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
-						
+		
+		if (isSelected)
+			panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 3));
+
 		return panel;
 	}
 
-
-
 }
-
