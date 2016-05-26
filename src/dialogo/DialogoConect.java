@@ -45,16 +45,16 @@ public class DialogoConect extends JDialog implements ActionListener {
 		this.p = p;
 		this.fabrica = fabrica;
 		interfaz = new InterfazMicro(p);
-		
+
 		if (sincronizarDatos() == true) {
 			crearVentana();
 		}
-		
+
 		this.setVisible(true);
 	}
 
 	private void crearVentana() {
-		
+
 		this.setLocation(600, 300);
 		this.setSize(550, 400);
 		this.setContentPane(crearPanelDialogo());
@@ -104,21 +104,19 @@ public class DialogoConect extends JDialog implements ActionListener {
 	}
 
 	private Component crearPanelCampos() {
-		
+
 		JPanel panel = new JPanel(new GridLayout(6, 2, 0, 20));
 
 		panel.add(txPH = crearCampo("PH"));
 		panel.add(txPHOff = crearCampo("Sensor calibrado a:"));
-		
-		panel.add(txPH = crearCampo("PH"));
-		panel.add(txPH = crearCampo("PH"));
 
+		panel.add(txPHMin = crearCampo("PHMin"));
+		panel.add(txPHMax = crearCampo("PHMax"));
 
-		panel.add(txTemp = crearCampo("Temperatura"));		
-		
-		panel.add(txTemp = crearCampo("Temperatura"));
 		panel.add(txTemp = crearCampo("Temperatura"));
 
+		panel.add(txTempMin = crearCampo("Temp Minima"));
+		panel.add(txTempMax = crearCampo("Temp Maxima"));
 
 		panel.add(txCurTime = crearCampo("Time"));
 		panel.add(txFedTime = crearCampo("Hora de comer"));
@@ -154,18 +152,18 @@ public class DialogoConect extends JDialog implements ActionListener {
 		case "Sinc":
 
 			sincronizarMicro();
-			
+
 			if (sincronizarDatos() == true) {
 				colocarDatos();
 			}
-			
+
 			break;
 
 		case "Feed":
 
 			interfaz.feed(DAOPecera.getCantidadPeces(p));
 			JOptionPane.showMessageDialog(this, "Dando de comer", "Accion realizada", JOptionPane.INFORMATION_MESSAGE);
-			
+
 			if (sincronizarDatos() == true) {
 				colocarDatos();
 			}
@@ -175,19 +173,20 @@ public class DialogoConect extends JDialog implements ActionListener {
 		case "Calibrar":
 
 			try {
-				
+
 				String a = JOptionPane.showInputDialog(this, "Nivel del ph del liquido");
 				float phOff = Float.parseFloat(a);
-				
+
 				interfaz.setPhOffset(phOff);
-				
+
 				if (sincronizarDatos() == true) {
 					colocarDatos();
 				}
-				
+
 			} catch (NumberFormatException e2) {
-				
-				JOptionPane.showMessageDialog(this, "Introduce el numero correctamente", "Error Introduccion", JOptionPane.ERROR_MESSAGE);
+
+				JOptionPane.showMessageDialog(this, "Introduce el numero correctamente", "Error Introduccion",
+						JOptionPane.ERROR_MESSAGE);
 			}
 
 			break;
@@ -206,13 +205,9 @@ public class DialogoConect extends JDialog implements ActionListener {
 
 	public boolean sincronizarDatos() {
 
-		if ((ph = interfaz.getPh()) != -1 
-			&& (phOff = interfaz.getPhOffset()) != -1 
-			&& (temp = interfaz.getTemp()) != -1
-			&& (meal = interfaz.getMeals()) != -1 
-			&& (fishN = interfaz.getFishNo()) != -1
-			&& (dateTime = interfaz.getDateTime()) != null 
-			&& (feedTime = interfaz.getFeedTime()) != null) {
+		if ((ph = interfaz.getPh()) != -1 && (phOff = interfaz.getPhOffset()) != -1 && (temp = interfaz.getTemp()) != -1
+				&& (meal = interfaz.getMeals()) != -1 && (fishN = interfaz.getFishNo()) != -1
+				&& (dateTime = interfaz.getDateTime()) != null && (feedTime = interfaz.getFeedTime()) != null) {
 
 			return true;
 
@@ -226,11 +221,21 @@ public class DialogoConect extends JDialog implements ActionListener {
 
 	public void colocarDatos() {
 
+		float[] phValues = DAOPecera.getPhporPecera(p);
+		float[] tmpValues = DAOPecera.getTempporPecera(p);
+		
 		txPH.setText(String.valueOf(ph));
 		txPHOff.setText(String.valueOf(phOff));
 		txTemp.setText(String.valueOf(temp));
 		txMeals.setText(String.valueOf(meal));
 		txFischN.setText(String.valueOf(fishN));
+
+		txPHMin.setText(String.valueOf(phValues[0]));
+		txPHMax.setText(String.valueOf(phValues[1]));
+		
+		txTempMin.setText(String.valueOf(tmpValues[0]));
+		txTempMax.setText(String.valueOf(tmpValues[1]));
+
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
 		String feedT = simpleDateFormat.format(feedTime.getTime());
@@ -260,13 +265,14 @@ public class DialogoConect extends JDialog implements ActionListener {
 
 		String a = JOptionPane.showInputDialog(this, "Introduce la cantidad de comidas que quedan disponibles");
 		try {
-			
+
 			int meals = Integer.parseInt(a);
 			interfaz.setMeals(meals);
-			
+
 		} catch (NumberFormatException e) {
-			
-			JOptionPane.showMessageDialog(this, "Introduce el numero correctamente", "Error Introduccion", JOptionPane.ERROR_MESSAGE);
+
+			JOptionPane.showMessageDialog(this, "Introduce el numero correctamente", "Error Introduccion",
+					JOptionPane.ERROR_MESSAGE);
 
 		}
 	}
