@@ -11,6 +11,7 @@ public class Pecera {
 	int capacidad;
 	int comida_id;
 	Date horacomida;
+	int meals;
 
 
 
@@ -19,6 +20,8 @@ public class Pecera {
 		this.nombre = nombre;
 		this.capacidad = capacidad;
 		this.comida_id = comida_id;
+		this.meals = 0;
+		
 	}	
 	
 	public int getComida_id() {
@@ -35,6 +38,15 @@ public class Pecera {
 		this.nombre = nombre;
 		this.capacidad = capacidad;
 		this.comida_id = comida_id;
+		this.meals = 0;
+	}
+
+	public int getMeals() {
+		return meals;
+	}
+
+	public void setMeals(int meals) {
+		this.meals = meals;
 	}
 
 	public String getNombre() {

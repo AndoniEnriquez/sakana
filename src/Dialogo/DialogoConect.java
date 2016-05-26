@@ -139,6 +139,8 @@ public class DialogoConect extends JDialog implements ActionListener{
 			
 		case "Sinc":
 			
+			sincronizarMicro();
+			
 			break;
 			
 		case "Feed":
@@ -197,5 +199,24 @@ public class DialogoConect extends JDialog implements ActionListener{
 		txFedTime.setText(feedT);
 		txCurTime.setText(dateT);
 		
+	}
+	
+	public void sincronizarMicro(){
+		
+		float ph [] = new float[2];
+		float temp [] = new float[2];
+		
+		ph = DAOPecera.getPhporPecera(p);
+		temp = DAOPecera.getTempporPecera(p);
+		
+		interfaz.setPhMin(ph[0]);
+		interfaz.setPhMax(ph[1]);
+		interfaz.setTempMin(temp[0]);
+		interfaz.setTempMax(temp[1]);
+		interfaz.setFishNo(DAOPecera.getCantidadPeces(p));
+		interfaz.setDateTime(Calendar.getInstance());
+		
+		//interfaz.setMeals(p.getMeals());
+		JOptionPane.showInputDialog(this, "Introduce la cantidad de comidas que quedan disponibles");
 	}
 }
