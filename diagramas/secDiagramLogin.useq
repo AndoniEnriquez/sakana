@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.9" icons="true">  
+  <object id="1" language="java" name="panel.PanelAjustes" project="sakana" file="/sakana/src/panel/PanelAjustes.java" 
+    binary="false" label="panelAjustes" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="150" y="0"/>    
+    <execution id="2">      
+      <position height="299" width="98" x="5" y="99"/>    
+    </execution>  
+  </object>  
+  <object id="5" language="java" name="login.FormLogin" project="sakana" file="/sakana/src/login/FormLogin.java" 
+    binary="false" label="formLogin" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="301" y="0"/>    
+    <execution id="4">      
+      <position height="257" width="83" x="107" y="120"/>    
+    </execution>  
+  </object>  
+  <object id="10" language="java" name="login.LogCtrl" project="sakana" file="/sakana/src/login/LogCtrl.java" 
+    binary="false" label="logCtrl" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="273" y="0"/>    
+    <execution id="7">      
+      <position height="21" width="64" x="194" y="141"/>    
+    </execution>    
+    <execution id="9">      
+      <position height="189" width="7" x="223" y="167"/>    
+    </execution>  
+  </object>  
+  <object id="19" language="java" name="conexionDB.DAODueno" project="sakana" 
+    file="/sakana/src/conexionDB/DAODueno.java" binary="false" label="&lt;static&gt;" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="12">      
+      <position height="21" width="0" x="0" y="188"/>    
+    </execution>  
+  </object>  
+  <object id="20" language="java" name="varTypes.Dueno" project="sakana" file="/sakana/src/varTypes/Dueno.java" 
+    binary="false" label="p" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="14">      
+      <position height="21" width="0" x="0" y="230"/>    
+    </execution>  
+  </object>  
+  <object id="21" language="java" name="login.Sesion" project="sakana" file="/sakana/src/login/Sesion.java" 
+    binary="false" label="&lt;static&gt;" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="16">      
+      <position height="21" width="0" x="0" y="272"/>    
+    </execution>  
+  </object>  
+  <object id="22" language="java" name="login.Sesion" project="sakana" file="/sakana/src/login/Sesion.java" 
+    binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="18">      
+      <position height="21" width="0" x="0" y="314"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="FormLogin(fabrica.FabricaAcciones)" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="6" operation="LogCtrl()" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </message>  
+  <message id="8" operation="validarUser(java.lang.String,java.lang.String):boolean" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="9"/>  
+  </message>  
+  <message id="11" operation="buscarPorNombre(java.lang.String):varTypes.Dueno" asynchronous="false">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="12"/>  
+  </message>  
+  <message id="13" operation="getPassword():java.lang.String" asynchronous="false">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="14"/>  
+  </message>  
+  <message id="15" operation="getInstance():login.Sesion" asynchronous="false">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="16"/>  
+  </message>  
+  <message id="17" operation="setUsuario(varTypes.Dueno):void" asynchronous="false">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="18"/>  
+  </message>
+</sequence-diagram>
