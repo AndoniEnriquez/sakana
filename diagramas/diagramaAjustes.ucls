@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="sakana.MenuPrincipal" project="sakana" 
     file="/sakana/src/sakana/MenuPrincipal.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="633" y="122"/>    
+    <position height="189" width="183" x="127" y="410"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="panel.PanelAjustes" project="sakana" file="/sakana/src/panel/PanelAjustes.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="675" y="429"/>    
+    <position height="333" width="239" x="127" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="dialogo.DialogoConfiguracion" project="sakana" 
     file="/sakana/src/dialogo/DialogoConfiguracion.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="262" y="502"/>    
+    <position height="279" width="256" x="350" y="410"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="dialogo.DialogoAddDueno" project="sakana" 
     file="/sakana/src/dialogo/DialogoAddDueno.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="551" y="838"/>    
+    <position height="279" width="281" x="409" y="729"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="dialogo.DialogoAddTipoPez" project="sakana" 
     file="/sakana/src/dialogo/DialogoAddTipoPez.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="169" y="931"/>    
+    <position height="441" width="288" x="41" y="729"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="conexionDB.DAODueno" project="sakana" file="/sakana/src/conexionDB/DAODueno.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="549" y="1131"/>    
+    <position height="117" width="183" x="390" y="1210"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,44 +57,94 @@
   </class>  
   <class id="7" language="java" name="conexionDB.DAOTipoPez" project="sakana" 
     file="/sakana/src/conexionDB/DAOTipoPez.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="210" x="41" y="1246"/>    
+    <position height="189" width="210" x="41" y="1210"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <dependency id="8">    
+  <class id="8" language="java" name="varTypes.Dueno" project="sakana" file="/sakana/src/varTypes/Dueno.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="261" width="168" x="522" y="1439"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="varTypes.TipoPez" project="sakana" file="/sakana/src/varTypes/TipoPez.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="423" width="210" x="272" y="1439"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <dependency id="10">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <dependency id="9">    
+  <association id="11">    
+    <bendpoint x="281" y="1210"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="12" name="tipoPez"/>      
+      <multiplicity id="13" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="14">    
+    <bendpoint x="603" y="1210"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="15">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <dependency id="10">    
+  <association id="16">    
+    <bendpoint x="359" y="729"/>    
+    <bendpoint x="359" y="1210"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="17" name="tipoPez"/>      
+      <multiplicity id="18" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="19">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
   </dependency>  
-  <dependency id="11">    
+  <dependency id="20">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="7"/>  
   </dependency>  
-  <association id="12">    
+  <association id="21">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="13" name="panelAjustes"/>      
-      <multiplicity id="14" minimum="0" maximum="1"/>    
+      <attribute id="22" name="panelAjustes"/>      
+      <multiplicity id="23" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="15">    
+  <dependency id="24">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <dependency id="16">    
+  <dependency id="25">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="26">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="27">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="8"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
