@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.9" icons="true">  
+  <object id="1" language="java" name="panel.PanelListaPecera" project="sakana" 
+    file="/sakana/src/panel/PanelListaPecera.java" binary="false" label="panelListaPecera" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="220" y="0"/>    
+    <execution id="2">      
+      <position height="150" width="124" x="5" y="112"/>    
+    </execution>    
+    <execution id="4">      
+      <position height="87" width="124" x="5" y="154"/>    
+    </execution>    
+    <execution id="7">      
+      <position height="63" width="124" x="5" y="427"/>    
+    </execution>    
+    <execution id="10">      
+      <position height="105" width="124" x="5" y="309"/>    
+    </execution>  
+  </object>  
+  <object id="13" language="java" name="dialogo.DialogoAddPecera" project="sakana" 
+    file="/sakana/src/dialogo/DialogoAddPecera.java" binary="false" label="dialogoAddPecera" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="132" y="0"/>    
+    <execution id="12">      
+      <position height="63" width="128" x="133" y="330"/>    
+    </execution>  
+  </object>  
+  <object id="16" language="java" name="conexionDB.DAOPecera" project="sakana" 
+    file="/sakana/src/conexionDB/DAOPecera.java" binary="false" label="&lt;static&gt;" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="6">      
+      <position height="21" width="0" x="0" y="199"/>    
+    </execution>    
+    <execution id="9">      
+      <position height="21" width="89" x="133" y="448"/>    
+    </execution>    
+    <execution id="15">      
+      <position height="21" width="89" x="265" y="351"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="cargarPeceras():void" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="5" operation="getPeceras():java.util.ArrayList&lt;Pecera&gt;" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </message>  
+  <message id="8" operation="eliminarPecera(varTypes.Pecera):boolean" asynchronous="false">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="9"/>  
+  </message>  
+  <message id="11" operation="DialogoAddPecera(javax.swing.JFrame,boolean,fabrica.FabricaAcciones)" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="12"/>  
+  </message>  
+  <message id="14" operation="addPecera(varTypes.Pecera):boolean" asynchronous="false">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="15"/>  
+  </message>
+</sequence-diagram>
