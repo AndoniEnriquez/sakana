@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.9" icons="true">  
+  <object id="1" language="java" name="panel.PanelAjustes" project="sakana" file="/sakana/src/panel/PanelAjustes.java" 
+    binary="false" label="panelAjustes" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="476" y="0"/>    
+    <execution id="2">      
+      <position height="147" width="98" x="5" y="111"/>    
+    </execution>  
+  </object>  
+  <object id="5" language="java" name="dialogo.DialogoConfiguracion" project="sakana" 
+    file="/sakana/src/dialogo/DialogoConfiguracion.java" binary="false" label="dialogoConfiguracion" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="385" y="0"/>    
+    <execution id="4">      
+      <position height="105" width="144" x="107" y="132"/>    
+    </execution>    
+    <execution id="8">      
+      <position height="105" width="144" x="107" y="240"/>    
+    </execution>    
+    <execution id="11">      
+      <position height="105" width="144" x="107" y="352"/>    
+    </execution>  
+  </object>  
+  <object id="14" language="java" name="dialogo.DialogoAddTipoPez" project="sakana" 
+    file="/sakana/src/dialogo/DialogoAddTipoPez.java" binary="false" label="dialogoAddTipoPez" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="451" y="0"/>    
+    <execution id="7">      
+      <position height="63" width="132" x="255" y="153"/>    
+    </execution>    
+    <execution id="10">      
+      <position height="63" width="132" x="255" y="261"/>    
+    </execution>  
+  </object>  
+  <object id="19" language="java" name="dialogo.DialogoAddDueno" project="sakana" 
+    file="/sakana/src/dialogo/DialogoAddDueno.java" binary="false" label="dialogoAddDueno" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="511" y="0"/>    
+    <execution id="13">      
+      <position height="63" width="123" x="391" y="373"/>    
+    </execution>  
+  </object>  
+  <object id="22" language="java" name="conexionDB.DAOTipoPez" project="sakana" 
+    file="/sakana/src/conexionDB/DAOTipoPez.java" binary="false" label="daoTipoPez" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="658" y="0"/>    
+    <execution id="16">      
+      <position height="21" width="93" x="518" y="174"/>    
+    </execution>    
+    <execution id="18">      
+      <position height="21" width="93" x="518" y="282"/>    
+    </execution>  
+  </object>  
+  <object id="23" language="java" name="conexionDB.DAODueno" project="sakana" 
+    file="/sakana/src/conexionDB/DAODueno.java" binary="false" label="daoDueno" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="705" y="0"/>    
+    <execution id="21">      
+      <position height="21" width="84" x="615" y="394"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="DialogoConfiguracion(javax.swing.JFrame,fabrica.FabricaAcciones)" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="6" operation="DialogoAddTipoPez(javax.swing.JFrame,fabrica.FabricaAcciones)" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </message>  
+  <message id="9" operation="DialogoAddTipoPez(javax.swing.JFrame,fabrica.FabricaAcciones,varTypes.TipoPez)" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="10"/>  
+  </message>  
+  <message id="12" operation="DialogoAddDueno(javax.swing.JFrame,boolean,fabrica.FabricaAcciones)" asynchronous="false" 
+    x="189" y="355">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="13"/>  
+  </message>  
+  <message id="15" operation="updatePecera(varTypes.TipoPez):boolean" asynchronous="false">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="16"/>  
+  </message>  
+  <message id="17" operation="addTipoPez(varTypes.TipoPez):boolean" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="18"/>  
+  </message>  
+  <message id="20" operation="addDueno(varTypes.Dueno):boolean" asynchronous="false">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="21"/>  
+  </message>
+</sequence-diagram>
