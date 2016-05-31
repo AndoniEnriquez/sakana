@@ -310,8 +310,8 @@ public class DAOPecera {
 			stmt = PoolConexiones.getConexion().createStatement();
 			strSQL = "UPDATE PECERA " + " SET IP = '" + p.getIP() + "', Capacidad   = '" + p.getCapacidad()
 					+ "', nombrePecera   = '" + p.getNombre() + "', comida_id   = " + p.setComida_idForUpdate()
-					+ ", horacomida   = '" + formatter.format(p.getHoracomida()) + "' WHERE nombrePecera='"
-					+ p.getNombre() + "'";
+					+ ", horacomida   = '" + formatter.format(p.getHoracomida()) + "' WHERE pecera_id = "
+					+ p.getID();
 			
 			return (stmt.executeUpdate(strSQL) > 0);
 			

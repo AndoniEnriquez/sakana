@@ -19,7 +19,9 @@ public class InterfazMicro {
 	public static final int NO_RESPUESTA = 3;
 	public static final int CAMBIO_NO_REALIZADO = 4;
 	public static final int ERROR_DESCONOCIDO = 5;
-
+	
+	public static final int HOUR_MILIS = 3600000;
+	
 	public InterfazMicro(Pecera p) {
 		cliente = new ClienteMicro(p.getIP(), PORT);
 	}
@@ -101,7 +103,7 @@ public class InterfazMicro {
 		Thread t = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				respuesta = cliente.enviarComando("set feedtime " + c.getTimeInMillis() / 1000 + ";");
+				respuesta = cliente.enviarComando("set feedtime " + (c.getTimeInMillis() - HOUR_MILIS) / 1000 + ";");
 			}
 		});
 
@@ -151,7 +153,7 @@ public class InterfazMicro {
 			String[] sa = respuesta.split(" ");
 			Long f = Long.parseLong(sa[1]);
 			Calendar c = Calendar.getInstance();
-			c.setTimeInMillis((long) (f * 1000));
+			c.setTimeInMillis((long) (f * 1000) + HOUR_MILIS);
 			
 			return c;
 		}

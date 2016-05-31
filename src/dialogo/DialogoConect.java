@@ -223,7 +223,7 @@ public class DialogoConect extends JDialog implements ActionListener {
 
 		float[] phValues = DAOPecera.getPhporPecera(p);
 		float[] tmpValues = DAOPecera.getTempporPecera(p);
-		
+
 		txPH.setText(String.valueOf(ph));
 		txPHOff.setText(String.valueOf(phOff));
 		txTemp.setText(String.valueOf(temp));
@@ -232,10 +232,9 @@ public class DialogoConect extends JDialog implements ActionListener {
 
 		txPHMin.setText(String.valueOf(phValues[0]));
 		txPHMax.setText(String.valueOf(phValues[1]));
-		
+
 		txTempMin.setText(String.valueOf(tmpValues[0]));
 		txTempMax.setText(String.valueOf(tmpValues[1]));
-
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
 		String feedT = simpleDateFormat.format(feedTime.getTime());
@@ -253,6 +252,8 @@ public class DialogoConect extends JDialog implements ActionListener {
 		float ph[] = new float[2];
 		float temp[] = new float[2];
 
+		Calendar calendar = Calendar.getInstance();
+
 		ph = DAOPecera.getPhporPecera(p);
 		temp = DAOPecera.getTempporPecera(p);
 
@@ -261,7 +262,12 @@ public class DialogoConect extends JDialog implements ActionListener {
 		interfaz.setTempMin(temp[0]);
 		interfaz.setTempMax(temp[1]);
 		interfaz.setFishNo(DAOPecera.getCantidadPeces(p));
-		interfaz.setDateTime(Calendar.getInstance());
+		interfaz.setDateTime(calendar);
+		System.out.println("Ahora: "+ (calendar.getTimeInMillis()/1000 % 43200));
+		calendar.setTime(p.getHoracomida());
+		//calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY)-1);
+		interfaz.setFeedTime(calendar);
+		System.out.println("Horario: "+ (calendar.getTimeInMillis()/1000 % 43200));
 
 		String a = JOptionPane.showInputDialog(this, "Introduce la cantidad de comidas que quedan disponibles");
 		try {
