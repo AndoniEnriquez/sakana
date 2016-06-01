@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.9" icons="true">  
+  <object id="1" language="java" name="panel.PanelInformacion" project="sakana" 
+    file="/sakana/src/panel/PanelInformacion.java" binary="false" label="panelInformacion" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="195" y="0"/>    
+    <execution id="2">      
+      <position height="482" width="123" x="5" y="106"/>    
+    </execution>  
+  </object>  
+  <object id="5" language="java" name="dialogo.DialogoConect" project="sakana" 
+    file="/sakana/src/dialogo/DialogoConect.java" binary="false" label="dialogoConect" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="238" y="0"/>    
+    <execution id="4">      
+      <position height="440" width="105" x="132" y="127"/>    
+    </execution>    
+    <execution id="9">      
+      <position height="325" width="0" x="0" y="221"/>    
+    </execution>    
+    <execution id="24">      
+      <position height="235" width="105" x="132" y="592"/>    
+    </execution>    
+    <execution id="26">      
+      <position height="172" width="105" x="132" y="634"/>    
+    </execution>    
+    <execution id="33">      
+      <position height="63" width="105" x="132" y="833"/>    
+    </execution>    
+    <execution id="36">      
+      <position height="63" width="105" x="132" y="906"/>    
+    </execution>  
+  </object>  
+  <object id="39" language="java" name="conexionDB.DAOPecera" project="sakana" 
+    file="/sakana/src/conexionDB/DAOPecera.java" binary="false" label="&lt;static&gt;" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="28">      
+      <position height="21" width="0" x="0" y="665"/>    
+    </execution>    
+    <execution id="30">      
+      <position height="21" width="0" x="0" y="707"/>    
+    </execution>  
+  </object>  
+  <object id="40" language="java" name="java.util.Calendar" project="sakana" 
+    file="C:/Program Files/Java/jre1.8.0_66/lib/rt.jar" binary="true" label="feedTime" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="32">      
+      <position height="21" width="0" x="0" y="764"/>    
+    </execution>  
+  </object>  
+  <object id="41" language="java" name="conexionMicro.InterfazMicro" project="sakana" 
+    file="/sakana/src/conexionMicro/InterfazMicro.java" binary="false" label="interfaz" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="7">      
+      <position height="21" width="0" x="0" y="158"/>    
+    </execution>    
+    <execution id="11">      
+      <position height="21" width="0" x="0" y="252"/>    
+    </execution>    
+    <execution id="13">      
+      <position height="21" width="0" x="0" y="294"/>    
+    </execution>    
+    <execution id="15">      
+      <position height="21" width="0" x="0" y="336"/>    
+    </execution>    
+    <execution id="17">      
+      <position height="21" width="0" x="0" y="378"/>    
+    </execution>    
+    <execution id="19">      
+      <position height="21" width="0" x="0" y="420"/>    
+    </execution>    
+    <execution id="21">      
+      <position height="21" width="0" x="0" y="462"/>    
+    </execution>    
+    <execution id="23">      
+      <position height="21" width="0" x="0" y="504"/>    
+    </execution>    
+    <execution id="35">      
+      <position height="21" width="98" x="413" y="854"/>    
+    </execution>    
+    <execution id="38">      
+      <position height="21" width="98" x="413" y="927"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="DialogoConect(javax.swing.JFrame,fabrica.FabricaAcciones,varTypes.Pecera,boolean)" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="6" operation="InterfazMicro(varTypes.Pecera)" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </message>  
+  <message id="8" operation="sincronizarDatos():boolean" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="9"/>  
+  </message>  
+  <message id="10" operation="getPh():float" asynchronous="false">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="11"/>  
+  </message>  
+  <message id="12" operation="getPhOffset():float" asynchronous="false">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="13"/>  
+  </message>  
+  <message id="14" operation="getTemp():float" asynchronous="false">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="15"/>  
+  </message>  
+  <message id="16" operation="getMeals():int" asynchronous="false">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="17"/>  
+  </message>  
+  <message id="18" operation="getFishNo():int" asynchronous="false">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="19"/>  
+  </message>  
+  <message id="20" operation="getDateTime():java.util.Calendar" asynchronous="false">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="21"/>  
+  </message>  
+  <message id="22" operation="getFeedTime():java.util.Calendar" asynchronous="false">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="23"/>  
+  </message>  
+  <message id="25" operation="colocarDatos():void" asynchronous="false">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="26"/>  
+  </message>  
+  <message id="27" operation="getPhporPecera(varTypes.Pecera):float[]" asynchronous="false">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="28"/>  
+  </message>  
+  <message id="29" operation="getTempporPecera(varTypes.Pecera):float[]" asynchronous="false">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="30"/>  
+  </message>  
+  <message id="31" operation="getTime():java.util.Date" asynchronous="false">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="32"/>  
+  </message>  
+  <message id="34" operation="feed(int):int" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="35"/>  
+  </message>  
+  <message id="37" operation="setPhOffset(float):int" asynchronous="false">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="38"/>  
+  </message>
+</sequence-diagram>

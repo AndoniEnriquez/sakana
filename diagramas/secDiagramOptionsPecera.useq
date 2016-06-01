@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.9" icons="true">  
+  <object id="1" language="java" name="panel.PanelInformacion" project="sakana" 
+    file="/sakana/src/panel/PanelInformacion.java" binary="false" label="panelInformacion" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="179" y="0"/>    
+    <execution id="2">      
+      <position height="106" width="123" x="5" y="105"/>    
+    </execution>    
+    <execution id="5">      
+      <position height="105" width="123" x="5" y="260"/>    
+    </execution>    
+    <execution id="8">      
+      <position height="105" width="123" x="5" y="416"/>    
+    </execution>  
+  </object>  
+  <object id="11" language="java" name="dialogo.DialogoAddPez" project="sakana" 
+    file="/sakana/src/dialogo/DialogoAddPez.java" binary="false" label="dialogoAddPez" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="175" y="0"/>    
+    <execution id="4">      
+      <position height="64" width="108" x="132" y="126"/>    
+    </execution>  
+  </object>  
+  <object id="14" language="java" name="conexionDB.DAOPez" project="sakana" file="/sakana/src/conexionDB/DAOPez.java" 
+    binary="false" label="daoPez" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="341" y="0"/>    
+    <execution id="13">      
+      <position height="21" width="69" x="244" y="148"/>    
+    </execution>  
+  </object>  
+  <object id="15" language="java" name="dialogo.DialogoAddPecera" project="sakana" 
+    file="/sakana/src/dialogo/DialogoAddPecera.java" binary="false" label="dialogoAddPecera" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="437" y="0"/>    
+    <execution id="7">      
+      <position height="63" width="128" x="317" y="281"/>    
+    </execution>  
+  </object>  
+  <object id="18" language="java" name="conexionDB.DAOPecera" project="sakana" 
+    file="/sakana/src/conexionDB/DAOPecera.java" binary="false" label="daoPecera" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="529" y="0"/>    
+    <execution id="17">      
+      <position height="21" width="89" x="449" y="302"/>    
+    </execution>  
+  </object>  
+  <object id="19" language="java" name="dialogo.DialogoRegistroComida" project="sakana" 
+    file="/sakana/src/dialogo/DialogoRegistroComida.java" binary="false" label="dialogoRegistroComida" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="681" y="0"/>    
+    <execution id="10">      
+      <position height="63" width="156" x="542" y="437"/>    
+    </execution>  
+  </object>  
+  <object id="22" language="java" name="conexionDB.DAORegComida" project="sakana" 
+    file="/sakana/src/conexionDB/DAORegComida.java" binary="false" label="daoRegComida" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="783" y="0"/>    
+    <execution id="21">      
+      <position height="21" width="113" x="702" y="458"/>    
+    </execution>  
+  </object>  
+  <message id="3" operation="DialogoAddPez(javax.swing.JFrame,boolean,fabrica.FabricaAcciones)" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="6" operation="DialogoAddPecera(javax.swing.JFrame,boolean,fabrica.FabricaAcciones,varTypes.Pecera)" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="7"/>  
+  </message>  
+  <message id="9" operation="DialogoRegistroComida(javax.swing.JFrame,varTypes.Pecera)" asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="10"/>  
+  </message>  
+  <message id="12" operation="addPez(varTypes.Pez):boolean" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="13"/>  
+  </message>  
+  <message id="16" operation="updatePecera(varTypes.Pecera):boolean" asynchronous="false">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="17"/>  
+  </message>  
+  <message id="20" operation="getRegistrosPorPecera(varTypes.Pecera):java.util.ArrayList&lt;RegComida&gt;" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="21"/>  
+  </message>
+</sequence-diagram>
