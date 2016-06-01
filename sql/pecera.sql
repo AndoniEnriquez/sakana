@@ -73,7 +73,7 @@ INSERT INTO comida VALUES (1, "Comida de Goldfish", "Comida idonea para darselo 
 INSERT INTO comida VALUES (2, "Peces pequeños", "Se les suele dar a las pirañas o tiburones");
 
 
-INSERT INTO pecera(nombrePecera,horacomida,IP,capacidad) VALUES ("MiniPecera", "02:00", "192.168.1.15", 1);
+INSERT INTO pecera VALUES (1, "MiniPecera", "02:00", "192.168.1.15", 1);
 
 
 
