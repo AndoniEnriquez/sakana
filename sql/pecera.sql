@@ -5,8 +5,8 @@ use pecera;
 
 CREATE TABLE COMIDA (
 comida_id	 		INT(3) AUTO_INCREMENT,
-nombreComida 		VARCHAR(20),
-descripcionComida 	VARCHAR(70),
+nombreComida 		VARCHAR(50),
+descripcionComida 	VARCHAR(200),
 CONSTRAINT COMIDA_PRIMARY_KEY PRIMARY KEY (comida_id));
 
 CREATE TABLE PECERA (
@@ -70,16 +70,13 @@ CONSTRAINT MEDICION_TIPOMEDICION FOREIGN KEY (tipomedicion_id) REFERENCES TIPOME
 CONSTRAINT MEDICION_PECERA_FK FOREIGN KEY (pecera_id) REFERENCES PECERA (pecera_id));
 
 INSERT INTO comida VALUES (1, "Comida de Goldfish", "Comida idonea para darselo a los goldfish");
-INSERT INTO comida VALUES (2, "Peces pequeños", "Se les suele dar a las pirañas o tiburones");
+INSERT INTO comida VALUES (2, "Peces pequenos", 'Se les suele dar a las piranas o tiburones');
 
-
-INSERT INTO pecera VALUES (1, "MiniPecera", "02:00", "192.168.1.15", 1);
-
-
+INSERT INTO pecera VALUES (1, "MiniPecera", "02:00", "192.168.1.15", 4, 1);
 
 INSERT INTO regcomida VALUES (1,1, "2016/05/20 11:00");
-INSERT INTO regcomida VALUES (2,1, "2016/05/21 11:00");
-INSERT INTO regcomida VALUES (3,1, "2016/05/22 11:00");
+INSERT INTO regcomida VALUES (1,1, "2016/05/21 11:00");
+INSERT INTO regcomida VALUES (1,1, "2016/05/22 11:00");
 
 INSERT INTO dueno VALUES (1,'gorospe','dima');
 INSERT INTO dueno VALUES (2, 'ander','gasteiz');
@@ -92,16 +89,16 @@ INSERT INTO tipomedicion VALUES(2,'Temperatura');
 INSERT INTO tipopez VALUES (1, "GoldFish", 6,8,10,30);
 INSERT INTO tipopez VALUES (2, "Tiburon",5,7,10,200);
 INSERT INTO tipopez VALUES (3, "Pez payaso",6,8,10,30);
-INSERT INTO tipopez VALUES (4, "Piraña",6,8,10,30);
+INSERT INTO tipopez VALUES (4, "Pirana",6,8,10,30);
 INSERT INTO tipopez VALUES (5, "Desconocido",1,10,0,40);
 
 INSERT INTO pez VALUES (1, "Aliyah", "Hembra", 1, 3, 1);
 
 insert into medicion values (1,6.5,"2016/05/20 11:00", 1,1);
-insert into medicion values (2,8,"2016/05/20 11:00", 1,2);
+insert into medicion values (2,8,"2016/05/20 11:00", 1,1);
 insert into medicion values (3,23,"2016/05/20 11:00", 2,1);
-insert into medicion values (4,25,"2016/05/20 11:00", 2,2);
+insert into medicion values (4,25,"2016/05/20 11:00", 2,1);
 insert into medicion values (5,21,"2016/05/21 11:00", 2,1);
-insert into medicion values (6,7.2,"2016/05/21 11:00", 1,3);
-insert into medicion values (7,24,"2016/05/21 11:00", 2,3);
+insert into medicion values (6,7.2,"2016/05/21 11:00", 1,1);
+insert into medicion values (7,24,"2016/05/21 11:00", 2,1);
 
