@@ -8,6 +8,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 
+import conexionMicro.SincronizadorPeceras;
 import fabrica.FabricaAcciones;
 import panel.PanelAjustes;
 
@@ -57,8 +58,11 @@ public class MenuPrincipal extends JFrame{
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		
-    	MenuPrincipal menuPrincipal = new MenuPrincipal();	
+		SincronizadorPeceras sincronizador = new SincronizadorPeceras();
+    	MenuPrincipal menuPrincipal = new MenuPrincipal();
     	fabrica.setMenuPrincipal(menuPrincipal);
+    	
+    	
 		
 	}
 }
