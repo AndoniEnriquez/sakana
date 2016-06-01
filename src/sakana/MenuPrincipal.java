@@ -58,6 +58,7 @@ public class MenuPrincipal extends JFrame{
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		
+		@SuppressWarnings("unused")
 		SincronizadorPeceras sincronizador = new SincronizadorPeceras();
     	MenuPrincipal menuPrincipal = new MenuPrincipal();
     	fabrica.setMenuPrincipal(menuPrincipal);
