@@ -13,9 +13,8 @@ public class ModeloColumnasTablaRegistroComida extends DefaultTableColumnModel {
 		
 		this.trazador = trazador;
 		
-		this.addColumn(crearColumna("ID", 0, 20));
-		this.addColumn(crearColumna("Fecha", 1, 100));
-		this.addColumn(crearColumna("Tipo Comida", 2, 100));
+		this.addColumn(crearColumna("Fecha", 0, 100));
+		this.addColumn(crearColumna("Comida", 1, 100));
 	}
 
 	private TableColumn crearColumna(String texto, int indice, int ancho) {

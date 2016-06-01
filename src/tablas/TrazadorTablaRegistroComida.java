@@ -20,16 +20,11 @@ public class TrazadorTablaRegistroComida extends DefaultTableCellRenderer {
 
 		case 0:
 
-			super.setHorizontalAlignment(LEFT);
-			
-			break;
-		case 1:
-
 			super.setText(formatearFecha(valor));
 			super.setHorizontalAlignment(CENTER);
 			
 			break;
-		case 2:
+		case 1:
 
 			super.setHorizontalAlignment(LEFT);
 			

@@ -65,14 +65,11 @@ public class ModeloTablaRegistroComida extends AbstractTableModel {
 	public Object getFieldAt(RegComida reserva, int columna) {
 		
 		switch (columna) {
-		
-		case 0:
-			return reserva.getId();
 			
-		case 1:
+		case 0:
 			return reserva.getDatetime();
 			
-		case 2:
+		case 1:
 			return this.getTipoComida(reserva);
 		}
 		
