@@ -90,7 +90,7 @@ public class DialogoConfiguracion extends JDialog implements ActionListener {
 		JPanel panel = new JPanel();
 		
 		panel.setPreferredSize(new Dimension(200, 70));
-		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN), "Añadir Nuevo Tipo de Pez"));
+		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN), "Nuevo Tipo de Pez"));
 		
 		bAddTipoPez = new JButton("Add");
 		bAddTipoPez.setActionCommand("AddTipoPez");
@@ -106,7 +106,7 @@ public class DialogoConfiguracion extends JDialog implements ActionListener {
 		JPanel panel = new JPanel();
 		
 		panel.setPreferredSize(new Dimension(200, 70));
-		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN), "Añadir Nuevo Usuario"));
+		panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.CYAN), "Nuevo Usuario"));
 		
 		bAddUsuario = new JButton("Add");
 		bAddUsuario.setActionCommand("AddUsuario");
