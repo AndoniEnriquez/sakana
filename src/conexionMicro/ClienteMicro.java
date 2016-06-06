@@ -57,9 +57,10 @@ public class ClienteMicro {
 				client.close();
 			
 			} catch (Exception e1) {}
+			DISPONIBLE = true;
 		}
 		
-		DISPONIBLE = false;
+		
 		return respuesta;
 
 	}
