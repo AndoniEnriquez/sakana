@@ -705,7 +705,7 @@ public class InterfazMicro {
 		}
 		if (respuesta == null)	return null;
 		
-		if (respuesta.startsWith("")) {
+		if (respuesta.startsWith("fed")) {
 			
 			respuesta = respuesta.replace(";", "");
 			String[] sa = respuesta.split(" ");

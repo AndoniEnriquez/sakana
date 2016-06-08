@@ -15,7 +15,7 @@ public class Medicion {
 		this.valor = valor;
 		this.datetime = datetime;
 		this.tipoMedicion_id = tipoMedicion_id;
-		this.pecera_id = tipoMedicion_id;
+		this.pecera_id = pecera_id;
 	}
 
 	public int getID() {

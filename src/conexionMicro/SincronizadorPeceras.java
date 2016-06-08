@@ -18,7 +18,7 @@ public class SincronizadorPeceras extends Thread {
 		while (true) {
 			sincronizarPeceras();
 			try {
-				sleep(3000000);
+				sleep(10000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

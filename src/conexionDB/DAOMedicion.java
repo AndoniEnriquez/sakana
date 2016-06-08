@@ -1,8 +1,10 @@
 package conexionDB;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -110,11 +112,13 @@ public class DAOMedicion {
 
 		try {
 
-			String timeMedicion = m.getDatetime().toString();
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			
+			String timeMedicion = simpleDateFormat.format(m.getDatetime().getTime());
 
 			stmt = PoolConexiones.getConexion().createStatement();
 			strSQL = "INSERT INTO MEDICION (valor, datetimeMedicion, tipomedicion_id, pecera_id) " + " VALUES ("
-					+ m.getValor() + ",'" + timeMedicion + "','" + m.getTipoMedicion_id() + "','" + m.getPecera_id()+ ")";
+					+ m.getValor() + ",'" + timeMedicion + "'," + m.getTipoMedicion_id() + "," + m.getPecera_id()+ ")";
 			result = stmt.executeUpdate(strSQL);
 			return true;
 		}
