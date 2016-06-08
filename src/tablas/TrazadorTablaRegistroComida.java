@@ -39,7 +39,7 @@ public class TrazadorTablaRegistroComida extends DefaultTableCellRenderer {
 		Date fecha = (Date) valor;
 		SimpleDateFormat simpleDateFormat;
 		
-		simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm");
+		simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 		
 		return simpleDateFormat.format(fecha);
 	}

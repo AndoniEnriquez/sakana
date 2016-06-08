@@ -52,7 +52,7 @@ public class DAORegComida {
 		RegComida registro;
 		Date dateTime;
 		SimpleDateFormat simpleDateFormat;
-		simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm");
+		simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 		
 		try {
 
@@ -79,13 +79,15 @@ public class DAORegComida {
 		return lista;
 	}
 
-	@SuppressWarnings({ "deprecation", "unused" })
+
 	static public boolean addRegistro(RegComida r) {
 
 		Statement stmt;
 		String strSQL;
 		int result;
-		String horacomida = r.getDatetime().getHours() + ":" + r.getDatetime().getMinutes();
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");	
+		String horacomida = simpleDateFormat.format(r.getDatetime().getTime());
 		
 		try {
 		
@@ -103,25 +105,4 @@ public class DAORegComida {
 		}
 	}
 
-	@SuppressWarnings({ "deprecation", "unused" })
-	public static boolean eliminarPecera(RegComida r) {
-
-		Statement stmt;
-		int result;
-		String strSQL;
-		String horacomida = r.getDatetime().getHours() + ":" + r.getDatetime().getMinutes();
-		
-		try {
-			
-			stmt = PoolConexiones.getConexion().createStatement();
-			strSQL = " DELETE FROM regcomida " + " WHERE datetime = '" + horacomida + "'";
-			result = stmt.executeUpdate(strSQL);
-			return true;
-		
-		} catch (SQLException e) {
-			
-			return false;
-		}
-
-	}
 }
