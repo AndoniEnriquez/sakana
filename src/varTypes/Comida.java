@@ -2,14 +2,13 @@ package varTypes;
 
 public class Comida {
 
-	int comida_id, tipocomida_id;
+	int comida_id;
 	String nombreComida, descripcionComida;
 
-	public Comida(String nombreComida, String descripcionComida, int tipocomida_id) {
+	public Comida(String nombreComida, String descripcionComida) {
 
 		this.nombreComida = nombreComida;
 		this.descripcionComida = descripcionComida;
-		this.tipocomida_id = tipocomida_id;
 	}
 
 	public int getComida_id() {
@@ -18,14 +17,6 @@ public class Comida {
 
 	public void setComida_id(int comida_id) {
 		this.comida_id = comida_id;
-	}
-
-	public int getTipocomida_id() {
-		return tipocomida_id;
-	}
-
-	public void setTipocomida_id(int tipocomida_id) {
-		this.tipocomida_id = tipocomida_id;
 	}
 
 	public String getNombreComida() {

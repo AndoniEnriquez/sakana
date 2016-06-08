@@ -21,13 +21,12 @@ public class DAOComida {
 
 			lista = new ArrayList<>();
 			stmt = PoolConexiones.getConexion().createStatement();
-			strSQL = "SELECT comida_id,nombreComida,descripcionComida,tipocomida_id" + "FROM Comida";
+			strSQL = "SELECT comida_id,nombreComida,descripcionComida" + "FROM Comida";
 			result = stmt.executeQuery(strSQL);
 
 			while (result.next()) {
 
-				Comida = new Comida(result.getString("nombreComida"), result.getString("descripcionComida"),
-						result.getInt("tipocomida_id"));
+				Comida = new Comida(result.getString("nombreComida"), result.getString("descripcionComida"));
 				lista.add(Comida);
 			}
 
@@ -80,14 +79,13 @@ public class DAOComida {
 		try {
 			
 			stmt = PoolConexiones.getConexion().createStatement();
-			strSQL = "SELECT comida_id,nombreComida,descripcionComida,tipocomida_id" + " FROM Comida"
+			strSQL = "SELECT comida_id,nombreComida,descripcionComida" + " FROM Comida"
 					+ " WHERE Comida_id='" + idComida + "'";
 			result = stmt.executeQuery(strSQL);
 			
 			if (!result.next()) return null;
 
-			p = new Comida(result.getString("nombreComida"), result.getString("descripcionComida"),
-					result.getInt("tipocomida_id"));
+			p = new Comida(result.getString("nombreComida"), result.getString("descripcionComida"));
 			
 			result.close();
 			return p;
@@ -109,14 +107,13 @@ public class DAOComida {
 
 		try {
 			stmt = PoolConexiones.getConexion().createStatement();
-			strSQL = "SELECT nombreComida,descripcionComida,tipocomida_id" + " FROM Comida" + " WHERE nombreComida='"
+			strSQL = "SELECT nombreComida,descripcionComida" + " FROM Comida" + " WHERE nombreComida='"
 					+ nombreComida + "'";
 			result = stmt.executeQuery(strSQL);
 			
 			if (!result.next()) return null;
 
-			p = new Comida(result.getString("nombreComida"), result.getString("descripcionComida"),
-					result.getInt("tipocomida_id"));
+			p = new Comida(result.getString("nombreComida"), result.getString("descripcionComida"));
 			result.close();
 			return p;
 		}
@@ -139,8 +136,8 @@ public class DAOComida {
 			
 			if (buscarPorID(p.getComida_id()) == null && buscarPorNombre(p.getNombreComida()) == null) {
 				stmt = PoolConexiones.getConexion().createStatement();
-				strSQL = "INSERT INTO Comida (nombreComida, descripcionComida, tipoComida_id)" + " VALUES ("
-						+ p.getNombreComida() + "','" + p.getDescripcionComida() + "','" + p.getTipocomida_id() + ")";
+				strSQL = "INSERT INTO Comida (nombreComida, descripcionComida)" + " VALUES ("
+						+ p.getNombreComida() + "','" + p.getDescripcionComida() + "')";
 				result = stmt.executeUpdate(strSQL);
 				return true;
 				
@@ -184,8 +181,8 @@ public class DAOComida {
 		try {
 			stmt = PoolConexiones.getConexion().createStatement();
 			strSQL = "UPDATE Comida " + " SET nombreComida = '" + p.getNombreComida() + "', descripcionComida   = '"
-					+ p.getDescripcionComida() + "', tipocomida_id   = '" + p.getTipocomida_id()
-					+ "' WHERE nombreComida='" + p.getNombreComida() + "'";
+					+ p.getDescripcionComida() + "'"
+					+ " WHERE nombreComida='" + p.getNombreComida() + "'";
 			return (stmt.executeUpdate(strSQL) > 0);
 			
 		} catch (SQLException e) {
