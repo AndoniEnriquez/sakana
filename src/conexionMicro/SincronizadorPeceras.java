@@ -13,10 +13,6 @@ import varTypes.RegComida;
 
 public class SincronizadorPeceras extends Thread {
 
-	public static void main(String[] args) {
-
-	}
-
 	@Override
 	public void run() {
 		while (true) {
