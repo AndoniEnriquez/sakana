@@ -239,7 +239,7 @@ public class DialogoConect extends JDialog implements ActionListener {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
 		String feedT = simpleDateFormat.format(feedTime.getTime());
 
-		simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm");
+		simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 		String dateT = simpleDateFormat.format(dateTime.getTime());
 
 		txFedTime.setText(feedT);
@@ -265,7 +265,6 @@ public class DialogoConect extends JDialog implements ActionListener {
 		interfaz.setDateTime(calendar);
 		System.out.println("Ahora: "+ (calendar.getTimeInMillis()/1000 % 43200));
 		calendar.setTime(p.getHoracomida());
-		//calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY)-1);
 		interfaz.setFeedTime(calendar);
 		System.out.println("Horario: "+ (calendar.getTimeInMillis()/1000 % 43200));
 
