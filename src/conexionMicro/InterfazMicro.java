@@ -709,7 +709,7 @@ public class InterfazMicro {
 			
 			respuesta = respuesta.replace(";", "");
 			String[] sa = respuesta.split(" ");
-			Long l = Long.parseLong(sa[1]);
+			Long l = Long.parseLong(sa[2]);
 			RegComida rc = null;
 
 			Pecera p = null;
@@ -717,7 +717,7 @@ public class InterfazMicro {
 			
 			if (p != null) {
 			
-				rc = new RegComida(p.getComida_id(), p.getID(), new Date(l));
+				rc = new RegComida(p.getComida_id(), p.getID(), new Date(l * 1000));
 			}
 			
 			return rc;
