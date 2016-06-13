@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -264,7 +265,11 @@ public class DialogoConect extends JDialog implements ActionListener {
 		interfaz.setFishNo(DAOPecera.getCantidadPeces(p));
 		interfaz.setDateTime(calendar);
 		System.out.println("Ahora: "+ (calendar.getTimeInMillis()/1000 % 43200));
-		calendar.setTime(p.getHoracomida());
+		Date date = p.getHoracomida();
+		calendar = Calendar.getInstance();
+		calendar.set(Calendar.MINUTE, date.getMinutes());
+		calendar.set(Calendar.HOUR_OF_DAY, date.getHours());
+		calendar.set(Calendar.SECOND, 0);
 		interfaz.setFeedTime(calendar);
 		System.out.println("Horario: "+ (calendar.getTimeInMillis()/1000 % 43200));
 

@@ -103,7 +103,7 @@ public class InterfazMicro {
 		Thread t = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				respuesta = cliente.enviarComando("set feedtime " + (c.getTimeInMillis() - HOUR_MILIS) / 1000 + ";");
+				respuesta = cliente.enviarComando("set feedtime " + (c.getTimeInMillis()) / 1000 + ";");
 			}
 		});
 
@@ -153,7 +153,7 @@ public class InterfazMicro {
 			String[] sa = respuesta.split(" ");
 			Long f = Long.parseLong(sa[1]);
 			Calendar c = Calendar.getInstance();
-			c.setTimeInMillis((long) (f * 1000) + HOUR_MILIS);
+			c.setTimeInMillis((long) (f * 1000));
 			
 			return c;
 		}
